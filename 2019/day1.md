@@ -65,7 +65,7 @@ So, for each module mass, calculate its fuel and add it to the total. Then, trea
 - The fuel required by a module of mass `100756` and its fuel is: `33583 + 11192 + 3728 + 1240 + 411 + 135 + 43 + 12 + 2 = 50346`.
 
 > - 质量为 `14` 的模块需要 `2` 份燃料。 这些燃料不需要更多的燃料（2 除以 3 并且向下取整为 `0`，继续算下去燃料为负），因此总的燃料需求量仍然只有为 `2` 份。
-> - 最开始，质量为 `1969` 的模块需要 `654` 份燃料。然后，这些燃料又需要 `216` 份燃料（`654/3-2`）。`216` 又需要 `70` 份燃料，接下来需要 `21` 份燃料，接下来需要 `5` 份燃料，再接下来就不需要更多的燃料了。因此，质量为 `1969` 的模块所需的燃料总量为 `654 + 216 + 70 + 21 + 5 = 966`。
+> - 质量为 `1969` 的模块最开始需要 `654` 份燃料。然后，这些燃料又需要 `216` 份燃料（`654/3-2`）。`216` 又需要 `70` 份燃料，接下来需要 `21` 份燃料，接下来需要 `5` 份燃料，再接下来就不需要更多的燃料了。因此，质量为 `1969` 的模块所需的燃料总量为 `654 + 216 + 70 + 21 + 5 = 966`。
 > - 质量为 `100756` 的模块所需的燃料为：`33583 + 11192 + 3728 + 1240 + 411 + 135 + 43 + 12 + 2 = 50346`。
 
 **What is the sum of the fuel requirements** for all of the modules on your spacecraft when also taking into account the mass of the added fuel? (Calculate the fuel requirements for each module separately, then add them all up at the end.)
