@@ -38,7 +38,7 @@ For example:
 
 The Fuel Counter-Upper needs to know the total fuel requirement. To find it, individually calculate the fuel needed for the mass of each module ([your puzzle input](day1.txt)), then add together all the fuel values.
 
-> 燃料 Counter-Upper 需要知道总的燃油需求量。要算出它，需要分别计算出每个模块的质量（[你的谜题输入](day1.txt)）所需的燃料量，然后将所有这些燃料值相加。
+> 燃料表需要知道总的燃油需求量。要算出它，需要分别计算出每个模块的质量（[你的谜题输入](day1.txt)）所需的燃料量，然后将所有这些燃料值相加。
 
 **What is the sum of the fuel requirements** for all of the modules on your spacecraft?
 
