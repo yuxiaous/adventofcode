@@ -80,11 +80,11 @@ It turns out that this circuit is very timing-sensitive; you actually need to **
 
 To do this, calculate the **number of steps** each wire takes to reach each intersection; choose the intersection where the **sum of both wires' steps** is lowest. If a wire visits a position on the grid multiple times, use the steps value from the **first** time it visits that position when calculating the total value of a specific intersection.
 
-> 为此，计算每根导线到达每个交叉点所需的**步数**，选择**两条线的步数之和**最少的交叉点。如果一根导线多次经过网格上的某个位置，使用**第一次**经过该位置的步数来计算交叉点的总步数。
+> 为此，需要计算每根导线到达每个交叉点所需的**步数**，选择**两条导线的步数之和**最少的交叉点。如果一根导线多次经过网格上的某个位置，则使用**第一次**经过该位置的步数来计算交叉点的总步数。
 
 The number of steps a wire takes is the total number of grid squares the wire has entered to get to that location, including the intersection being considered. Again consider the example from above:
 
-> 一根导线所走的步数是导线到达那个位置所经过的格子的总数，包含所考虑的相交点。再次考虑上面的示例：
+> 一根导线所走的步数是导线到达那个位置所经过的格子的总数，包含这个相交点。重新考虑上面的示例：
 
 ```diff
 ...........
@@ -109,7 +109,7 @@ However, the top-right intersection is better: the first wire takes only `8+5+2 
 
 Here are the best steps for the extra examples from above:
 
-> 这是上面其他示例的最佳步骤：
+> 这是上面那两个例子的最佳步骤：
 
 ```diff
 R75,D30,R83,U83,L12,D49,R71,U7,L72
@@ -123,6 +123,6 @@ U98,R91,D20,R16,D67,R40,U7,R15,U6,R7 = 410 steps
 
 **What is the fewest combined steps the wires must take to reach an intersection?**
 
-> **导线到达交叉点最少的组合步数是什么？**
+> **导线到达交叉点的步数之和最少的是多少？**
 
 Your puzzle answer was `7388`.
