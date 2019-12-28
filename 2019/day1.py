@@ -27,7 +27,6 @@ def main():
             sum += requirements1(mass)
         print("Part1:", sum)
 
-
         # Part 2
         sum = 0
         for mass in masses:
