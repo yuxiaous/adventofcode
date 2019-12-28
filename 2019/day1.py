@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import math
 
 def requirements1(mass):
@@ -19,18 +21,18 @@ def main():
         inputs = f.read().strip()
         masses = [int(x) for x in inputs.split('\n')]
 
-    # Part 1
-    sum = 0
-    for mass in masses:
-        sum += requirements1(mass)
-    print("Part1:", sum)
+        # Part 1
+        sum = 0
+        for mass in masses:
+            sum += requirements1(mass)
+        print("Part1:", sum)
 
 
-    # Part 2
-    sum = 0
-    for mass in masses:
-        sum += requirements2(mass)
-    print("Part2:", sum)
+        # Part 2
+        sum = 0
+        for mass in masses:
+            sum += requirements2(mass)
+        print("Part2:", sum)
 
 if __name__ == "__main__":
     main()
