@@ -55,7 +55,7 @@ def main():
         # Part1
         print("Part 1:", part(1))
         # Part2
-        print("Part 2:", part(2))
+        print("Part 2: ", part(2))
 
 if __name__ == "__main__":
     main()
