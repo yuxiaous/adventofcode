@@ -1,5 +1,7 @@
 # [Day 5: Sunny with a Chance of Asteroids](https://adventofcode.com/2019/day/5)
 
+> 第5天：充满阳光的小行星
+
 You're starting to sweat as the ship makes its way toward Mercury. The Elves suggest that you get the air conditioner working by upgrading your ship computer to support the Thermal Environment Supervision Terminal.
 
 > 在飞船行驶向水星路途中，你开始汗流浃背。精灵们建议你通过升级飞船计算机的热环境监督终端来使空调工作。
