@@ -23,7 +23,7 @@ class Day7:
     def _series(self, signal):
         for amp in self.amplifiers:
             if amp.status == Intcode.HALT:
-                return signal, True
+                return False, signal
             while True:
                 status = amp.run()
                 if status == Intcode.INPUT:
@@ -33,12 +33,12 @@ class Day7:
                     break
                 elif status == Intcode.HALT:
                     break
-        return signal, False
+        return True, signal
 
     def _loop(self, signal):
-        halt = False
-        while not halt:
-            signal, halt = self._series(signal)
+        goon = True
+        while goon:
+            goon, signal = self._series(signal)
         return signal
 
     def find_largest(self, setting):
