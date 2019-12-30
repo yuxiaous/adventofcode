@@ -14,6 +14,7 @@ class Intcode:
     INVALID = -1
 
     def __init__(self, codes):
+        self.status = Intcode.NEXT
         self.memory = {i: x for i, x in enumerate(codes)}
         self.pointer = 0
         self.inputs = []
@@ -24,9 +25,11 @@ class Intcode:
         self.memory[2] = verb
     
     def input(self, value):
+        self.status = Intcode.NEXT
         self.inputs.append(value)
 
     def output(self):
+        self.status = Intcode.NEXT
         return self.outputs.pop(0)
 
     def _parse(self, value):
@@ -154,7 +157,6 @@ class Intcode:
         return Intcode.INVALID
 
     def run(self):
-        res = Intcode.NEXT
-        while res == Intcode.NEXT:
-            res = self._run_instruction()
-        return res
+        while self.status == Intcode.NEXT:
+            self.status = self._run_instruction()
+        return self.status
