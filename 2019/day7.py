@@ -15,7 +15,7 @@ class Day7:
 
     def configure(self, phases):
         self.amplifiers = []
-        for i in range(5):
+        for i in range(len(phases)):
             amp = Intcode(self.codes)
             amp.input(phases[i])
             self.amplifiers.append(amp)
