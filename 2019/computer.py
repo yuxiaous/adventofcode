@@ -10,13 +10,20 @@ class Intcode:
     JUMP_IF_FALSE = 6
     LESS_THAN = 7
     EQUALS = 8
+    RELATIVE = 9
     HALT = 99
     INVALID = -1
+
+    class Mode:
+        POSITION = 0
+        IMMEDIATE = 1
+        RELATIVE = 2
 
     def __init__(self, codes):
         self.status = Intcode.NEXT
         self.memory = {i: x for i, x in enumerate(codes)}
         self.pointer = 0
+        self.relative = 0
         self.inputs = []
         self.outputs = []
 
@@ -41,17 +48,18 @@ class Intcode:
         return opcode, [mode1, mode2, mode3]
 
     def _read(self, param, mode):
-        # position mode
-        if mode == 0:
-            return self.memory[param]
-        # immediate mode
-        elif mode == 1:
+        if mode == Intcode.Mode.POSITION:
+            return self.memory.get(param, 0)
+        elif mode == Intcode.Mode.IMMEDIATE:
             return param
+        elif mode == Intcode.Mode.RELATIVE:
+            return self.memory.get(self.relative + param, 0)
 
     def _write(self, param, mode, value):
-        # position mode
-        if mode == 0:
+        if mode == Intcode.Mode.POSITION:
             self.memory[param] = value
+        elif mode == Intcode.Mode.RELATIVE:
+            self.memory[self.relative + param] = value
 
     def _instruction_add(self, modes):
         param1 = self.memory[self.pointer + 1]
@@ -131,7 +139,14 @@ class Intcode:
         value1 = self._read(param1, modes[0])
         value2 = self._read(param2, modes[1])
         self._write(param3, modes[2], 1 if value1 == value2 else 0)
-        self.pointer += + 4
+        self.pointer += 4
+        return Intcode.NEXT
+
+    def _instruction_adjust_relative_base(self, modes):
+        param1 = self.memory[self.pointer + 1]
+        value1 = self._read(param1, modes[0])
+        self.relative += value1
+        self.pointer += 2
         return Intcode.NEXT
 
     def _run_instruction(self):
@@ -152,6 +167,8 @@ class Intcode:
             return self._instruction_less_than(modes)
         elif opcode == Intcode.EQUALS:
             return self._instruction_equals(modes)
+        elif opcode == Intcode.RELATIVE:
+            return self._instruction_adjust_relative_base(modes)
         elif opcode == Intcode.HALT:
             return Intcode.HALT
         return Intcode.INVALID
