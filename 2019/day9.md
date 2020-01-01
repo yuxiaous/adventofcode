@@ -53,7 +53,7 @@ Your Intcode computer will also need a few other capabilities:
 
 > 你的 Intcode 计算机还需要一些其他功能：
 >
-> - 计算机的可用内存应比初始程序大很多。超出初始程序内存从 `0` 开始，并且可以像其他内存一样进行读写。（但是，尝试访问一个负地址是无效的。）
+> - 计算机的可用内存应比初始程序大很多。超出初始程序部分的内存的初始值为 `0`，并且可以像其他内存一样进行读写。（但是，尝试访问一个负地址是无效的。）
 > - 计算机需要支持大数。一些靠近 BOOST 程序起始位置的指令将验证此功能。
 
 Here are some example programs that use these features:
