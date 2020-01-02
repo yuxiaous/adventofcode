@@ -49,8 +49,8 @@ class Day10:
     def part1(self):
         detected = []
         for asteroid in self.asteroids:
-            radians = self.detect_from_asteroid(asteroid)
-            detected.append((len(radians), asteroid))
+            angles = self.detect_from_asteroid(asteroid)
+            detected.append((len(angles), asteroid))
         return max(detected)
 
     def part2(self, best):
