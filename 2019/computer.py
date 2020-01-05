@@ -35,9 +35,16 @@ class Intcode:
         self.status = Intcode.NEXT
         self.inputs.append(value)
 
-    def output(self):
+    def output(self, num = 1):
         self.status = Intcode.NEXT
-        return self.outputs.pop(0)
+        if len(self.outputs) < num:
+            return None
+        elif num == 1:
+            return self.outputs.pop(0)
+        else:
+            ret = self.outputs[:num]
+            self.outputs = self.outputs[num:]
+            return ret
 
     def _parse(self, value):
         v = format(value, '05')
