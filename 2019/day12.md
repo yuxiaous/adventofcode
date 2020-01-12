@@ -280,3 +280,5 @@ This set of initial positions takes `4686774924` steps before it repeats a previ
 **How many steps does it take** to reach the first state that exactly matches a previous state?
 
 > 要完全匹配先前的状态需要**经历多少步**？
+
+Your puzzle answer was `400128139852752`.
