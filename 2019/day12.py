@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import re
+import math
 
 # test1 = '<x=-1, y=0, z=2>\n<x=2, y=-10, z=-7>\n<x=4, y=-8, z=8>\n<x=3, y=5, z=-1>'
 # test2 = '<x=-8, y=-10, z=0>\n<x=5, y=5, z=10>\n<x=2, y=-7, z=3>\n<x=9, y=-8, z=-3>'
@@ -65,8 +66,29 @@ class Day12:
         self.steps(1000)
         return self.energy()
 
+    def return_steps(self, axis):
+        pos1 = list(map(lambda moon: moon.pos[axis], self.moons))
+        vel1 = list(map(lambda moon: moon.vel[axis], self.moons))
+        count = 0
+        while True:
+            count += 1
+            self.steps(1)
+            pos2 = list(map(lambda moon: moon.pos[axis], self.moons))
+            vel2 = list(map(lambda moon: moon.vel[axis], self.moons))
+            if pos1 == pos2 and vel1 == vel2:
+                return count
+
     def part2(self):
-        pass
+        return_x = self.return_steps(0)
+        return_y = self.return_steps(1)
+        return_z = self.return_steps(2)
+
+        # Calculate the least common multiple
+        steps = [return_x, return_y, return_z]
+        lcm = steps[0]
+        for step in steps[1:]:
+            lcm = int(lcm*step/math.gcd(lcm, step))
+        return lcm
 
 def main():
     positions = open('day12.txt').read().strip()
