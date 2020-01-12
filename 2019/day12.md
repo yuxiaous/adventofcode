@@ -16,7 +16,7 @@ Each moon has a 3-dimensional position (`x`, `y`, and `z`) and a 3-dimensional v
 
 Simulate the motion of the moons in **time steps**. Within each time step, first update the velocity of every moon by applying **gravity**. Then, once all moons' velocities have been updated, update the position of every moon by applying **velocity**. Time progresses by one step once all of the positions are updated.
 
-> 按照**时间段**来模拟卫星的运动。在每个时间段内，首先通过施加**重力**来改变每颗卫星的速度。然后，当所有卫星的速度都被更新后，则通过施加**速度**来改变每颗卫星的位置。当所有位置都被更新后，时间就前进一段。
+> 按照**时间步**来模拟卫星的运动。在每个时间步内，首先通过施加**重力**来改变每颗卫星的速度。然后，当所有卫星的速度都被更新后，则通过施加**速度**来改变每颗卫星的位置。当所有位置都被更新后，时间就前进一步。
 
 To apply **gravity**, consider every **pair** of moons. On each axis (`x`, `y`, and `z`), the velocity of each moon changes by **exactly +1 or -1** to pull the moons together. For example, if Ganymede has an `x` position of `3`, and Callisto has a `x` position of `5`, then Ganymede's `x` velocity **changes by +1** (because `5 > 3`) and Callisto's `x` velocity **changes by -1** (because `3 < 5`). However, if the positions on a given axis are the same, the velocity on that axis **does not change** for that pair of moons.
 
@@ -124,7 +124,7 @@ Sum of total energy: 36 + 45 + 80 + 18 = 179
 
 In the above example, adding together the total energy for all moons after 10 steps produces the total energy in the system, **`179`**.
 
-> 在上面的示例中，将 10 次之后的所有卫星的总能量相加，得出系统的总能量为 **`179`**。
+> 在上面的示例中，将 10 步之后的所有卫星的总能量相加，得出系统的总能量为 **`179`**。
 
 Here's a second example:
 
@@ -139,7 +139,7 @@ Here's a second example:
 
 Every ten steps of simulation for 100 steps produces:
 
-> 模拟 100 次，每 10 次就会产生：
+> 模拟 100 步，每 10 步就会产生：
 
 ```'
 After 0 steps:
@@ -218,7 +218,7 @@ Sum of total energy: 290 + 608 + 574 + 468 = 1940
 
 **What is the total energy in the system** after simulating the moons given in your scan for `1000` steps?
 
-> 模拟所扫描的卫星 `1000` 次之后，**系统中的总能量是多少**？
+> 模拟所扫描的卫星 `1000` 步之后，**系统中的总能量是多少**？
 
 Your puzzle answer was `7098`.
 
@@ -226,9 +226,15 @@ Your puzzle answer was `7098`.
 
 All this drifting around in space makes you wonder about the nature of the universe. Does history really repeat itself? You're curious whether the moons will ever return to a previous state.
 
+> 所有这些太空漂流使你对宇宙的本质感到惊奇。历史真的会重演吗？你很好奇卫星是否会回到以前的状态。
+
 Determine **the number of steps** that must occur before all of the moons' **positions and velocities** exactly match a previous point in time.
 
+> 确定所有卫星的**位置和速度**完全匹配先前的某一时间点所必须执行的**步数**。
+
 For example, the first example above takes `2772` steps before they exactly match a previous point in time; it eventually returns to the initial state:
+
+> 例如，上面的第一个示例经历了 `2772` 步，最终返回到初始状态：
 
 ```'
 After 0 steps:
@@ -258,6 +264,8 @@ pos=<x=  3, y=  5, z= -1>, vel=<x=  0, y=  0, z=  0>
 
 Of course, the universe might last for a **very long time** before repeating. Here's a copy of the second example from above:
 
+> 当然，宇宙可能会花费**非常长的时间**来重复这个过程。这是上面第二个示例的副本：
+
 ```'
 <x=-8, y=-10, z=0>
 <x=5, y=5, z=10>
@@ -267,4 +275,8 @@ Of course, the universe might last for a **very long time** before repeating. He
 
 This set of initial positions takes `4686774924` steps before it repeats a previous state! Clearly, you might need to **find a more efficient way to simulate the universe**.
 
+> 这组初始位置要经历 `4686774924` 步之后才能重复之前的状态！显然，你可能需要**找到一种更有效的方法来模拟宇宙**。
+
 **How many steps does it take** to reach the first state that exactly matches a previous state?
+
+> 要完全匹配先前的状态需要**经历多少步**？
