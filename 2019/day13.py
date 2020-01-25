@@ -2,6 +2,7 @@
 
 from computer import Intcode
 import time
+import curses
 
 class ArcadeCabinet:
     EMPTY = 0
@@ -19,7 +20,7 @@ class ArcadeCabinet:
         self._pos_ball = 0
         self._pos_paddle = 0
 
-    def play(self):
+    def play(self, stdscr = None):
         while True:
             status = self.computer.run()
             if status == Intcode.INPUT:
@@ -38,26 +39,39 @@ class ArcadeCabinet:
                     y = values[1]
                     tile_id = values[2]
                     if x >= 0 and y >= 0:
-                        self._set_tile(x, y, tile_id)
+                        self.set_tile_id(x, y, tile_id)
+                        # auto play
+                        if tile_id == ArcadeCabinet.BALL:
+                            self._pos_ball = x
+                        if tile_id == ArcadeCabinet.PADDLE:
+                            self._pos_paddle = x
                     elif x == -1 and y == 0:
                         self.score = tile_id
-                    self.display()
-                    time.sleep(1/60)
+
+                    if stdscr:
+                        self.refresh(stdscr)
+                        time.sleep(1/120)
 
             elif status == Intcode.HALT:
                 break
 
-    def _set_tile(self, x, y, tile_id):
+    def set_tile_id(self, x, y, tile_id):
         w = self.screen_size[0]
         h = self.screen_size[1]
         if x < w and y < h:
             self.tiles[y * w + x] = tile_id
 
-        # auto play
-        if tile_id == ArcadeCabinet.BALL:
-            self._pos_ball = x
-        if tile_id == ArcadeCabinet.PADDLE:
-            self._pos_paddle = x
+    def get_tile(self, tile_id):
+        if tile_id == ArcadeCabinet.EMPTY:
+            return ' '
+        elif tile_id == ArcadeCabinet.WALL:
+            return '■'
+        elif tile_id == ArcadeCabinet.BLOCK:
+            return '□'
+        elif tile_id == ArcadeCabinet.PADDLE:
+            return '▬'
+        elif tile_id == ArcadeCabinet.BALL:
+            return 'o'
 
     def display(self):
         w = self.screen_size[0]
@@ -65,18 +79,23 @@ class ArcadeCabinet:
         for y in range(h):
             for x in range(w):
                 tile_id = self.tiles[y * w + x]
-                if tile_id == ArcadeCabinet.EMPTY:
-                    print(' ', end='')
-                elif tile_id == ArcadeCabinet.WALL:
-                    print('■', end='')
-                elif tile_id == ArcadeCabinet.BLOCK:
-                    print('□', end='')
-                elif tile_id == ArcadeCabinet.PADDLE:
-                    print('▬', end='')
-                elif tile_id == ArcadeCabinet.BALL:
-                    print('o', end='')
+                tile = self.get_tile(tile_id)
+                print(tile, end='')
             print('')
-        print('')
+
+    def refresh(self, stdscr):
+        stdscr.clear()
+
+        w = self.screen_size[0]
+        h = self.screen_size[1]
+        for y in range(h):
+            for x in range(w):
+                tile_id = self.tiles[y * w + x]
+                tile = self.get_tile(tile_id)
+                stdscr.addch(y, x, tile)
+        stdscr.addstr(h, 0, f'Score: {self.score}')
+
+        stdscr.refresh()
 
 class Day13:
     def __init__(self, program):
@@ -85,17 +104,15 @@ class Day13:
     def part1(self):
         arcade = ArcadeCabinet(self.codes)
         arcade.play()
-
-        count = 0
-        for tile_id in arcade.tiles:
-            if tile_id == ArcadeCabinet.BLOCK:
-                count += 1
-        return count
+        arcade.display()
+        return arcade.tiles.count(ArcadeCabinet.BLOCK)
 
     def part2(self):
         arcade = ArcadeCabinet(self.codes)
         arcade.computer.memory[0] = 2
-        arcade.play()
+        # arcade.play()
+        curses.wrapper(arcade.play)
+        arcade.display()
         return arcade.score
 
 def main():
