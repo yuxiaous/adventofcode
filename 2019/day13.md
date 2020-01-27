@@ -1,14 +1,14 @@
 # Day 13: Care Package
 
-> 第13天：关爱套装
+> 第13天：护理包
 
 As you ponder the solitude of space and the ever-increasing three-hour roundtrip for messages between you and Earth, you notice that the Space Mail Indicator Light is blinking. To help keep you sane, the Elves have sent you a care package.
 
-> 你在寂静的深空中沉思，此时往返地球的信息所花费的时间已经增加到了三个小时，你注意到太空邮件指示灯正在闪烁。为了让你保持头脑清晰，精灵发送给你了一个关爱套装。
+> 你在寂静的深空中沉思，此时往返地球的信息所花费的时间已经增加到了三个小时，你注意到太空邮件指示灯正在闪烁。为了让你保持头脑清晰，精灵发送给你了一个护理包。
 
 It's a new game for the ship's [arcade cabinet](https://en.wikipedia.org/wiki/Arcade_cabinet)! Unfortunately, the arcade is **all the way** on the other end of the ship. Surely, it won't be hard to build your own - the care package even comes with schematics.
 
-> 这是一款飞船[街机柜](https://en.wikipedia.org/wiki/Arcade_cabinet)上的新游戏！不幸的是，街机在距离飞船**遥远的**另一头（在地球上）。当然，你自己动手建造一台也并不困难 —— 关爱套装里甚至还附带了原理图。
+> 这是一款飞船[街机柜](https://en.wikipedia.org/wiki/Arcade_cabinet)上的新游戏！不幸的是，街机在距离飞船**遥远的**另一头（在地球上）。当然，你自己动手建造一台也并不困难 —— 护理包里甚至还附带了原理图。
 
 The arcade cabinet runs [Intcode](day9.md) software like the game the Elves sent ([your puzzle input](day13.txt)). It has a primitive screen capable of drawing square **tiles** on a grid. The software draws tiles to the screen with output instructions: every three output instructions specify the `x` position (distance from the left), `y` position (distance from the top), and `tile id`. The `tile id` is interpreted as follows:
 
