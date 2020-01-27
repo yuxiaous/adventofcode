@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+import time
+
 class Intcode:
     NEXT = 0
     ADD = 1
@@ -180,7 +182,8 @@ class Intcode:
             return Intcode.HALT
         return Intcode.INVALID
 
-    def run(self):
+    def run(self, tick = 0):
         while self.status == Intcode.NEXT:
             self.status = self._run_instruction()
+            time.sleep(tick)
         return self.status
