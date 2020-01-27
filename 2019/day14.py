@@ -15,6 +15,7 @@ class Day14:
         sides = reaction.split(' => ')
         input_chemicals = sides[0].split(', ')
         output_chemical = sides[1]
+        
         materials = {}
         # input chemicals
         for chemical in input_chemicals:
