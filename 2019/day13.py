@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 from computer import Intcode
-import time
 import curses
 
 class ArcadeCabinet:
@@ -22,7 +21,7 @@ class ArcadeCabinet:
 
     def play(self, stdscr = None):
         while True:
-            status = self.computer.run()
+            status = self.computer.run(0.0001 if stdscr else 0)
             if status == Intcode.INPUT:
                 # auto play
                 if self._pos_ball > self._pos_paddle:
@@ -50,7 +49,6 @@ class ArcadeCabinet:
 
                     if stdscr:
                         self.refresh(stdscr)
-                        time.sleep(1/120)
 
             elif status == Intcode.HALT:
                 break
