@@ -36,14 +36,17 @@ class Day14:
     def produce(self, chemicals):
         costs = {}
 
+        def add_to_costs(name, num):
+            if name in costs:
+                costs[name] += num
+            else:
+                costs[name] = num
+
         for name in chemicals:
             num = chemicals[name]
 
             if name not in self.reactions or num < 0:
-                if name in costs:
-                    costs[name] += num
-                else:
-                    costs[name] = num
+                add_to_costs(name, num)
                 continue
             
             materials = self.reactions[name]
@@ -53,18 +56,12 @@ class Day14:
             if remainder > 0:
                 multiple += 1
                 remainder -= materials[name]
-                if name in costs:
-                    costs[name] += remainder
-                else:
-                    costs[name] = remainder
+                add_to_costs(name, remainder)
 
             if multiple > 0:
                 for material in materials:
                     if material != name:
-                        if material in costs:
-                            costs[material] += materials[material] * multiple
-                        else:
-                            costs[material] = materials[material] * multiple
+                        add_to_costs(material, materials[material] * multiple)
         
         # Production end
         if costs == chemicals:
