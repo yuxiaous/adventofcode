@@ -185,5 +185,6 @@ class Intcode:
     def run(self, tick = 0):
         while self.status == Intcode.NEXT:
             self.status = self._run_instruction()
-            time.sleep(tick)
+            if tick > 0:
+                time.sleep(tick)
         return self.status
