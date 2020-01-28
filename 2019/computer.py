@@ -29,10 +29,6 @@ class Intcode:
         self.inputs = []
         self.outputs = []
 
-    def set_noun_verb(self, noun, verb):
-        self.memory[1] = noun
-        self.memory[2] = verb
-    
     def input(self, value):
         self.status = Intcode.NEXT
         self.inputs.append(value)
