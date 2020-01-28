@@ -3,121 +3,51 @@
 from computer import Intcode
 import curses
 
-class RepairDroid:
-    NORTH = 1
-    SOUTH = 2
-    WEST = 3
-    EAST = 4
+NORTH = 1
+SOUTH = 2
+WEST = 3
+EAST = 4
 
-    UNEXPLORED = -1
-    WALL = 0
-    OPEN = 1
-    OXYGEN = 2
+UNEXPLORED = -1
+WALL = 0
+OPEN = 1
+OXYGEN = 2
 
-    def __init__(self, codes):
-        self.computer = Intcode(codes)
+class AreaMap:
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+        self.start = (int(width / 2), int(height / 2))
+        self.oxygen = None
+        self.locations = [UNEXPLORED] * width * height
 
-    def explore(self, stdscr = None):
-        area = {}
-        area['width'] = 46
-        area['height'] = 46
-        area['start'] = (int(area['width'] / 2), int(area['height'] / 2))
-        area['oxygen'] = None
-        area['map'] = [RepairDroid.UNEXPLORED] * area['width'] * area['height']
+    def set_location(self, pos, location):
+        x = pos[0]
+        y = pos[1]
+        if x >= 0 and x < self.width and y >= 0 and y < self.height:
+            self.locations[y * self.width + x] = location
 
-        direction = RepairDroid.NORTH
-        curr_pos = area['start']
-        next_pos = (curr_pos[0], curr_pos[1] - 1)
-
-        def p2i(pos):
-            return pos[1] * area['height'] + pos[0]
-        def turn_left():
-            nonlocal direction
-            if direction == RepairDroid.NORTH:
-                direction = RepairDroid.WEST
-            elif direction == RepairDroid.WEST:
-                direction = RepairDroid.SOUTH
-            elif direction == RepairDroid.SOUTH:
-                direction = RepairDroid.EAST
-            elif direction == RepairDroid.EAST:
-                direction = RepairDroid.NORTH
-        def turn_right():
-            nonlocal direction
-            if direction == RepairDroid.NORTH:
-                direction = RepairDroid.EAST
-            elif direction == RepairDroid.EAST:
-                direction = RepairDroid.SOUTH
-            elif direction == RepairDroid.SOUTH:
-                direction = RepairDroid.WEST
-            elif direction == RepairDroid.WEST:
-                direction = RepairDroid.NORTH
-
-        while True:
-            status = self.computer.run()
-
-            if status == Intcode.INPUT:
-                if direction == RepairDroid.NORTH:
-                    next_pos = (curr_pos[0], curr_pos[1] - 1)
-                elif direction == RepairDroid.SOUTH:
-                    next_pos = (curr_pos[0], curr_pos[1] + 1)
-                elif direction == RepairDroid.WEST:
-                    next_pos = (curr_pos[0] - 1, curr_pos[1])
-                elif direction == RepairDroid.EAST:
-                    next_pos = (curr_pos[0] + 1, curr_pos[1])
-                self.computer.input(direction)
-
-            elif status == Intcode.OUTPUT:
-                status = self.computer.output()
-                area['map'][p2i(next_pos)] = status
-                if status == RepairDroid.WALL:
-                    turn_left()
-                elif status == RepairDroid.OPEN:
-                    curr_pos = next_pos
-                    turn_right()
-                elif status == RepairDroid.OXYGEN:
-                    area['oxygen'] = next_pos
-                    curr_pos = next_pos
-                    turn_right()
-
-                if stdscr:
-                    self.draw(area, curr_pos, stdscr)
-
-                if next_pos == area['start']:
-                    break
-
-            elif status == Intcode.HALT:
-                break
-
-        return area
-
-    def draw(self, area, current = None, stdscr = None):
-        amap = area['map']
-        width = area['width']
-        height = area['height']
-        start = area['start']
-        oxygen = area['oxygen']
-        current = current or start
-
+    def draw(self, current = None, stdscr = None):
         if stdscr:
             stdscr.clear()
 
-        for y in range(height):
-            for x in range(width):
+        for y in range(self.height):
+            for x in range(self.width):
                 position = (x, y)
-                location = amap[y * height + x]
+                location = self.locations[y * self.width + x]
                 if position == current:
                     tile = 'D'
-                elif position == start:
+                elif position == self.start:
                     tile = 'X'
-                elif position == oxygen:
+                elif position == self.oxygen:
                     tile = 'O'
-                elif location == RepairDroid.UNEXPLORED:
+                elif location == UNEXPLORED:
                     tile = ' '
-                elif location == RepairDroid.WALL:
+                elif location == WALL:
                     tile = '#'
-                elif location == RepairDroid.OPEN:
+                elif location == OPEN:
                     tile = '.'
-                elif location == RepairDroid.OXYGEN:
+                elif location == OXYGEN:
                     tile = 'O'
                 if stdscr:
                     stdscr.addch(y, x, tile)
@@ -128,14 +58,91 @@ class RepairDroid:
 
         if stdscr:
             stdscr.refresh()
+
+    def spread(self):
+        pass
+
+class RepairDroid:
+    def __init__(self, codes):
+        self.computer = Intcode(codes)
+        self.area = AreaMap(42, 42)
+        self.curr_pos = self.area.start
+        self.next_pos = None
+        self.direction = NORTH
+
+    def turn_left(self):
+        if self.direction == NORTH:
+            self.direction = WEST
+        elif self.direction == WEST:
+            self.direction = SOUTH
+        elif self.direction == SOUTH:
+            self.direction = EAST
+        elif self.direction == EAST:
+            self.direction = NORTH
+    
+    def turn_right(self):
+        if self.direction == NORTH:
+            self.direction = EAST
+        elif self.direction == EAST:
+            self.direction = SOUTH
+        elif self.direction == SOUTH:
+            self.direction = WEST
+        elif self.direction == WEST:
+            self.direction = NORTH
+
+    def _update_next_position(self):
+        if self.direction == NORTH:
+            self.next_pos = (self.curr_pos[0], self.curr_pos[1] - 1)
+        elif self.direction == SOUTH:
+            self.next_pos = (self.curr_pos[0], self.curr_pos[1] + 1)
+        elif self.direction == WEST:
+            self.next_pos = (self.curr_pos[0] - 1, self.curr_pos[1])
+        elif self.direction == EAST:
+            self.next_pos = (self.curr_pos[0] + 1, self.curr_pos[1])
+
+    def explore(self, stdscr = None):
+        if self.area.oxygen:
+            return
+
+        while True:
+            status = self.computer.run()
+
+            if status == Intcode.INPUT:
+                self._update_next_position()
+                self.computer.input(self.direction)
+
+            elif status == Intcode.OUTPUT:
+                status = self.computer.output()
+                self.area.set_location(self.next_pos, status)
+
+                if status == WALL:
+                    self.turn_left()
+                elif status == OPEN:
+                    self.curr_pos = self.next_pos
+                    self.turn_right()
+                elif status == OXYGEN:
+                    self.area.oxygen = self.next_pos
+                    self.curr_pos = self.next_pos
+                    self.turn_right()
+
+                if stdscr:
+                    self.area.draw(self.curr_pos, stdscr)
+
+                if self.next_pos == self.area.start:
+                    break
+
+            elif status == Intcode.HALT:
+                break
             
 class Day15:
     def __init__(self, program):
         codes = [int(x) for x in program.split(',')]
         droid = RepairDroid(codes)
-        self.area = curses.wrapper(droid.explore)
-        # area = droid.explore()
-        droid.draw(self.area)
+        curses.wrapper(droid.explore)
+        # droid.explore()
+
+        self.area = droid.area
+        self.area.draw()
 
     def part1(self):
         pass
