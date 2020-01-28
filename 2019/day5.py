@@ -12,32 +12,34 @@ from computer import Intcode
 # test8 = '3,3,1105,-1,9,1101,0,0,12,4,12,99,1'
 # test9 = '3,21,1008,21,8,20,1005,20,22,107,8,21,20,1006,20,31,1106,0,36,98,0,0,1002,21,125,20,4,20,1105,1,46,104,999,1105,1,46,1101,1000,1,20,4,20,1105,1,46,98,99'
 
+class Day5:
+    def __init__(self, program):
+        self.codes = [int(x) for x in program.split(',')]
+
+    def test(self, input):
+        computer = Intcode(self.codes)
+        output = None
+        while True:
+            res = computer.run()
+            if res == Intcode.INPUT:
+                computer.input(input)
+            elif res == Intcode.OUTPUT:
+                output = computer.output()
+            elif res == Intcode.HALT:
+                break
+        return output
+
+    def part1(self):
+        return self.test(1)
+
+    def part2(self):
+        return self.test(5)
+
 def main():
-    with open('day5.txt') as f:
-        program = f.read().strip()
-        codes = [int(x) for x in program.split(',')]
-
-        def part(input):
-            computer = Intcode(codes)
-
-            while True:
-                res = computer.run()
-                if res == Intcode.INPUT:
-                    computer.input(input)
-                elif res == Intcode.OUTPUT:
-                    print(computer.output())
-                elif res == Intcode.HALT:
-                    # print("HALT")
-                    break
-                elif res == Intcode.INVALID:
-                    print("INVALID")
-                    break
-        
-        print("--- Part 1 ---")
-        part(1)
-
-        print("--- Part 2 ---")
-        part(5)
+    program = open('day5.txt').read().strip()
+    day5 = Day5(program)
+    print(f'Part 1: {day5.part1()}')
+    print(f'Part 2: {day5.part2()}')
 
 if __name__ == "__main__":
     main()
