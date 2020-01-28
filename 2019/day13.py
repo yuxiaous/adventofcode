@@ -21,7 +21,7 @@ class ArcadeCabinet:
 
     def play(self, stdscr = None):
         while True:
-            status = self.computer.run(0.0001 if stdscr else 0)
+            status = self.computer.run()
             if status == Intcode.INPUT:
                 # auto play
                 if self._pos_ball > self._pos_paddle:
