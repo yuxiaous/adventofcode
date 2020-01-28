@@ -207,3 +207,5 @@ So, in this example, all locations contain oxygen after **`4`** minutes.
 Use the repair droid to get a complete map of the area. **How many minutes will it take to fill with oxygen?**
 
 > 使用修复机器人获取该区域的完整地图。**充满氧气需要多少分钟？**
+
+Your puzzle answer was `334`.

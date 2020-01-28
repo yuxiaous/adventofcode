@@ -22,10 +22,15 @@ class AreaMap:
         self.locations = [UNEXPLORED] * width * height
 
     def set_location(self, pos, location):
-        x = pos[0]
-        y = pos[1]
+        x, y = pos
         if x >= 0 and x < self.width and y >= 0 and y < self.height:
             self.locations[y * self.width + x] = location
+
+    def get_location(self, pos):
+        x, y = pos
+        if x >= 0 and x < self.width and y >= 0 and y < self.height:
+            return self.locations[y * self.width + x]
+        return UNEXPLORED
 
     def draw(self, current = None, stdscr = None):
         if stdscr:
@@ -34,7 +39,7 @@ class AreaMap:
         for y in range(self.height):
             for x in range(self.width):
                 position = (x, y)
-                location = self.locations[y * self.width + x]
+                location = self.get_location(position)
                 if position == current:
                     tile = 'D'
                 elif position == self.start:
@@ -59,8 +64,30 @@ class AreaMap:
         if stdscr:
             stdscr.refresh()
 
-    def spread(self):
-        pass
+    def spread(self, start):
+        opened = [start]
+        passed = []
+        steps = []
+        while True:
+            steps.append(opened)
+            temp = opened
+
+            opened = []
+            for pos in temp:
+                passed.append(pos)
+
+                north = (pos[0], pos[1] - 1)
+                south = (pos[0], pos[1] + 1)
+                west = (pos[0] - 1, pos[1])
+                east = (pos[0] + 1, pos[1])
+                for direction in (north, south, west, east):
+                    if direction in passed:
+                        continue
+                    if self.get_location(direction) in (OPEN, OXYGEN):
+                        opened.append(direction)
+
+            if not opened:
+                return steps
 
 class RepairDroid:
     def __init__(self, codes):
@@ -138,17 +165,21 @@ class Day15:
     def __init__(self, program):
         codes = [int(x) for x in program.split(',')]
         droid = RepairDroid(codes)
-        curses.wrapper(droid.explore)
         # droid.explore()
+        curses.wrapper(droid.explore)
 
         self.area = droid.area
         self.area.draw()
 
     def part1(self):
-        pass
+        steps = self.area.spread(self.area.start)
+        for step in steps:
+            if self.area.oxygen in step:
+                return steps.index(step)
 
     def part2(self):
-        pass
+        steps = self.area.spread(self.area.oxygen)
+        return len(steps) - 1
 
 def main():
     program = open('day15.txt').read().strip()
