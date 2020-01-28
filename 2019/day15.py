@@ -41,14 +41,14 @@ class AreaMap:
                     tile = 'X'
                 elif position == self.oxygen:
                     tile = 'O'
-                elif location == UNEXPLORED:
-                    tile = ' '
                 elif location == WALL:
                     tile = '#'
                 elif location == OPEN:
                     tile = '.'
                 elif location == OXYGEN:
                     tile = 'O'
+                else:
+                    tile = ' '
                 if stdscr:
                     stdscr.addch(y, x, tile)
                 else:
