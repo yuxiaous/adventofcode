@@ -100,14 +100,24 @@ Your puzzle answer was `73127523`.
 
 Now that your FFT is working, you can decode the **real signal**.
 
-The real signal is your puzzle input **repeated 10000 times**. Treat this new signal as a single input list. Patterns are still calculated as before, and 100 phases of FFT are still applied.
+> 现在你的 FFT 可以正常工作了，你可以解码**真实信号**了。
+
+The real signal is [your puzzle input](day16.txt) **repeated 10000 times**. Treat this new signal as a single input list. Patterns are still calculated as before, and 100 phases of FFT are still applied.
+
+> 真正的信号是将[你的谜题输入](day16.txt)**重复 10000 次**。将这个新信号作为单个输入列表对待。模仍旧像之前一样计算，并且仍然应用 100 个阶段的 FFT。
 
 The **first seven digits** of your initial input signal also represent the **message offset**. The message offset is the location of the eight-digit message in the final output list. Specifically, the message offset indicates **the number of digits to skip** before reading the eight-digit message. For example, if the first seven digits of your initial input signal were `1234567`, the eight-digit message would be the eight digits after skipping 1,234,567 digits of the final output list. Or, if the message offset were `7` and your final output list were `98765432109876543210`, the eight-digit message would be `21098765`. (Of course, your real message offset will be a seven-digit number, not a one-digit number like `7`.)
 
+> 你的初始输入信号的**前七个数位**也代表**信息偏移量**。信息偏移量是指在最终输出列表中八位信息的位置。具体来说，信息偏移量表示在读取八位信息之前**所要跳过的位数**。例如，如果你的初始输入信号的前七位数字是 `1234567`，则该八位数字信息将是跳过最终输出列表中的 1,234,567 位数字之后的八位数字。又或者，如果信息偏移量是 `7`，并且最终输出列表是 `98765432109876543210`，则八位数信息将是 `21098765`。（当然，你的实信息偏移量将是一个七位数，而不是像 `7` 这样的一位数。）
+
 Here is the eight-digit message in the final output list after 100 phases. The message offset given in each input has been highlighted. (Note that the inputs given below are repeated 10000 times to find the actual starting input lists.)
 
-- `03036732577212944063491565474664` becomes `84462026`.
-- `02935109699940807407585447034323` becomes `78725270`.
-- `03081770884921959731165446850517` becomes `53553731`.
+> 这是 100 个阶段后最终输出列表中的八位数信息。每个输入中给出的信息偏移量已突出显示。（请注意，下面给出的输入需要重复 10000 次以得到实际的起始输入列表。）
+
+- **`0303673`**`2577212944063491565474664` becomes `84462026`.
+- **`0293510`**`9699940807407585447034323` becomes `78725270`.
+- **`0308177`**`0884921959731165446850517` becomes `53553731`.
 
 After repeating your input signal 10000 times and running 100 phases of FFT, **what is the eight-digit message embedded in the final output list?**
+
+> 在重复输入信号 10000 次并运行 100 个阶段的 FFT 之后，**最终输出列表中嵌入的八位数信息是什么？**
