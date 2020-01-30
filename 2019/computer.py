@@ -184,3 +184,27 @@ class Intcode:
             if tick > 0:
                 time.sleep(tick)
         return self.status
+
+
+class ASCII:
+    INPUT = 3
+    OUTPUT = 4
+    HALT = 99
+    INVALID = -1
+
+    def __init__(self, codes):
+        self.intcode = Intcode(codes)
+
+    def input(self, char):
+        if char < 128:
+            self.intcode.input(ord(char))
+
+    def output(self, num = 1):
+        ret = self.intcode.output(num)
+        if isinstance(ret, list):
+            return [chr(x) if x < 128 else x for x in ret]
+        else:
+            return chr(ret) if ret < 128 else ret
+
+    def run(self, tick = 0):
+        return self.intcode.run(tick)
