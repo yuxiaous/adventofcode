@@ -121,3 +121,5 @@ Here is the eight-digit message in the final output list after 100 phases. The m
 After repeating your input signal 10000 times and running 100 phases of FFT, **what is the eight-digit message embedded in the final output list?**
 
 > 在重复输入信号 10000 次并运行 100 个阶段的 FFT 之后，**最终输出列表中嵌入的八位数信息是什么？**
+
+Your puzzle answer was `80284420`.
