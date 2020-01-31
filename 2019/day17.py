@@ -8,16 +8,12 @@ class Camera:
         self.image = []
 
     def take_image(self):
-        line = []
         while True:
             status = self.computer.run()
             if status == ASCII.OUTPUT:
-                code = self.computer.output()
-                if code != '\n':
-                    line.append(code)
-                elif line:
-                    self.image.append(line)
-                    line = []
+                line = self.computer.output()[:-1]
+                if line:
+                    self.image.append([c for c in line])
             elif status == ASCII.HALT:
                 break
 
@@ -43,6 +39,26 @@ class Camera:
         for line in self.image:
             print(''.join(line))
 
+class VacuumRobot:
+    def __init__(self, codes):
+        self.computer = ASCII(codes)
+
+    def wake_up(self, rules):
+        self.computer.memory[0] = 2
+        while True:
+            status = self.computer.run()
+            if status == ASCII.INPUT:
+                if len(rules) > 0:
+                    self.computer.input(rules.pop(0))
+            elif status == ASCII.OUTPUT:
+                code = self.computer.output()
+                if isinstance(code, str):
+                    print(code, end='')
+                else:
+                    return code
+            elif status == ASCII.HALT:
+                break
+
 class Day17:
     def __init__(self, program):
         self.codes = [int(x) for x in program.split(',')]
@@ -54,8 +70,16 @@ class Day17:
         camera.draw()
         return ret
 
+    # R,8,L,12,R,8,R,8,L,12,R,8,L,10,L,10,R,8,L,12,L,12,L,10,R,10,L,10,L,10,R,8,L,12,L,12,L,10,R,10,L,10,L,10,R,8,R,8,L,12,R,8,L,12,L,12,L,10,R,10,R,8,L,12,R,8
     def part2(self):
-        pass
+        robot = VacuumRobot(self.codes)
+        return robot.wake_up([
+            'A,A,B,C,B,C,B,A,C,A',
+            'R,8,L,12,R,8',
+            'L,10,L,10,R,8',
+            'L,12,L,12,L,10,R,10',
+            'n'
+        ])
 
 def main():
     program = open('day17.txt').read().strip()
@@ -65,12 +89,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-# Part2
-# R,8,L,12,R,8,R,8,L,12,R,8,L,10,L,10,R,8,L,12,L,12,L,10,R,10,L,10,L,10,R,8,L,12,L,12,L,10,R,10,L,10,L,10,R,8,R,8,L,12,R,8,L,12,L,12,L,10,R,10,R,8,L,12,R,8
-
-# A,A,B,C,B,C,B,A,C,A
-# A = R,8,L,12,R,8
-# B = L,10,L,10,R,8
-# C = L,12,L,12,L,10,R,10
-
