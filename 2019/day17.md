@@ -4,7 +4,7 @@
 
 An early warning system detects an incoming [solar flare](https://en.wikipedia.org/wiki/Solar_flare) and automatically activates the ship's electromagnetic shield. Unfortunately, this has cut off the Wi-Fi for many small robots that, unaware of the impending danger, are now trapped on exterior scaffolding on the unsafe side of the shield. To rescue them, you'll have to act quickly!
 
-> 预警系统检测到来临的[太阳耀斑](https://en.wikipedia.org/wiki/Solar_flare)并自动激活了飞船的电磁防护罩。不幸的是，这已经切断了许多小型机器人的Wi-Fi，这些机器人没有意识到即将发生的危险，现在被困在防护罩不安全一侧的外部脚手架上。要营救他们，你必须迅速采取行动！
+> 预警系统检测到即将来临的[太阳耀斑](https://en.wikipedia.org/wiki/Solar_flare)并自动激活了飞船的电磁防护罩。不幸的是，这已经切断了许多小型机器人的Wi-Fi，这些机器人没有意识到即将发生的危险，现在被困在防护罩不安全一侧的外部脚手架上。要营救他们，你必须迅速采取行动！
 
 The only tools at your disposal are some wired cameras and a small vacuum robot currently asleep at its charging station. The video quality is poor, but the vacuum robot has a needlessly bright LED that makes it easy to spot no matter where it is.
 
@@ -82,19 +82,35 @@ Your puzzle answer was `5972`.
 
 Now for the tricky part: notifying all the other robots about the solar flare. The vacuum robot can do this automatically if it gets into range of a robot. However, you can't see the other robots on the camera, so you need to be thorough instead: you need to make the vacuum robot **visit every part of the scaffold at least once**.
 
+> 现在最棘手的部分：通知所有其他机器人关于太阳耀斑的事。如果真空机器人进入另一个机器人的范围，就可以自动执行此操作。但是，你无法在摄像机中看到其他机器人，所以你需要彻底改变想法：你需要让真空机器人**一次性访问脚手架的所有部分**。
+
 The vacuum robot normally wanders randomly, but there isn't time for that today. Instead, you can **override its movement logic** with new rules.
+
+> 真空机器人通常会随机游荡，但是今天没有那个时间了。取而代之的，你可以使用新的规则来**重置它的移动逻辑**。
 
 Force the vacuum robot to wake up by changing the value in your ASCII program at address `0` from `1` to **`2`**. When you do this, you will be automatically prompted for the new movement rules that the vacuum robot should use. The ASCII program will use input instructions to receive them, but they need to be provided as ASCII code; end each line of logic with a single newline, ASCII code `10`.
 
+> 通过将 ASCII 程序中地址 `0` 处的值从 `1` 改为 **`2`**，强制唤醒真空机器人。当你执行此操作时，系统将自动提示你输入真空机器人需要使用的新的移动规则。ASCII 程序将使用输入指令来接收它们，但是需要将它们作为 ASCII 代码提供，用单个换行符 ASCII 码 `10` 结束逻辑的每一行。
+
 First, you will be prompted for the **main movement routine**. The main routine may only call the **movement functions**: `A`, `B`, or `C`. Supply the movement functions to use as ASCII text, separating them with commas (`,`, ASCII code `44`), and ending the list with a newline (ASCII code `10`). For example, to call `A` twice, then alternate between `B` and `C` three times, provide the string `A,A,B,C,B,C,B,C` and then a newline.
+
+> 首先，系统将提示你输入**主移动例程**。主例程只调用**移动函数**：`A`、`B` 或 `C`。以 ASCII 文本格式提供所使用的移动函数，用逗号（`,`，ASCII 码 `44`）分隔它们，并以换行符结束列表（ASCII 码 `10`）。例如，调用 `A` 两次，然后在 `B` 和 `C` 之间交替三次，需要提供字符串 `A,A,B,C,B,C,B,C` 接着是一个换行符。
 
 Then, you will be prompted for each **movement function**. Movement functions may use `L` to **turn left**, `R` to **turn right**, or a number to **move forward** that many units. Movement functions may not call other movement functions. Again, separate the actions with commas and end the list with a newline. For example, to move forward `10` units, turn left, move forward `8` units, turn right, and finally move forward `6` units, provide the string `10,L,8,R,6` and then a newline.
 
+> 接下来，系统将提示你输入各个**移动函数**。移动函数使用 `L` **左转**，`R` **右转**或一个数字表示**向前移动**的单位数量。移动函数不能调用其它的移动函数。同样的，用逗号分隔操作，并以换行符结束列表。例如，向前移动 `10` 个单位，向左转，向前移动 `8` 个单位，向右转，最后向前移动 `6` 个单位，需要提供字符串 `10,L,8,R,6` 接着是一个换行符。
+
 Finally, you will be asked whether you want to see a **continuous video feed**; provide either `y` or `n` and a newline. Enabling the continuous video feed can help you see what's going on, but it also requires a significant amount of processing power, and may even cause your Intcode computer to overheat.
+
+> 最后，系统将会询问你是否需要查看**连续视频反馈**，提供 `y` 或 `n` 以及一个换行符。启用连续视频反馈可以帮助你了解正在发生的情况，但是它也需要大量的处理能力，甚至可能导致你的 Intcode 计算机过热。
 
 Due to the limited amount of memory in the vacuum robot, the ASCII definitions of the main routine and the movement functions may each contain **at most 20 characters**, not counting the newline.
 
+> 由于真空机器人的内存容量有限，每条主例程和移动函数的 ASCII 定义可能包含**最多 20 个字符**，不包括换行符。
+
 For example, consider the following camera feed:
+
+> 例如，考虑以下摄像机的反馈：
 
 ```'
 #######...#####
@@ -116,13 +132,19 @@ For example, consider the following camera feed:
 
 In order for the vacuum robot to **visit every part of the scaffold at least once**, one path it could take is:
 
+> 为了使真空机器人**一次性访问脚手架的所有部分**，采取的单行路径是：
+
 ```'
 R,8,R,8,R,4,R,4,R,8,L,6,L,2,R,4,R,4,R,8,R,8,R,8,L,6,L,2
 ```
 
 Without the memory limit, you could just supply this whole string to function `A` and have the main routine call `A` once. However, you'll need to split it into smaller parts.
 
+> 如果没有内存的限制，你只需将整个字符串提供给函数 `A`，并在主例程中调用 `A` 一次。但是，你需要将它拆分成更小的部分。
+
 One approach is:
+
+> 一种途径是：
 
 - **Main routine: `A,B,C,B,A,C`**
 (ASCII input: `65`, `44`, `66`, `44`, `67`, `44`, `66`, `44`, `65`, `44`, `67`, `10`)
@@ -134,6 +156,8 @@ One approach is:
 (ASCII input: `76`, `44`, `54`, `44`, `76`, `44`, `50`, `10`)
 
 Visually, this would break the desired path into the following parts:
+
+> 在视觉上，这会将所需的路径分为以下几部分：
 
 ```'
 A,        B,            C,        B,            A,        C
@@ -158,8 +182,14 @@ C.....A...B...B
 
 Of course, the scaffolding outside your ship is much more complex.
 
+> 当然，飞船外面的脚手架要比这复杂得多。
+
 As the vacuum robot finds other robots and notifies them of the impending solar flare, it also can't help but leave them squeaky clean, collecting any space dust it finds. Once it finishes the programmed set of movements, assuming it hasn't drifted off into space, the cleaning robot will return to its docking station and report the amount of space dust it collected as a large, non-ASCII value in a single output instruction.
 
+> 当真空机器人找到其他机器人并通知他们即将来临的太阳耀斑时，它也忍不住将它们吱吱作响地清理干净，并收集发现的任何太空尘埃。一旦完成了编程的移动设置（假设它没有漂入太空），清洁机器人将返回它的停靠站，并在单个输出指令中以一个大的非 ASCII 值汇报所收集到的太空尘埃的数量。
+
 After visiting every part of the scaffold at least once, **how much dust does the vacuum robot report it has collected?**
+
+> 在一次性访问脚手架的所有部分之后，**真空机器人汇报它收集了多少尘埃？**
 
 Your puzzle answer was `933214`.
