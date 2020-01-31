@@ -49,7 +49,11 @@ class VacuumRobot:
             status = self.computer.run()
             if status == ASCII.INPUT:
                 if len(rules) > 0:
-                    self.computer.input(rules.pop(0))
+                    rule = rules.pop(0)
+                    print(rule)
+                else:
+                    rule = input()
+                self.computer.input(rule)
             elif status == ASCII.OUTPUT:
                 code = self.computer.output()
                 if isinstance(code, str):
