@@ -146,13 +146,13 @@ One approach is:
 
 > 一种途径是：
 
-- **Main routine: `A,B,C,B,A,C`**
+- **Main routine: `A,B,C,B,A,C`**  
 (ASCII input: `65`, `44`, `66`, `44`, `67`, `44`, `66`, `44`, `65`, `44`, `67`, `10`)
-- **Function `A`:   `R,8,R,8`**
+- **Function `A`:   `R,8,R,8`**  
 (ASCII input: `82`, `44`, `56`, `44`, `82`, `44`, `56`, `10`)
-- **Function `B`:   `R,4,R,4,R,8`**
+- **Function `B`:   `R,4,R,4,R,8`**  
 (ASCII input: `82`, `44`, `52`, `44`, `82`, `44`, `52`, `44`, `82`, `44`, `56`, `10`)
-- **Function `C`:   `L,6,L,2`**
+- **Function `C`:   `L,6,L,2`**  
 (ASCII input: `76`, `44`, `54`, `44`, `76`, `44`, `50`, `10`)
 
 Visually, this would break the desired path into the following parts:
