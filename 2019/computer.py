@@ -29,9 +29,12 @@ class Intcode:
         self.inputs = []
         self.outputs = []
 
-    def input(self, value):
+    def input(self, values):
         self.status = Intcode.NEXT
-        self.inputs.append(value)
+        if isinstance(values, list):
+            self.inputs.extend(values)
+        else:
+            self.inputs.append(values)
 
     def output(self, num = 1):
         self.status = Intcode.NEXT
@@ -186,25 +189,29 @@ class Intcode:
         return self.status
 
 
-class ASCII:
-    INPUT = 3
-    OUTPUT = 4
-    HALT = 99
-    INVALID = -1
+class ASCII(Intcode):
+    def input(self, string):
+        Intcode.input(self, [ord(c) for c in string])
+        Intcode.input(self, ord('\n'))
 
-    def __init__(self, codes):
-        self.intcode = Intcode(codes)
-
-    def input(self, char):
-        if char < 128:
-            self.intcode.input(ord(char))
-
-    def output(self, num = 1):
-        ret = self.intcode.output(num)
-        if isinstance(ret, list):
-            return [chr(x) if x < 128 else x for x in ret]
-        else:
-            return chr(ret) if ret < 128 else ret
+    def output(self):
+        ret = []
+        while True:
+            code = Intcode.output(self)
+            if code < 128:
+                ret.append(chr(code))
+                if ret[-1] == '\n':
+                    return ''.join(ret)
+            else:
+                return code
 
     def run(self, tick = 0):
-        return self.intcode.run(tick)
+        while self.status == Intcode.NEXT:
+            self.status = self._run_instruction()
+            if self.status == Intcode.OUTPUT:
+                code = self.outputs[-1]
+                if code < 128 and code != ord('\n'):
+                    self.status = Intcode.NEXT
+            if tick > 0:
+                time.sleep(tick)
+        return self.status
