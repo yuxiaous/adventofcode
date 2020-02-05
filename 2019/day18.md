@@ -16,7 +16,7 @@ Only one **entrance** (marked `@`) is present among the **open passages** (marke
 
 For example, suppose you have the following map:
 
-> 例如，假设你有以下地图：
+> 举个例子，假设你有以下地图：
 
 ```'
 #########
@@ -50,7 +50,7 @@ So, collecting every key took a total of **`8`** steps.
 
 Here is a larger example:
 
-> 这是一个更大的示例：
+> 这是一个更大的例子：
 
 ```'
 ########################
@@ -62,7 +62,7 @@ Here is a larger example:
 
 The only reasonable move is to take key `a` and unlock door `A`:
 
-> 唯一合理的动作是获取钥匙 `a` 并解锁门 `A`：
+> 唯一可做的是获取钥匙 `a` 并解锁门 `A`：
 
 ```'
 ########################
@@ -167,3 +167,237 @@ Shortest paths are `81` steps; one is: `a`, `c`, `f`, `i`, `d`, `g`, `b`, `e`, `
 **How many steps is the shortest path that collects all of the keys?**
 
 > **收集所有钥匙的最短路径是多少步？**
+
+Your puzzle answer was `3862`.
+
+## Part Two
+
+You arrive at the vault only to discover that there is not one vault, but **four** - each with its own entrance.
+
+> 你到达金库后发现不只有一个金库，而是**四个** —— 每个金库都有自己的入口。
+
+On your map, find the area in the middle that looks like this:
+
+> 在你的地图上，找到中间的区域，如下所示：
+
+```'
+...
+.@.
+...
+```
+
+Update your map to instead use the correct data:
+
+> 更新你的地图使用正确的数据：
+
+```'
+@#@
+###
+@#@
+```
+
+This change will split your map into four separate sections, each with its own entrance:
+
+> 这个改变会将你的地图分隔为四个独立的部分，每个部分都有它自己的入口：
+
+```'
+#######       #######
+#a.#Cd#       #a.#Cd#
+##...##       ##@#@##
+##.@.##  -->  #######
+##...##       ##@#@##
+#cB#Ab#       #cB#Ab#
+#######       #######
+```
+
+Because some of the keys are for doors in other vaults, it would take much too long to collect all of the keys by yourself. Instead, you deploy four remote-controlled robots. Each starts at one of the entrances (`@`).
+
+> 由于一些钥匙是用于其他金库中的门的，因此由你自己收集所有的钥匙将会花费非常长的时间。相反的，你部署了四个远程控制机器人。 每个机器人都从其中一个入口（`@`）开始。
+
+Your goal is still to **collect all of the keys in the fewest steps**, but now, each robot has its own position and can move independently. You can only remotely control a single robot at a time. Collecting a key instantly unlocks any corresponding doors, regardless of the vault in which the key or door is found.
+
+> 你的目标仍然是**用最少的步数收集所有钥匙**，但是现在，每个机器人都有自己的位置并且可以独立移动。你一次只能远程控制一个机器人。收集一把钥匙会立即解锁对应的门，无论找到钥匙或门在哪个金库。
+
+For example, in the map above, the top-left robot first collects key `a`, unlocking door `A` in the bottom-right vault:
+
+> 举个例子，在上面的地图中，左上方的机器人首先收集了钥匙 `a`，解锁了右下方金库中的门 `A`：
+
+```'
+#######
+#@.#Cd#
+##.#@##
+#######
+##@#@##
+#cB#.b#
+#######
+```
+
+Then, the bottom-right robot collects key `b`, unlocking door `B` in the bottom-left vault:
+
+> 然后，右下方的机器人收集了钥匙 `b`，解锁了左下方金库的门 `B`：
+
+```'
+#######
+#@.#Cd#
+##.#@##
+#######
+##@#.##
+#c.#.@#
+#######
+```
+
+Then, the bottom-left robot collects key `c`:
+
+> 然后，左下方的机器人收集了钥匙 `c`：
+
+```'
+#######
+#@.#.d#
+##.#@##
+#######
+##.#.##
+#@.#.@#
+#######
+```
+
+Finally, the top-right robot collects key `d`:
+
+> 最后，右上方的机器人收集了钥匙 `d`：
+
+```'
+#######
+#@.#.@#
+##.#.##
+#######
+##.#.##
+#@.#.@#
+#######
+```
+
+In this example, it only took **`8`** steps to collect all of the keys.
+
+> 在这个例子中，只花了 **`8`** 步就收集了所有的钥匙。
+
+Sometimes, multiple robots might have keys available, or a robot might have to wait for multiple keys to be collected:
+
+> 有时，多个机器人可能都拥有可用的钥匙，又或者一个机器人可能需要等待多个钥匙被收集：
+
+```'
+###############
+#d.ABC.#.....a#
+######@#@######
+###############
+######@#@######
+#b.....#.....c#
+###############
+```
+
+First, the top-right, bottom-left, and bottom-right robots take turns collecting keys `a`, `b`, and `c`, a total of `6 + 6 + 6 = 18` steps. Then, the top-left robot can access key `d`, spending another `6` steps; collecting all of the keys here takes a minimum of **`24`** steps.
+
+> 首先，右上方、左下方和右下方的机器人轮流收集钥匙 `a`、`b` 和 `c`，总共 `6 + 6 + 6 = 18` 步。然后，左上方的机器人可以接触钥匙 `d`，花费另外的 `6` 步，收集所有的钥匙最少花费 **`24`** 步。
+
+Here's a more complex example:
+
+> 这是一个更复杂的例子：
+
+```'
+#############
+#DcBa.#.GhKl#
+#.###@#@#I###
+#e#d#####j#k#
+###C#@#@###J#
+#fEbA.#.FgHi#
+#############
+```
+
+- Top-left robot collects key `a`.
+- Bottom-left robot collects key `b`.
+- Top-left robot collects key `c`.
+- Bottom-left robot collects key `d`.
+- Top-left robot collects key `e`.
+- Bottom-left robot collects key `f`.
+- Bottom-right robot collects key `g`.
+- Top-right robot collects key `h`.
+- Bottom-right robot collects key `i`.
+- Top-right robot collects key `j`.
+- Bottom-right robot collects key `k`.
+- Top-right robot collects key `l`.
+
+> - 左上方的机器人收集钥匙 `a`。
+> - 左下方的机器人收集钥匙 `b`。
+> - 左上方的机器人收集钥匙 `c`。
+> - 左下方的机器人收集钥匙 `d`。
+> - 左上方的机器人收集钥匙 `e`。
+> - 左下方的机器人收集钥匙 `f`。
+> - 右下方的机器人收集钥匙 `g`。
+> - 右上方的机器人收集钥匙 `h`。
+> - 右下方的机器人收集钥匙 `i`。
+> - 右上方的机器人收集钥匙 `j`。
+> - 右下方的机器人收集钥匙 `k`。
+> - 右上方的机器人收集钥匙 `l`。
+
+In the above example, the fewest steps to collect all of the keys is **`32`**.
+
+> 在上面的例子中，收集所有钥匙所需的最少步数是 **`32`** 步。
+
+Here's an example with more choices:
+
+> 这是一个具有更多选择的例子：
+
+```'
+#############
+#g#f.D#..h#l#
+#F###e#E###.#
+#dCba@#@BcIJ#
+#############
+#nK.L@#@G...#
+#M###N#H###.#
+#o#m..#i#jk.#
+#############
+```
+
+One solution with the fewest steps is:
+
+- Top-left robot collects key `e`.
+- Top-right robot collects key `h`.
+- Bottom-right robot collects key `i`.
+- Top-left robot collects key `a`.
+- Top-left robot collects key `b`.
+- Top-right robot collects key `c`.
+- Top-left robot collects key `d`.
+- Top-left robot collects key `f`.
+- Top-left robot collects key `g`.
+- Bottom-right robot collects key `k`.
+- Bottom-right robot collects key `j`.
+- Top-right robot collects key `l`.
+- Bottom-left robot collects key `n`.
+- Bottom-left robot collects key `m`.
+- Bottom-left robot collects key `o`.
+
+> 最少步数的一种解决方法是：
+>
+> - 左上方的机器人收集钥匙 `e`。
+> - 右上方的机器人收集钥匙 `h`。
+> - 右下方的机器人收集钥匙 `i`。
+> - 左上方的机器人收集钥匙 `a`。
+> - 左上方的机器人收集钥匙 `b`。
+> - 右上方的机器人收集钥匙 `c`。
+> - 左上方的机器人收集钥匙 `d`。
+> - 左上方的机器人收集钥匙 `f`。
+> - 左上方的机器人收集钥匙 `g`。
+> - 右下方的机器人收集钥匙 `k`。
+> - 右下方的机器人收集钥匙 `j`。
+> - 右上方的机器人收集钥匙 `l`。
+> - 左下方的机器人收集钥匙 `n`。
+> - 左下方的机器人收集钥匙 `m`。
+> - 左下方的机器人收集钥匙 `o`。
+
+This example requires at least **`72`** steps to collect all keys.
+
+> 这个例子需要至少 **`72`** 步来收集所有的钥匙。
+
+After updating your map and using the remote-controlled robots, **what is the fewest steps necessary to collect all of the keys?**
+
+> 在更新地图并使用远程控制机器人后，**收集所有钥匙所需的最少步数是多少？**
+
+Your puzzle answer was `1626`.
