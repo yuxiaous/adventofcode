@@ -18,30 +18,31 @@ def is_door(what):
     return what.isupper()
 
 def phash(path):
-    return tuple(path[:1] + path[-1:] + sorted(path[1:-1]))
+    return tuple(path[-1:] + sorted(path[:-1]))
 
 class Day18:
     def __init__(self, data):
         self.map = [[c for c in r] for r in data.split('\n')]
-        self.events = self._events()
-        self.neighbors = {e: self._neighbors(p) for e, p in self.events.items()}
-        self.graph = self._graph()
+        self.events = {}
+        for r in range(len(self.map)):
+            for c in range(len(self.map[r])):
+                what = self.map[r][c]
+                if is_key(what):
+                    self.events[what] = (r, c)
+                elif is_door(what):
+                    self.events[what] = (r, c)
 
-    def _events(self):
-        events = {}
+    def _entrances(self):
+        entrances = []
         for r in range(len(self.map)):
             for c in range(len(self.map[r])):
                 what = self.map[r][c]
                 if what == ENTRANCE:
-                    events[what] = (r, c)
-                elif is_key(what):
-                    events[what] = (r, c)
-                elif is_door(what):
-                    events[what] = (r, c)
-        return events
+                    entrances.append((r, c))
+        return entrances
 
-    def _neighbors(self, start):
-        opened = [start]
+    def _neighbors(self, pos):
+        opened = [pos]
         closed = []
         neighbors = {}
         step = 0
@@ -68,15 +69,38 @@ class Day18:
             if not opened:
                 return neighbors
 
-    def _graph(self):
+    def _edges(self, start):
+        edges = {}
+        edges[ENTRANCE] = self._neighbors(start)
+
+        opened = list(edges[ENTRANCE])
+        closed = []
+        while True:
+            temp = opened
+            opened = []
+            for e in temp:
+                closed.append(e)
+                pos = self.events[e]
+                edges[e] = self._neighbors(pos)
+                for n in edges[e]:
+                    if n in opened:
+                        continue
+                    if n in closed:
+                        continue
+                    opened.append(n)
+            if not opened:
+                return edges
+
+    def _graph(self, start):
+        edges = self._edges(start)
         graph = nx.Graph()
-        for e1 in self.neighbors:
-            for e2 in self.neighbors[e1]:
-                length = self.neighbors[e1][e2]
+        for e1 in edges:
+            for e2 in edges[e1]:
+                length = edges[e1][e2]
                 graph.add_edge(e1, e2, length = length)
         return graph
 
-    def collect(self):
+    def collect(self, graph):
         first = [ENTRANCE]
         opened = {phash(first): (0, first)}
         all_keys = [e for e in self.events if is_key(e)]
@@ -94,9 +118,12 @@ class Day18:
                     # if the key was collected
                     if next_key in path:
                         continue
+                    # if the key is not in graph
+                    if next_key not in graph:
+                        continue
                     # path to new key
-                    shortest_path = nx.shortest_path(self.graph, path[-1], next_key, weight = 'length')
-                    shortest_len = nx.shortest_path_length(self.graph, path[-1], next_key, weight = 'length')
+                    shortest_path = nx.shortest_path(graph, path[-1], next_key, weight = 'length')
+                    shortest_len = nx.shortest_path_length(graph, path[-1], next_key, weight = 'length')
                     need_keys = [str.lower(x) for x in shortest_path[1:-1]]
                     # if reachable
                     if set(need_keys).issubset(set(path)):
@@ -114,12 +141,24 @@ class Day18:
                 return temp[min(temp, key=lambda h: temp[h][0])]
 
     def part1(self):
-        length, path = self.collect()
+        entrances = self._entrances()
+        graph = self._graph(entrances[0])
+        length, path = self.collect(graph)
         print(path)
         return length
 
     def part2(self):
-        pass
+        entrances = self._entrances()
+        r, c = entrances[0]
+        self.map[r-1][c-1:c+2] = list('@#@')
+        self.map[r  ][c-1:c+2] = list('###')
+        self.map[r+1][c-1:c+2] = list('@#@')
+
+        entrances = self._entrances()
+        graphs = [self._graph(entrance) for entrance in entrances]
+        length, path = self.collect(graphs[3])
+        print(path)
+        return length
 
 def main():
     data = open('day18.txt').read().strip()
