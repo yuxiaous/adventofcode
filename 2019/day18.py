@@ -20,6 +20,9 @@ def is_door(what):
 def phash(path):
     return tuple(path[-1:] + sorted(path[:-1]))
 
+def ghash(graph):
+    return tuple(sorted(graph.nodes()))
+
 class Day18:
     def __init__(self, data):
         self.map = [[c for c in r] for r in data.split('\n')]
@@ -100,9 +103,10 @@ class Day18:
                 graph.add_edge(e1, e2, length = length)
         return graph
 
-    def collect(self, graph):
+    def collect(self, graphs):
         first = [ENTRANCE]
-        opened = {phash(first): (0, first)}
+        lasts = {ghash(graph): ENTRANCE for graph in graphs}
+        opened = {phash(first): (0, first, lasts)}
         all_keys = [e for e in self.events if is_key(e)]
 
         count = 0
@@ -113,37 +117,40 @@ class Day18:
             temp = opened
             opened = {}
             for h in temp:
-                length, path = temp[h]
+                length, path, lasts = temp[h]
                 for next_key in all_keys:
                     # if the key was collected
                     if next_key in path:
                         continue
-                    # if the key is not in graph
-                    if next_key not in graph:
-                        continue
-                    # path to new key
-                    shortest_path = nx.shortest_path(graph, path[-1], next_key, weight = 'length')
-                    shortest_len = nx.shortest_path_length(graph, path[-1], next_key, weight = 'length')
-                    need_keys = [str.lower(x) for x in shortest_path[1:-1]]
-                    # if reachable
-                    if set(need_keys).issubset(set(path)):
-                        new_path = path + [next_key]
-                        new_length = length + shortest_len
-                        new_hash = phash(new_path)
-                        # save best path
-                        if new_hash in opened:
-                            if new_length < opened[new_hash][0]:
-                                opened[new_hash] = (new_length, new_path)
-                        else:
-                            opened[new_hash] = (new_length, new_path)
+                    # which graph is the key in
+                    for graph in graphs:
+                        if next_key in graph:
+                            last = lasts[ghash(graph)]
+                            # path to new key
+                            shortest_path = nx.shortest_path(graph, last, next_key, weight = 'length')
+                            shortest_len = nx.shortest_path_length(graph, last, next_key, weight = 'length')
+                            need_keys = [str.lower(x) for x in shortest_path[1:-1]]
+                            # if reachable
+                            if set(need_keys).issubset(set(path)):
+                                new_path = path + [next_key]
+                                new_length = length + shortest_len
+                                new_hash = phash(new_path)
+                                new_lasts = lasts.copy()
+                                new_lasts[ghash(graph)] = next_key
+                                # save best path
+                                if new_hash in opened:
+                                    if new_length < opened[new_hash][0]:
+                                        opened[new_hash] = (new_length, new_path, new_lasts)
+                                else:
+                                    opened[new_hash] = (new_length, new_path, new_lasts)
             # if all keys were collected
             if not opened:
-                return temp[min(temp, key=lambda h: temp[h][0])]
+                return temp[min(temp, key=lambda h: temp[h][0])][:2]
 
     def part1(self):
         entrances = self._entrances()
         graph = self._graph(entrances[0])
-        length, path = self.collect(graph)
+        length, path = self.collect([graph])
         print(path)
         return length
 
@@ -156,7 +163,7 @@ class Day18:
 
         entrances = self._entrances()
         graphs = [self._graph(entrance) for entrance in entrances]
-        length, path = self.collect(graphs[3])
+        length, path = self.collect(graphs)
         print(path)
         return length
 
