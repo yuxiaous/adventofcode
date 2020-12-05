@@ -3,13 +3,10 @@
 class Seat:
     def __init__(self, seat):
         self.seat = seat
-
         # rows
         self.row = self.parse([0, 127], range(0, 7), 'F', 'B')
-
         # columns
         self.column = self.parse([0, 7], range(7, 10), 'L', 'R')
-
         # seat ID
         self.seat_id = self.row * 8 + self.column
 
