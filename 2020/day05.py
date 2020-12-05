@@ -5,29 +5,23 @@ class Seat:
         self.seat = seat
 
         # rows
-        region = [0, 127]
-        for i in range(0, 7):
-            half = (region[1] - region[0] + 1) / 2
-            character = self.seat[i]
-            if character == 'F':
-                region[1] -= half
-            elif character == 'B':
-                region[0] += half
-        self.row = int(region[0])
+        self.row = self.parse([0, 127], range(0, 7), 'F', 'B')
 
         # columns
-        region = [0, 7]
-        for i in range(7, 10):
-            half = (region[1] - region[0] + 1) / 2
-            character = self.seat[i]
-            if character == 'L':
-                region[1] -= half
-            elif character == 'R':
-                region[0] += half
-        self.column = int(region[0])
+        self.column = self.parse([0, 7], range(7, 10), 'L', 'R')
 
         # seat ID
         self.seat_id = self.row * 8 + self.column
+
+    def parse(self, region, range, lower, upper):
+        for i in range:
+            half = (region[1] - region[0] + 1) / 2
+            character = self.seat[i]
+            if character == lower:
+                region[1] -= half
+            elif character == upper:
+                region[0] += half
+        return int(region[0])
 
 
 class Day5:
