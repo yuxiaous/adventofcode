@@ -106,6 +106,6 @@ In this example, a single `shiny gold` bag must contain **`126`** other bags.
 
 **How many individual bags are required inside your single `shiny gold` bag?**
 
-> 一个 `shiny gold` 包需要放多少个单独的包？**
+> 一个 `shiny gold` 包需要放多少个单独的包？
 
 Your puzzle answer was `12414`.
