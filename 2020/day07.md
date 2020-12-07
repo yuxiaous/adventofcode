@@ -80,7 +80,7 @@ Consider again your `shiny gold` bag and the rules from the above example:
 
 So, a single `shiny gold` bag must contain 1 `dark olive` bag (and the 7 bags within it) plus 2 `vibrant plum` bags (and the 11 bags within **each** of those): `1 + 1*7 + 2 + 2*11` = **`32`** bags!
 
-> 因此，一个 `shiny gold` 包必须含有 1 个 `dark olive` 包（及其中的 7 个包）和 2 个 `vibrant plum` 包（及其每个中的 11 个包）：`1 + 1*7 + 2 + 2*11` = **`32`** 个包！
+> 因此，一个 `shiny gold` 包可以放下 1 个 `dark olive` 包（及其中的 7 个包）和 2 个 `vibrant plum` 包（及其每个中的 11 个包）：`1 + 1*7 + 2 + 2*11` = **`32`** 个包！
 
 Of course, the actual rules have a small chance of going several levels deeper than this example; be sure to count all of the bags, even if the nesting becomes topologically impractical!
 
@@ -102,10 +102,10 @@ dark violet bags contain no other bags.
 
 In this example, a single `shiny gold` bag must contain **`126`** other bags.
 
-> 在这个例子种，一个 `shiny gold` 包必须含有 **`126`** 个其他包。
+> 在这个例子种，一个 `shiny gold` 包可以放下 **`126`** 个其他包。
 
 **How many individual bags are required inside your single `shiny gold` bag?**
 
-> 一个 `shiny gold` 包需要放多少个单独的包？
+> 一个 `shiny gold` 包可以放多少个单独的包？
 
 Your puzzle answer was `12414`.
