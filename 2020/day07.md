@@ -102,7 +102,7 @@ dark violet bags contain no other bags.
 
 In this example, a single `shiny gold` bag must contain **`126`** other bags.
 
-> 在这个例子种，一个 `shiny gold` 包可以放下 **`126`** 个其他包。
+> 在这个例子中，一个 `shiny gold` 包可以放下 **`126`** 个其他包。
 
 **How many individual bags are required inside your single `shiny gold` bag?**
 
