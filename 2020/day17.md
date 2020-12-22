@@ -4,7 +4,7 @@
 
 As your flight slowly drifts through the sky, the Elves at the Mythical Information Bureau at the North Pole contact you. They'd like some help debugging a malfunctioning experimental energy source aboard one of their super-secret imaging satellites.
 
-> 当你的飞机在天空中缓慢漂移时，北极的神话信息局的精灵们与你取得了联系。他们希望获得一些你的帮助，调试一个发生故障的实验性能量源，它位于其中一台超级机密图像卫星上。
+> 当你的飞机在天空中缓慢漂移时，北极神话情报局的精灵们与你取得了联系。他们希望获得一些你的帮助，调试一个发生故障的实验性能量源，它位于其中一台超级机密图像卫星上。
 
 The experimental energy source is based on cutting-edge technology: a set of Conway Cubes contained in a pocket dimension! When you hear it's having problems, you can't help but agree to take a look.
 
