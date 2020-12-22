@@ -40,3 +40,29 @@ The first step is to determine which ingredients **can't possibly** contain any 
 Determine which ingredients cannot possibly contain any of the allergens in your list. **How many times do any of those ingredients appear?**
 
 > 确定列表中哪些成分不可能包含任何过敏原。这些成分出现了多少次？
+
+Your puzzle answer was `2461`.
+
+## --- Part Two ---
+
+Now that you've isolated the inert ingredients, you should have enough information to figure out which ingredient contains which allergen.
+
+> 既然你已经分离出安全成分，那么你应该有足够的信息来找出哪种成分包含哪种过敏原。
+
+In the above example:
+
+> 在上面的例子中：
+
+- `mxmxvkd` contains `dairy`.
+- `sqjhc` contains `fish`.
+- `fvjkl` contains `soy`.
+
+Arrange the ingredients **alphabetically by their allergen** and separate them by commas to produce your **canonical dangerous ingredient list**. (There should **not be any spaces** in your canonical dangerous ingredient list.) In the above example, this would be **`mxmxvkd,sqjhc,fvjkl`**.
+
+> 按照过敏原的字母顺序对成分进行排列，并用逗号隔开，就编写出了一份《典型危险成分表》。（在典型危险成分表中不应有任何空缺。）在上面的例子中，内容为 **`mxmxvkd，sqjhc，fvjkl`**。
+
+Time to stock your raft with supplies. **What is your canonical dangerous ingredient list?**
+
+> 是时候往竹筏上备货了。你的典型危险成分表是什么？
+
+Your puzzle answer was `ltbj,nrfmm,pvhcsn,jxbnb,chpdjkf,jtqt,zzkq,jqnhd`.
