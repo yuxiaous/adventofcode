@@ -4,7 +4,7 @@
 
 You land in an airport surrounded by dense forest. As you walk to your high-speed train, the Elves at the Mythical Information Bureau contact you again. They think their satellite has collected an image of a **sea monster**! Unfortunately, the connection to the satellite is having problems, and many of the messages sent back from the satellite have been corrupted.
 
-> 你降落在一个被茂密森林包围的机场中。当你步行前往高速列车时，神话信息局的精灵们再次联系了你。他们认为他们的卫星收集到了一张海怪的图像！不幸的是，与卫星的连接出现问题，从卫星发送回的很多消息都已损坏。
+> 你降落在一个被茂密森林包围的机场中。当你步行前往高速列车时，神话情报局的精灵们再次联系了你。他们认为他们的卫星收集到了一张海怪的图像！不幸的是，与卫星的连接出现问题，从卫星发送回的很多消息都已损坏。
 
 They sent you a list of **the rules valid messages should obey** and a list of **received messages** they've collected so far ([your puzzle input](day19.txt)).
 
