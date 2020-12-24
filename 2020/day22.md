@@ -150,7 +150,7 @@ Recursive Combat still starts by splitting the cards into two decks (you offer t
 
 > 递归战斗仍然是通过将牌分为两组开始的（你可以像之前一样使用相同的起始牌组进行游戏——这很公平）。然后，游戏由一系列的回合组成，但有一些变化：
 >
-> - 在玩家出牌之前，如果之前某一轮游戏的牌组恰好与当前牌组满足条件：相同的玩家、相同的顺序、相同的卡牌，则游戏立即以该玩家的胜利结束。这里不考虑其他某次的游戏。（这防止了无止境的递归战斗，每个人都认为这不是一个坏主意。）
+> - 在玩家出牌之前，如果之前某一轮游戏的牌组恰好与当前牌组满足条件：相同的玩家、相同的顺序、相同的卡牌，则玩家 1 胜利，游戏立即结束。这里不考虑其他某次的游戏。（这是为了防止了无止境的递归战斗，但是每个人都认为这是一个坏主意。）
 > - 否则，该回合的卡牌必须是全新的组合。回合开始后，玩家每回合都按照正常方式抽出牌组中最上面的卡牌。
 > - 如果两个玩家牌组中剩余的卡牌数量都同时大于等于自己刚出的牌的点数，则该轮的获胜者通过玩一局新的递归战斗游戏来确定（见下文）。
 > - 否则，如果至少一名玩家的牌堆中没有足够的卡牌来递归，则该回合的获胜者是出牌点数较高的玩家。
@@ -430,3 +430,5 @@ After the game, the winning player's score is calculated from the cards they hav
 Defend your honor as Raft Captain by playing the small crab in a game of Recursive Combat using the same two decks as before. **What is the winning player's score?**
 
 > 为了捍卫你作为竹筏船长的荣誉，使用与以前相同的两个牌组跟小螃蟹进行递归战斗游戏。获胜玩家的得分是多少？
+
+Your puzzle answer was `32769`.

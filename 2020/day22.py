@@ -7,8 +7,7 @@ class Player:
     def __init__(self, index, cards):
         self.index = index
         self.cards = cards
-        self.hashs = set()
-        self.hashs.add(hash(tuple(self.cards)))
+        self.saves = set()
 
     def draw(self):
         return self.cards.pop(0)
@@ -17,9 +16,10 @@ class Player:
         self.cards.append(cards.pop(self.index))
         self.cards.extend(cards)
 
+    def save(self):
         uuid = hash(tuple(self.cards))
-        if uuid not in self.hashs:
-            self.hashs.add(uuid)
+        if uuid not in self.saves:
+            self.saves.add(uuid)
             return True
         return False
 
@@ -70,6 +70,12 @@ class RecursiveCombatGame:
     def round(self):
         self.count += 1
 
+        for player in self.players:
+            if not player.save():
+                self.end = True
+                self.winner = self.players[0]
+                return
+
         draws = []
         for player in self.players:
             card = player.draw()
@@ -85,9 +91,9 @@ class RecursiveCombatGame:
             higher = draws.index(max(draws))
             winner = self.players[higher]
 
-        self.end = not winner.keep(draws)
-        self.end = self.end or any(
-            [len(player.cards) == 0 for player in self.players])
+        winner.keep(draws)
+
+        self.end = any([len(player.cards) == 0 for player in self.players])
         if self.end:
             self.winner = winner
 
