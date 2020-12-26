@@ -81,3 +81,29 @@ At this point, you can use either device's loop size with the other device's pub
 > 握手过程尝试建立的密钥什么？
 
 Your puzzle answer was `3015200`.
+
+## --- Part Two ---
+
+The light turns green and the door unlocks. As you collapse onto the bed in your room, your pager goes off!
+
+> 指示灯变为了绿色，门解锁了。当你瘫倒在房间的床上时，此时寻呼机响起了！
+
+"It's an emergency!" the Elf calling you explains. "The soft serve machine in the cafeteria on sub-basement 7 just failed and you're the only one that knows how to fix it! We've already dispatched a reindeer to your location to pick you up."
+
+> “紧急情况！” 精灵打来电话向你解释。“位于地下室 7 层的自助餐厅里的软冰淇淋机发生了故障，你是唯一知道如何修理它的人！我们已经派出了一头驯鹿过去接你。”
+
+You hear the sound of hooves landing on your balcony.
+
+> 你听到了蹄子落在阳台上的声音。
+
+The reindeer carefully explores the contents of your room while you figure out how you're going to pay the 50 stars you owe the resort before you leave. Noticing that you look concerned, the reindeer wanders over to you; you see that it's carrying a small pouch.
+
+> 驯鹿仔细地打量着你房间的布置，而同时你正在琢磨如何在离开度假酒店前支付 50 枚星币。驯鹿注意到了你的忧虑，向慢慢走来。你看到它带来了一个小袋子。
+
+"Sorry for the trouble," a note in the pouch reads. Sitting at the bottom of the pouch is a gold coin with a little picture of a starfish on it.
+
+> “很抱歉麻烦你了。”口袋里的纸条上写着。小袋子的底部有一枚金币，上面是一幅海星的图案。
+
+Looks like you only needed 49 stars after all.
+
+> 看来你最终只需要 49 枚星币就可以了。
