@@ -172,7 +172,7 @@ Without updating rules `8` and `11`, these rules only match three messages: `bba
 
 However, after updating rules `8` and `11`, a total of **`12`** messages match:
 
-但是在更新规则 `8` 和 `11` 之后，总共可以匹配 **`12`** 条消息：
+> 但是在更新规则 `8` 和 `11` 之后，总共可以匹配 **`12`** 条消息：
 
 - `bbabbbbaabaabba`
 - `babbbbaabbbbbabbbbbbaabaaabaaa`
@@ -189,4 +189,6 @@ However, after updating rules `8` and `11`, a total of **`12`** messages match:
 
 **After updating rules `8` and `11`, how many messages completely match rule `0`?**
 
-在更新规则 `8` 和 `11` 后，有多少消息完全符合规则 `0`？
+> 在更新规则 `8` 和 `11` 后，有多少消息完全符合规则 `0`？
+
+Your puzzle answer was `377`.
