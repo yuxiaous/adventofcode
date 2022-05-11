@@ -1,8 +1,5 @@
 #!/usr/bin/env python3
 
-from pandas import array
-
-
 input = [int(x) for x in open('day01.txt').read().strip().split()]
 
 
