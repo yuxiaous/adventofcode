@@ -78,7 +78,11 @@ Your puzzle answer was `1564`.
 
 Considering every single measurement isn't as useful as you expected: there's just too much noise in the data.
 
+> 考虑到每一次测量都没有你预期的那么有用：数据中的噪音太多了。
+
 Instead, consider sums of a **three-measurement sliding window**. Again considering the above example:
+
+> 取而代之的，考虑计算**三个测量值的滑动窗口**的和。再次考虑上面的例子：
 
 ```diff
 199  A      
@@ -95,9 +99,15 @@ Instead, consider sums of a **three-measurement sliding window**. Again consider
 
 Start by comparing the first and second three-measurement windows. The measurements in the first window are marked `A` (`199`, `200`, `208`); their sum is `199 + 200 + 208 = 607`. The second window is marked `B` (`200`, `208`, `210`); its sum is `618`. The sum of measurements in the second window is larger than the sum of the first, so this first comparison **increased**.
 
+> 首先比较第一个和第二个三测量值窗口。第一个窗口中的测量值标记为 `A` (`199`, `200`, `208`)，它们的总和是 `199 + 200 + 208 = 607`。第二个窗口标记为 `B` (`200`, `208`, `210`)，它的总和是 `618`。第二个窗口中的测量值的总和大于第一个窗口的总和，所以第一组对比标记为**增加**。
+
 Your goal now is to count **the number of times the sum of measurements in this sliding window increases** from the previous sum. So, compare `A` with `B`, then compare `B` with `C`, then `C` with `D`, and so on. Stop when there aren't enough measurements left to create a new three-measurement sum.
 
+> 你现在的目标是计算**滑动窗口中的测量总和相较于前一个总和为增加**的次数。所以，比较 `A` 和 `B`，然后比较 `B` 和 `C`，然后是 `C` 和 `D`，依此类推。当没有足够的测量值来创建新的三测量值总和时停止。
+
 In the above example, the sum of each three-measurement window is as follows:
+
+> 在上面的例子中，每组三测量值窗口的总和如下：
 
 ```diff
 A: 607 (N/A - no previous sum)
@@ -112,4 +122,10 @@ H: 792 (increased)
 
 In this example, there are **`5`** sums that are larger than the previous sum.
 
+> 在这个例子中，有 **`5`** 组总和大于前一组总和。
+
 Consider sums of a three-measurement sliding window. **How many sums are larger than the previous sum?**
+
+> 考虑三测量值滑动窗口的总和。**有多少组总和比前一组总和大？**
+
+Your puzzle answer was `1611`.
