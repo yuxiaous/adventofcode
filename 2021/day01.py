@@ -31,6 +31,7 @@ def part2(input):
     return increased
 
 
-print("--- Day 1: Sonar Sweep ---")
-print(f'Part 1: {part1(input)}')
-print(f'Part 2: {part2(input)}')
+if __name__ == '__main__':
+    print("--- Day 1: Sonar Sweep ---")
+    print(f'Part 1: {part1(input)}')
+    print(f'Part 2: {part2(input)}')

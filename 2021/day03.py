@@ -38,6 +38,7 @@ def part2(input):
     return oxygen_generator_rating * CO2_scrubber_rating
 
 
-print('--- Day 3: Binary Diagnostic ---')
-print(f'Part 1: {part1(input)}')
-print(f'Part 2: {part2(input)}')
+if __name__ == '__main__':
+    print('--- Day 3: Binary Diagnostic ---')
+    print(f'Part 1: {part1(input)}')
+    print(f'Part 2: {part2(input)}')
