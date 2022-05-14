@@ -43,7 +43,7 @@ class BingoBoard:
 
 
 def part1(input):
-    boards = [BingoBoard(x.split()) for x in input[1:]]
+    boards = set([BingoBoard(x.split()) for x in input[1:]])
     for number in drawn_numbers:
         for board in boards:
             if board.mark(number):
@@ -52,7 +52,15 @@ def part1(input):
 
 
 def part2(input):
-    pass
+    boards = set([BingoBoard(x.split()) for x in input[1:]])
+    for number in drawn_numbers:
+        for board in set(boards):
+            if board.mark(number):
+                if len(boards) > 1:
+                    boards.remove(board)
+                else:
+                    unmarked = board.get_unmarked_numbers()
+                    return sum(unmarked) * number
 
 
 if __name__ == '__main__':

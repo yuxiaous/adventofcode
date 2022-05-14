@@ -87,3 +87,25 @@ The **score** of the winning board can now be calculated. Start by finding the *
 To guarantee victory against the giant squid, figure out which board will win first. **What will your final score be if you choose that board?**
 
 > 为了确保战胜巨型鱿鱼，先弄清楚哪块棋盘将获得获胜。**如果你选择这块棋盘，你的最终得分是多少？**
+
+Your puzzle answer was `60368`.
+
+## --- Part Two ---
+
+On the other hand, it might be wise to try a different strategy: let the giant squid win.
+
+> 另一方面，尝试不同的策略可能是明智的：让巨型鱿鱼获胜。
+
+You aren't sure how many bingo boards a giant squid could play at once, so rather than waste time counting its arms, the safe thing to do is to **figure out which board will win last** and choose that one. That way, no matter which boards it picks, it will win for sure.
+
+> 你不确定一只巨型鱿鱼可以同时玩多少个宾果棋盘，所以与其浪费时间数它的触手，更安全的做法是**弄清楚哪个棋盘会最后获胜**，并且选择那个棋盘。这样，无论它选择哪块棋盘，它都会赢。
+
+In the above example, the second board is the last to win, which happens after `13` is eventually called and its middle column is completely marked. If you were to keep playing until this point, the second board would have a sum of unmarked numbers equal to `148` for a final score of `148 * 13 =` **`1924`**.
+
+> 在上面的例子中，当 `13` 被叫到时，第二块棋盘中间那列被完全标记，最终它是最后一个获胜的棋盘。如果你一直玩到这一刻，第二块棋盘的未标记数字的总和是 `148`，最终得分为 `148 * 13 =` **`1924`**。
+
+Figure out which board will win last. **Once it wins, what would its final score be?**
+
+> 找出哪个棋盘最后获胜。**一旦获胜，它的最终得分是多少？**
+
+Your puzzle answer was `17435`.
