@@ -87,3 +87,19 @@ Find a way to simulate lanternfish. **How many lanternfish would there be after 
 > 找到一种模拟灯笼鱼的方法。**80天后会有多少条灯笼鱼？**
 
 Your puzzle answer was `379114`.
+
+## --- Part Two ---
+
+Suppose the lanternfish live forever and have unlimited food and space. Would they take over the entire ocean?
+
+> 假设灯笼鱼长生不老，并且拥有无限的食物和空间。他们会占领整个海洋吗？
+
+After 256 days in the example above, there would be a total of **`26984457539`** lanternfish!
+
+> 在上面的例子中，256 天后总共会有 **`26984457539`** 条灯笼鱼！
+
+**How many lanternfish would there be after 256 days?**
+
+> **256天后会有多少条灯笼鱼？**
+
+Your puzzle answer was `1702631502303`.

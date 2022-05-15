@@ -16,7 +16,25 @@ def part1(input):
 
 
 def part2(input):
-    pass
+    fish = {}
+    for x in input:
+        f = int(x)
+        if f in fish:
+            fish[f] += 1
+        else:
+            fish[f] = 1
+
+    for day in range(256):
+        copy = dict(fish)
+        fish = {x: 0 for x in range(9)}
+        for f, n in copy.items():
+            f -= 1
+            if f < 0:
+                f += 7
+                fish[8] += n
+            fish[f] += n
+
+    return sum(fish.values())
 
 
 if __name__ == '__main__':
