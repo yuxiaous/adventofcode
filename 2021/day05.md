@@ -64,6 +64,49 @@ To avoid the most dangerous areas, you need to determine **the number of points 
 
 Consider only horizontal and vertical lines. **At how many points do at least two lines overlap?**
 
-> 只考虑水平和垂直的线。**至少两条线重叠的点有多少个？**
+> 只考虑水平和垂直的直线。**至少两条线重叠的点有多少个？**
 
 Your puzzle answer was `5145`.
+
+## --- Part Two ---
+
+Unfortunately, considering only horizontal and vertical lines doesn't give you the full picture; you need to also consider **diagonal lines**.
+
+> 不幸的是，只考虑水平和垂直的直线并不能让你了解到完整的画面。你还需要考虑**对角线**。
+
+Because of the limits of the hydrothermal vent mapping system, the lines in your list will only ever be horizontal, vertical, or a diagonal line at exactly 45 degrees. In other words:
+
+> 由于热液喷口测绘系统的限制，列表中的直线只可能是水平线、垂直线或者正好 45 度角的对角线。换句话说：
+
+- An entry like `1,1 -> 3,3` covers points `1,1`, `2,2`, and `3,3`.
+- An entry like `9,7 -> 7,9` covers points `9,7`, `8,8`, and `7,9`.
+
+> - 例如 `1,1 -> 3,3` 包含点 `1,1`、`2,2` 和 `3,3`。
+> - 例如 `9,7 -> 7,9` 包含点 `9,7`、`8,8` 和 `7,9`。
+
+Considering all lines from the above example would now produce the following diagram:
+
+> 考虑上面的例子中的所有行，现在将生成下图：
+
+```diff
+1.1....11.
+.111...2..
+..2.1.111.
+...1.2.2..
+.112313211
+...1.2....
+..1...1...
+.1.....1..
+1.......1.
+222111....
+```
+
+You still need to determine **the number of points where at least two lines overlap**. In the above example, this is still anywhere in the diagram with a `2` or larger - now a total of **`12`** points.
+
+> 你仍然需要确定**至少两条线重叠的点的数量**。在上面的例子中，依然表示图表中任何一个拥有 `2` 或更大数字的点--现在总共有 **`12`** 个点。
+
+Consider all of the lines. **At how many points do at least two lines overlap?**
+
+> 考虑所有的直线。**至少两条线重叠的点有多少个？**
+
+Your puzzle answer was `16518`.
