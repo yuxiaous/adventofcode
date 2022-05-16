@@ -19,7 +19,14 @@ def part1(input):
 
 
 def part2(input):
-    pass
+    low = min(input)
+    high = max(input)
+    least = None
+    for pos in range(low, high+1):
+        fuel = sum((abs(pos - x) + 1) * abs(pos - x) / 2 for x in input)
+        if least is None or least > fuel:
+            least = fuel
+    return int(least)
 
 
 if __name__ == '__main__':
