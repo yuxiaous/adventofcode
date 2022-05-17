@@ -1,8 +1,5 @@
 #!/usr/bin/env python3
 
-from numpy import around
-
-
 input = open('day07.txt').read().strip().split(',')
 input = [int(x) for x in input]
 
