@@ -43,3 +43,75 @@ Find all of the low points on your heightmap. **What is the sum of the risk leve
 > 找到高度图上的所有低点。**你的高度图上所有低点的风险等级总和是多少？**
 
 Your puzzle answer was `522`.
+
+## --- Part Two ---
+
+Next, you need to find the largest basins so you know what areas are most important to avoid.
+
+> 接下来，你需要找到最大的盆地，这样你就知道哪些区域最需要避开。
+
+A **basin** is all locations that eventually flow downward to a single low point. Therefore, every low point has a basin, although some basins are very small. Locations of height `9` do not count as being in any basin, and all other locations will always be part of exactly one basin.
+
+> 一个**盆地**中所有位置都会下流向最终的一个低点。因此，每个低点都会形成一个盆地，虽然有些盆地很小。高度为 `9` 的位置不算在任何盆地中，所有其他位置将都将作为一个盆地的一部分。
+
+The **size** of a basin is the number of locations within the basin, including the low point. The example above has four basins.
+
+> 盆地的**大小**是指盆地内所有位置的数量，包括低点。上面的例子中有四个盆地。
+
+The top-left basin, size `3`:
+
+> 左上角的盆地尺寸为 `3`：
+
+```diff
+2199943210
+3987894921
+9856789892
+8767896789
+9899965678
+```
+
+The top-right basin, size `9`:
+
+> 右上角的盆地尺寸为 `9`：
+
+```diff
+2199943210
+3987894921
+9856789892
+8767896789
+9899965678
+```
+
+The middle basin, size `14`:
+
+> 中间的盆地尺寸为 `14`：
+
+```diff
+2199943210
+3987894921
+9856789892
+8767896789
+9899965678
+```
+
+The bottom-right basin, size `9`:
+
+> 右下角的盆地尺寸为 `9`：
+
+```diff
+2199943210
+3987894921
+9856789892
+8767896789
+9899965678
+```
+
+Find the three largest basins and multiply their sizes together. In the above example, this is `9 * 14 * 9 =` **`1134`**.
+
+> 找到三个最大的盆地，并且将它们的大小相乘。在上面的例子中，是 `9 * 14 * 9 =` **`1134`**。
+
+**What do you get if you multiply together the sizes of the three largest basins?**
+
+> **如果将三个最大的盆地的大小相乘，你会得到什么？**
+
+Your puzzle answer was `916688`.
