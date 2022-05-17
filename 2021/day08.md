@@ -105,3 +105,83 @@ Because the digits `1`, `4`, `7`, and `8` each use a unique number of segments, 
 **In the output values, how many times do digits `1`, `4`, `7`, or `8` appear?**
 
 **在输出值中，数字 `1`、`4`、`7` 和 `8` 出现了多少次？**
+
+Your puzzle answer was `530`.
+
+## --- Part Two ---
+
+Through a little deduction, you should now be able to determine the remaining digits. Consider again the first example above:
+
+> 通过一点推论，你现在应该能够确定剩余的数字。再次考虑上面的第一个例子：
+
+```diff
+acedgfb cdfbe gcdfa fbcad dab cefabd cdfgeb eafb cagedb ab |
+cdfeb fcadb cdfeb cdbaf
+```
+
+After some careful analysis, the mapping between signal wires and segments only make sense in the following configuration:
+
+> 经过一些细致的分析，信号线和段之间的映射关系只有在以下配置中才有意义：
+
+```diff
+ dddd
+e    a
+e    a
+ ffff
+g    b
+g    b
+ cccc
+```
+
+So, the unique signal patterns would correspond to the following digits:
+
+> 因此，不重样的信号图案将对应于以下数字：
+
+- `acedgfb`: `8`
+- `cdfbe`: `5`
+- `gcdfa`: `2`
+- `fbcad`: `3`
+- `dab`: `7`
+- `cefabd`: `9`
+- `cdfgeb`: `6`
+- `eafb`: `4`
+- `cagedb`: `0`
+- `ab`: `1`
+
+Then, the four digits of the output value can be decoded:
+
+> 然后，输出值的四位数字可以解码为：
+
+- `cdfeb`: **`5`**
+- `fcadb`: **`3`**
+- `cdfeb`: **`5`**
+- `cdbaf`: **`3`**
+
+Therefore, the output value for this entry is **`5353`**.
+
+> 因此，该条目的输出值为 **`5353`**。
+
+Following this same process for each entry in the second, larger example above, the output value of each entry can be determined:
+
+> 上面第二个更大例子中，对每个条目按照相同的过程进行分析，可以确定每个条目的输出值：
+
+- `fdgacbe cefdb cefbgd gcbe`: `8394`
+- `fcgedb cgb dgebacf gc`: `9781`
+- `cg cg fdcagb cbg`: `1197`
+- `efabcd cedba gadfec cb`: `9361`
+- `gecf egdcabf bgf bfgea`: `4873`
+- `gebdcfa ecba ca fadegcb`: `8418`
+- `cefg dcbef fcge gbcadfe`: `4548`
+- `ed bcgafe cdgba cbgef`: `1625`
+- `gbdfcae bgc cg cgb`: `8717`
+- `fgae cfgab fg bagce`: `4315`
+
+Adding all of the output values in this larger example produces **`61229`**.
+
+> 在这个更大的例子中，将所有输出值相加得到 **`61229`**。
+
+For each entry, determine all of the wire/segment connections and decode the four-digit output values. **What do you get if you add up all of the output values?**
+
+> 对于每个条目，确定所有线/段连接，并解码四位输出值。**如果将所有输出值相加会得到什么？**
+
+Your puzzle answer was `1051087`.
