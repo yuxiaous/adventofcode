@@ -333,3 +333,57 @@ Given the starting energy levels of the dumbo octopuses in your cavern, simulate
 > 给定洞穴中小飞象章鱼的起始能量等级，模拟 100 步。**在 100 步之后总共发光了多少次？**
 
 Your puzzle answer was `1749`.
+
+## --- Part Two ---
+
+It seems like the individual flashes aren't bright enough to navigate. However, you might have a better option: the flashes seem to be **synchronizing**!
+
+> 似乎零星的闪光还不够亮，无法导航。但是，你可能有更好的选择：闪光似乎是可以同步的！
+
+In the example above, the first time all octopuses flash simultaneously is step **`195`**:
+
+> 在上面的例子中，所有章鱼第一次同时发光是在第 **`195`** 步时：
+
+```'
+After step 193:
+5877777777
+8877777777
+7777777777
+7777777777
+7777777777
+7777777777
+7777777777
+7777777777
+7777777777
+7777777777
+
+After step 194:
+6988888888
+9988888888
+8888888888
+8888888888
+8888888888
+8888888888
+8888888888
+8888888888
+8888888888
+8888888888
+
+After step 195:
+0000000000
+0000000000
+0000000000
+0000000000
+0000000000
+0000000000
+0000000000
+0000000000
+0000000000
+0000000000
+```
+
+If you can calculate the exact moments when the octopuses will all flash simultaneously, you should be able to navigate through the cavern. **What is the first step during which all octopuses flash?**
+
+> 如果你能计算出章鱼同时发光的确切时刻，你应该能够导航并穿过洞穴。**第一次所有章鱼同时发光时是第几步？**
+
+Your puzzle answer was `285`.
