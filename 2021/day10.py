@@ -21,7 +21,28 @@ def part1(input):
 
 
 def part2(input):
-    pass
+    score_map = {'(': 1, '[': 2, '{': 3, '<': 4}
+    scores = []
+    for line in input:
+        corrupted = False
+        stack = []
+        for c in line:
+            if c in ('(', '[', '{', '<'):
+                stack.append(c)
+            elif c in (')', ']', '}', '>'):
+                o = stack.pop()
+                if o + c not in ('()', '[]', '{}', '<>'):
+                    corrupted = True
+                    break
+        if not corrupted:
+            score = 0
+            while len(stack) > 0:
+                c = stack.pop()
+                score *= 5
+                score += score_map[c]
+            scores.append(score)
+    scores.sort()
+    return scores[int(len(scores)/2)]
 
 
 if __name__ == '__main__':

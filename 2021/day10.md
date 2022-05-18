@@ -106,3 +106,89 @@ Find the first illegal character in each corrupted line of the navigation subsys
 > 在导航子系统的每个损坏行中查找第一个非法字符。**这些错误的语法错误总分是多少？**
 
 Your puzzle answer was `339537`.
+
+## --- Part Two ---
+
+Now, discard the corrupted lines. The remaining lines are **incomplete**.
+
+> 现在，丢弃损坏的行，剩下的行是**不完整的**。
+
+Incomplete lines don't have any incorrect characters - instead, they're missing some closing characters at the end of the line. To repair the navigation subsystem, you just need to figure out **the sequence of closing characters** that complete all open chunks in the line.
+
+> 不完整的行没有任何不正确的字符 -- 相反的，它们是在行尾缺少一些结束字符。要修复导航子系统，你只需找出**结束字符的顺序**，让它们与行中所有打开字符向匹配。
+
+You can only use closing characters (`)`, `]`, `}`, or `>`), and you must add them in the correct order so that only legal pairs are formed and all chunks end up closed.
+
+> 您只能使用结束字符 (`)`、`]`、`}` 或 `>`），并且必须以正确的顺序添加它们，以便组成合法的配对，并且让所有块最终都闭合。
+
+In the example above, there are five incomplete lines:
+
+> 在上面的例子中，有五个不完整的行：
+
+- `[({(<(())[]>[[{[]{<()<>>` - Complete by adding `}}]])})]`.
+- `[(()[<>])]({[<{<<[]>>(` - Complete by adding `)}>]})`.
+- `(((({<>}<{<{<>}{[]{[]{}` - Complete by adding `}}>}>))))`.
+- `{<[[]]>}<{[{[{[]{()[[[]` - Complete by adding `]]}}]}]}>`.
+- `<{([{{}}[<[[[<>{}]]]>[]]` - Complete by adding `])}>`.
+
+> - `[({(<(())[]>[[{[]{<()<>>` - 通过添加 `}}]])})]` 完成。
+> - `[(()[<>])]({[<{<<[]>>(` - 通过添加 `)}>]})` 完成。
+> - `(((({<>}<{<{<>}{[]{[]{}` - 通过添加 `}}>}>))))` 完成。
+> - `{<[[]]>}<{[{[{[]{()[[[]` - 通过添加 `]]}}]}]}>` 完成。
+> - `<{([{{}}[<[[[<>{}]]]>[]]` - 通过添加 `])}>` 完成。
+
+Did you know that autocomplete tools **also** have contests? It's true! The score is determined by considering the completion string character-by-character. Start with a total score of `0`. Then, for each character, multiply the total score by 5 and then increase the total score by the point value given for the character in the following table:
+
+> 你是否知道自动完成工具**也**有比赛？这是真的！分数是通过考虑补完的字符串中的逐个字符来确定的。从总分 `0` 开始。然后，对于每个字符，将总分乘以 5，然后将总分乘以下表中为该字符提供的分值：
+
+- `)`: `1` point.
+- `]`: `2` points.
+- `}`: `3` points.
+- `>`: `4` points.
+
+> - `)`: `1` 分.
+> - `]`: `2` 分.
+> - `}`: `3` 分.
+> - `>`: `4` 分.
+
+So, the last completion string above - `])}>` - would be scored as follows:
+
+> 因此，上面的最后一个补完字符串 -- `])}>` -- 将得到如下的评分：
+
+- Start with a total score of `0`.
+- Multiply the total score by 5 to get `0`, then add the value of `]` (2) to get a new total score of `2`.
+- Multiply the total score by 5 to get `10`, then add the value of `)` (1) to get a new total score of `11`.
+- Multiply the total score by 5 to get `55`, then add the value of `}` (3) to get a new total score of `58`.
+- Multiply the total score by 5 to get `290`, then add the value of `>` (4) to get a new total score of `294`.
+
+> - 从总分 `0` 开始。
+> - 将总分乘以 5 得到 `0`，然后加上 `]` 的分值(2)，得到新的总分 `2`。
+> - 将总分乘以 5 得到 `10`，然后加上 `)` 的分值(1)，得到新的总分 `11`。
+> - 将总分乘以 5 得到 `55`，然后加上 `}` 的分值(3)，得到新的总分 `58`。
+> - 将总分乘以 5 得到 `290`，然后加上 `>` 的分值(4)，得到新的总分 `294`。
+
+The five lines' completion strings have total scores as follows:
+
+> 五行的补全字符串总分如下：
+
+- `}}]])})]` - `288957` total points.
+- `)}>]})` - `5566` total points.
+- `}}>}>))))` - `1480781` total points.
+- `]]}}]}]}>` - `995444` total points.
+- `])}>` - `294` total points.
+
+> - `}}]])})]` - 总共 `288957` 分。
+> - `)}>]})` - 总共 `5566` 分。
+> - `}}>}>))))` - 总共 `1480781` 分。
+> - `]]}}]}]}>` - 总共 `995444` 分。
+> - `])}>` - 总共 `294` 分。
+
+Autocomplete tools are an odd bunch: the winner is found by **sorting** all of the scores and then taking the **middle** score. (There will always be an odd number of scores to consider.) In this example, the middle score is **`288957`** because there are the same number of scores smaller and larger than it.
+
+> 自动完成工具是一个奇怪的工具：需要先**排序**所有分数，然后取**中间**分数来确定获胜者。（总会有奇数个分数需要考虑。）在这个例子中，中间分数是 **`288957`**，因为比它大和比它小的分数的数量相同。
+
+Find the completion string for each incomplete line, score the completion strings, and sort the scores. **What is the middle score?**
+
+> 找出每条不完整行的补全字符串，对补全字符串进行评分，并对分数进行排序。**中间分数是什么？**
+
+Your puzzle answer was `2412013412`.
