@@ -25,23 +25,24 @@ class TransparentPaper:
                     self.dots.remove((x, y))
                     self.dots.add((pos * 2 - x, y))
 
-    def show(self):
+    def output(self):
+        ret = ''
         max_x = max([dot[0] for dot in self.dots])
         max_y = max([dot[1] for dot in self.dots])
         for y in range(max_y+1):
             for x in range(max_x+1):
                 if (x, y) in self.dots:
-                    print('#', end='')
+                    ret += '#'
                 else:
-                    print('.', end='')
-            print('')
+                    ret += '.'
+            ret += '\n'
+        return ret
 
 
 def part1(input):
-    dots, instructions = input.split('\n\n')
-
-    dots = dots.split('\n')
-    instructions = instructions.split('\n')
+    entrys = input.split('\n\n')
+    dots = entrys[0].split('\n')
+    instructions = entrys[1].split('\n')
 
     paper = TransparentPaper(dots)
     paper.fold(instructions[0])
@@ -49,7 +50,14 @@ def part1(input):
 
 
 def part2(input):
-    pass
+    entrys = input.split('\n\n')
+    dots = entrys[0].split('\n')
+    instructions = entrys[1].split('\n')
+
+    paper = TransparentPaper(dots)
+    for instruction in instructions:
+        paper.fold(instruction)
+    return '\n' + paper.output()
 
 
 if __name__ == '__main__':

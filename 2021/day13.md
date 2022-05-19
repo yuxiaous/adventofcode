@@ -158,3 +158,15 @@ The transparent paper is pretty big, so for now, focus on just completing the fi
 > **在你的透明纸上完成第一个折叠指令后，可以看到多少个点？**
 
 Your puzzle answer was `682`.
+
+## --- Part Two ---
+
+Finish folding the transparent paper according to the instructions. The manual says the code is always **eight capital letters**.
+
+> 按照指令完成折叠透明纸。手册说代码是**八个大写字母**。
+
+**What code do you use to activate the infrared thermal imaging camera system?**
+
+> 你使用什么代码来激活红外热成像相机系统？
+
+Your puzzle answer was `FAGURZHE`.
