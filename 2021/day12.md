@@ -138,3 +138,62 @@ start-RW
 > **小洞穴最多访问一次的情况下，通过这个洞穴系统有多少条路径？**
 
 Your puzzle answer was `5874`.
+
+## --- Part Two ---
+
+After reviewing the available paths, you realize you might have time to visit a single small cave **twice**. Specifically, big caves can be visited any number of times, a single small cave can be visited at most twice, and the remaining small caves can be visited at most once. However, the caves named `start` and `end` can only be visited **exactly once each**: once you leave the `start` cave, you may not return to it, and once you reach the `end` cave, the path must end immediately.
+
+> 查看可用路径后，你意识到你也许有时间可以访问其中一个小洞穴**两次**。具体来说，大洞穴可以访问任意次数，其中一个小洞穴最多访问两次，其余小洞穴最多访问一次。但是，名为 `start` 和 `end` 的洞穴只能访问**一次**：一旦离开 `start` 洞穴，你就不能再返回了；一旦到达 `end` 洞穴，路径就立即结束了。
+
+Now, the `36` possible paths through the first example above are:
+
+> 现在，上面第一个例子中，有 `36` 条可能的路径通过它：
+
+```'
+start,A,b,A,b,A,c,A,end
+start,A,b,A,b,A,end
+start,A,b,A,b,end
+start,A,b,A,c,A,b,A,end
+start,A,b,A,c,A,b,end
+start,A,b,A,c,A,c,A,end
+start,A,b,A,c,A,end
+start,A,b,A,end
+start,A,b,d,b,A,c,A,end
+start,A,b,d,b,A,end
+start,A,b,d,b,end
+start,A,b,end
+start,A,c,A,b,A,b,A,end
+start,A,c,A,b,A,b,end
+start,A,c,A,b,A,c,A,end
+start,A,c,A,b,A,end
+start,A,c,A,b,d,b,A,end
+start,A,c,A,b,d,b,end
+start,A,c,A,b,end
+start,A,c,A,c,A,b,A,end
+start,A,c,A,c,A,b,end
+start,A,c,A,c,A,end
+start,A,c,A,end
+start,A,end
+start,b,A,b,A,c,A,end
+start,b,A,b,A,end
+start,b,A,b,end
+start,b,A,c,A,b,A,end
+start,b,A,c,A,b,end
+start,b,A,c,A,c,A,end
+start,b,A,c,A,end
+start,b,A,end
+start,b,d,b,A,c,A,end
+start,b,d,b,A,end
+start,b,d,b,end
+start,b,end
+```
+
+The slightly larger example above now has `103` paths through it, and the even larger example now has `3509` paths through it.
+
+> 上面稍大的例子现在有 `103` 条路径通过它，更大的例子现在有 `3509` 条路径通过它。
+
+Given these new rules, **how many paths through this cave system are there?**
+
+> 鉴于这些新规则，**通过这个洞穴系统有多少条路径？**
+
+Your puzzle answer was `153592`.
