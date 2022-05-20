@@ -40,9 +40,9 @@ class TransparentPaper:
 
 
 def part1(input):
-    entrys = input.split('\n\n')
-    dots = entrys[0].split('\n')
-    instructions = entrys[1].split('\n')
+    entries = input.split('\n\n')
+    dots = entries[0].split('\n')
+    instructions = entries[1].split('\n')
 
     paper = TransparentPaper(dots)
     paper.fold(instructions[0])
@@ -50,9 +50,9 @@ def part1(input):
 
 
 def part2(input):
-    entrys = input.split('\n\n')
-    dots = entrys[0].split('\n')
-    instructions = entrys[1].split('\n')
+    entries = input.split('\n\n')
+    dots = entries[0].split('\n')
+    instructions = entries[1].split('\n')
 
     paper = TransparentPaper(dots)
     for instruction in instructions:
