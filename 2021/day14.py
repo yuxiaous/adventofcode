@@ -3,17 +3,20 @@
 input = open('day14.txt').read().strip()
 
 
-def parse(input):
-    entries = input.split('\n\n')
-    template = entries[0]
-    pairs = [x.split(' -> ') for x in entries[1].split('\n')]
-    rules = {x[0]: x[1] for x in pairs}
-    return template, rules
+def map_add(m, k, v):
+    if k in m:
+        m[k] += v
+    else:
+        m[k] = v
 
 
 def part1(input):
-    polymer, rules = parse(input)
-    for i in range(10):
+    entries = input.split('\n\n')
+    polymer = entries[0]
+    rules = {x[0]: x[1]
+             for x in [x.split(' -> ') for x in entries[1].split('\n')]}
+
+    for _ in range(10):
         copy = polymer
         polymer = ''
         for i in range(len(copy)):
@@ -25,10 +28,7 @@ def part1(input):
 
     elements = {}
     for c in polymer:
-        if c in elements:
-            elements[c] += 1
-        else:
-            elements[c] = 1
+        map_add(elements, c, 1)
 
     _, most = max(elements.items(), key=lambda x: x[1])
     _, lease = min(elements.items(), key=lambda x: x[1])
@@ -36,7 +36,37 @@ def part1(input):
 
 
 def part2(input):
-    pass
+    entries = input.split('\n\n')
+    template = entries[0]
+    rules = {x[0]: x[1]
+             for x in [x.split(' -> ') for x in entries[1].split('\n')]}
+
+    pairs = {}
+    pairs[template[0]] = 1
+    pairs[template[-1]] = 1
+    for i in range(len(template)-1):
+        pair = template[i:i+2]
+        map_add(pairs, pair, 1)
+
+    for _ in range(40):
+        copy = pairs
+        pairs = {}
+        for pair in copy:
+            if pair in rules:
+                e = rules[pair]
+                map_add(pairs, pair[0] + e, copy[pair])
+                map_add(pairs, e + pair[1], copy[pair])
+            else:
+                pairs[pair] = copy[pair]
+
+    elements = {}
+    for pair in pairs:
+        for c in pair:
+            map_add(elements, c, pairs[pair] / 2)
+
+    _, most = max(elements.items(), key=lambda x: x[1])
+    _, lease = min(elements.items(), key=lambda x: x[1])
+    return int(most - lease)
 
 
 if __name__ == '__main__':

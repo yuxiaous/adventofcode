@@ -84,3 +84,19 @@ Apply 10 steps of pair insertion to the polymer template and find the most and l
 > 对聚合物模板进行 10 步对插入，并在结果中找出最多和最少的元素。**如果你取最多元素的数量减去最少元素的数量，你会得到什么？**
 
 Your puzzle answer was `2657`.
+
+## --- Part Two ---
+
+The resulting polymer isn't nearly strong enough to reinforce the submarine. You'll need to run more steps of the pair insertion process; a total of **40 steps** should do it.
+
+> 产出的聚合物的强度不足以加固潜水艇。你需要进行更多次对插入过程，应该进行总共 **40 步**。
+
+In the above example, the most common element is `B` (occurring `2192039569602` times) and the least common element is `H` (occurring `3849876073` times); subtracting these produces **`2188189693529`**.
+
+> 在上面的例子中，最多的元素是 `B`（出现了 `2192039569602` 次），最少的元素是 `H`（出现了 `3849876073` 次），相减得到 **`2188189693529`**。
+
+Apply **40** steps of pair insertion to the polymer template and find the most and least common elements in the result. **What do you get if you take the quantity of the most common element and subtract the quantity of the least common element?**
+
+> 将 **40** 对插入步骤应用于聚合物模板，并在结果中找到最常见和最不常见的元素。 **如果你取最常见元素的数量并减去最不常见元素的数量，你会得到什么？**
+
+Your puzzle answer was `2911561572630`.
