@@ -1,16 +1,9 @@
 #!/usr/bin/env python3
 
 input = open('day15.txt').read().strip().split('\n')
-ROW = len(input)
-COLUMN = len(input[0])
 
 
-def part1(input):
-    risk_map = {}
-    for y in range(len(input)):
-        for x in range(len(input[0])):
-            risk_map[(x, y)] = int(input[y][x])
-
+def find_lowest_risk_paths(risk_map):
     paths = {(0, 0): 0}
     step = 0
     while True:
@@ -25,12 +18,42 @@ def part1(input):
                     if (next not in paths) or (paths[next] > risk):
                         paths[next] = risk
         if copy == paths:
+            print('')
             break
-    return paths[(COLUMN-1, ROW-1)]
+    return paths
+
+
+def part1(input):
+    map_w = len(input[0])
+    map_h = len(input)
+
+    risk_map = {}
+    for y in range(map_w):
+        for x in range(map_h):
+            risk_map[(x, y)] = int(input[y][x])
+
+    paths = find_lowest_risk_paths(risk_map)
+    return paths[(map_w - 1, map_h - 1)]
 
 
 def part2(input):
-    pass
+    tile_w = len(input[0])
+    tile_h = len(input)
+    map_w = tile_w * 5
+    map_h = tile_h * 5
+
+    risk_map = {}
+    for i in range(5):
+        for j in range(5):
+            for y in range(tile_h):
+                for x in range(tile_w):
+                    risk = int(input[y][x]) + i + j
+                    while risk > 9:
+                        risk -= 9
+                    risk_map[(tile_w * i + x,   tile_h * j + y)] = risk
+
+    paths = find_lowest_risk_paths(risk_map)
+    return paths[(map_w - 1, map_h - 1)]
 
 
 if __name__ == '__main__':
