@@ -50,7 +50,7 @@ def part2(input):
                     risk = int(input[y][x]) + i + j
                     while risk > 9:
                         risk -= 9
-                    risk_map[(tile_w * i + x,   tile_h * j + y)] = risk
+                    risk_map[(tile_w * i + x, tile_h * j + y)] = risk
 
     paths = find_lowest_risk_paths(risk_map)
     return paths[(map_w - 1, map_h - 1)]
