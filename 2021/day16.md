@@ -74,11 +74,11 @@ So, this packet represents a literal value with binary representation `011111100
 
 Every other type of packet (any packet with a type ID other than `4`) represent an **operator** that performs some calculation on one or more sub-packets contained within. Right now, the specific operations aren't important; focus on parsing the hierarchy of sub-packets.
 
-> 每一种其他类型的数据包（其他类型 ID 不是 `4` 的数据包）都代表一种**操作符**，它对包含在其中的一个或多个子数据包执行一些计算。现在，具体的操作并不重要，重点在于解析子数据包的层次结构。
+> 每一种其他类型的数据包（其他类型 ID 不是 `4` 的数据包）都代表一种**运算符**，它对包含在其中的一个或多个子数据包执行一些计算。现在，具体的运算并不重要，重点在于解析子数据包的层次结构。
 
 An operator packet contains one or more packets. To indicate which subsequent binary data represents its sub-packets, an operator packet can use one of two modes indicated by the bit immediately after the packet header; this is called the **length type ID**:
 
-> 一个操作符数据包包含一个或多个数据包。操作符数据包有两种模式，使用紧接在数据包头之后的位来判断，称为**长度类型 ID**，指明哪些后续的二进制数据是子数据包：
+> 一个运算符数据包包含一个或多个数据包。运算符数据包有两种模式，使用紧接在数据包头之后的位来判断，称为**长度类型 ID**，指明哪些后续的二进制数据是子数据包：
 
 - If the length type ID is `0`, then the next **15** bits are a number that represents the **total length in bits** of the sub-packets contained by this packet.
 - If the length type ID is `1`, then the next **11** bits are a number that represents the **number of sub-packets immediately contained** by this packet.
@@ -92,7 +92,7 @@ Finally, after the length type ID bit and the 15-bit or 11-bit field, the sub-pa
 
 For example, here is an operator packet (hexadecimal string `38006F45291200`) with length type ID `0` that contains two sub-packets:
 
-> 例如，这是一个操作符数据包（十六进制字串 `38006F45291200`），长度类型 ID 为 `0`，包含两个子数据包：
+> 例如，这是一个运算符数据包（十六进制字串 `38006F45291200`），长度类型 ID 为 `0`，包含两个子数据包：
 
 ```'
 00111000000000000110111101000101001010010001001000000000
@@ -119,7 +119,7 @@ After reading 11 and 16 bits of sub-packet data, the total length indicated in `
 
 As another example, here is an operator packet (hexadecimal string `EE00D40C823060`) with length type ID `1` that contains three sub-packets:
 
-> 这是另一个例子，这里是一个操作符数据包（十六进制字串`EE00D40C823060`），长度类型 ID 为 `1`，包含三个子数据包：
+> 这是另一个例子，这里是一个运算符数据包（十六进制字串`EE00D40C823060`），长度类型 ID 为 `1`，包含三个子数据包：
 
 ```'
 11101110000000001101010000001100100000100011000001100000
@@ -159,10 +159,10 @@ Here are a few more examples of hexadecimal-encoded transmissions:
 - `C0015000016115A2E0802F182340` has the same structure as the previous example, but the outermost packet uses a different length type ID. This packet has a version sum of **`23`**.
 - `A0016C880162017C3686B18A3D4780` is an operator packet that contains an operator packet that contains an operator packet that contains five literal values; it has a version sum of **`31`**.
 
-> - `8A004A801A8002F478` 表示一个操作符数据包（版本 4），其中包含一个操作符数据包（版本 1），其中包含一个操作符数据包（版本 5），其中包含一个字面值（版本 6）。这个数据包的版本总和为 **`16`**。
-> - `620080001611562C8802118E34` 表示一个操作符数据包（版本 3），其中包含两个子数据包的，每个子数据包都是一个操作符数据包，分别包含两个字面值。这个数据包的版本总和为 **`12`**。
+> - `8A004A801A8002F478` 表示一个运算符数据包（版本 4），其中包含一个运算符数据包（版本 1），其中包含一个运算符数据包（版本 5），其中包含一个字面值（版本 6）。这个数据包的版本总和为 **`16`**。
+> - `620080001611562C8802118E34` 表示一个运算符数据包（版本 3），其中包含两个子数据包的，每个子数据包都是一个运算符数据包，分别包含两个字面值。这个数据包的版本总和为 **`12`**。
 > - `C0015000016115A2E0802F182340` 与前面两个例子的结构相同，但最外层的数据包使用了不同的长度类型 ID。这个数据包的版本总和为 **`23`**。
-> - `A0016C880162017C3686B18A3D4780` 是一个操作符数据包，其中包含一个操作符数据包，其中包含一个操作符数据包，其中包含五个字面值。它的版本总和为 **`31`**。
+> - `A0016C880162017C3686B18A3D4780` 是一个运算符数据包，其中包含一个运算符数据包，其中包含一个运算符数据包，其中包含五个字面值。它的版本总和为 **`31`**。
 
 Decode the structure of your hexadecimal-encoded BITS transmission; **what do you get if you add up the version numbers in all packets?**
 
