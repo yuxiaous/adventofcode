@@ -39,9 +39,33 @@ class BITSPacket:
         self.type_id = int(self._read_bits(3), 2)
 
         if self.type_id == 4:
+            # literal value
             self._parse_literal_value()
         else:
             self._parse_operator()
+            # sum
+            if self.type_id == 0:
+                self.value = sum(sub.value for sub in self.subpackets)
+            # product
+            elif self.type_id == 1:
+                self.value = 1
+                for sub in self.subpackets:
+                    self.value *= sub.value
+            # minimum
+            elif self.type_id == 2:
+                self.value = min(sub.value for sub in self.subpackets)
+            # maximum
+            elif self.type_id == 3:
+                self.value = max(sub.value for sub in self.subpackets)
+            # greater than
+            elif self.type_id == 5:
+                self.value = 1 if self.subpackets[0].value > self.subpackets[1].value else 0
+            # less than
+            elif self.type_id == 6:
+                self.value = 1 if self.subpackets[0].value < self.subpackets[1].value else 0
+            # equal to
+            elif self.type_id == 7:
+                self.value = 1 if self.subpackets[0].value == self.subpackets[1].value else 0
 
     def _parse_literal_value(self):
         groups = []
@@ -99,7 +123,9 @@ def part1(input):
 
 
 def part2(input):
-    pass
+    bits = ''.join(HEX2BIN[h] for h in input)
+    packet = BITSPacket(bits)
+    return packet.value
 
 
 if __name__ == '__main__':

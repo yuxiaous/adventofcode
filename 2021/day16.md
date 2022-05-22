@@ -167,3 +167,63 @@ Here are a few more examples of hexadecimal-encoded transmissions:
 Decode the structure of your hexadecimal-encoded BITS transmission; **what do you get if you add up the version numbers in all packets?**
 
 > 解码十六进制编码的 BITS 传输结构，**如果将所有数据包中的版本号相加，会得到什么？**
+
+Your puzzle answer was `999`.
+
+## --- Part Two ---
+
+Now that you have the structure of your transmission decoded, you can calculate the value of the expression it represents.
+
+> 现在你已经解码了传输的结构，你可以计算出它的表达式的值了。
+
+Literal values (type ID `4`) represent a single number as described above. The remaining type IDs are more interesting:
+
+> 字面值（类型 ID 为 `4`）表示单个数字，上面以及描述过了。其余的类型 ID 更加有趣：
+
+- Packets with type ID `0` are **sum** packets - their value is the sum of the values of their sub-packets. If they only have a single sub-packet, their value is the value of the sub-packet.
+- Packets with type ID `1` are **product** packets - their value is the result of multiplying together the values of their sub-packets. If they only have a single sub-packet, their value is the value of the sub-packet.
+- Packets with type ID `2` are **minimum** packets - their value is the minimum of the values of their sub-packets.
+- Packets with type ID `3` are **maximum** packets - their value is the maximum of the values of their sub-packets.
+- Packets with type ID `5` are **greater than** packets - their value is **1** if the value of the first sub-packet is greater than the value of the second sub-packet; otherwise, their value is **0**. These packets always have exactly two sub-packets.
+- Packets with type ID `6` are **less than** packets - their value is **1** if the value of the first sub-packet is less than the value of the second sub-packet; otherwise, their value is **0**. These packets always have exactly two sub-packets.
+- Packets with type ID `7` are **equal to** packets - their value is **1** if the value of the first sub-packet is equal to the value of the second sub-packet; otherwise, their value is **0**. These packets always have exactly two sub-packets.
+
+- 类型 ID 为 `0` 的数据包是**和**数据包 -- 它的值是其子数据包的值的总和。如果只有一个子数据包，它的值就是子数据包的值。
+- 类型 ID 为 `1` 的数据包是**积**数据包 -- 它的值是其子数据包的值的乘积。如果只有一个子数据包，它的值就是子数据包的值。
+- 类型 ID 为 `2` 的数据包是**最小值**数据包 -- 它的值是其所有子数据包的值的最小值。
+- 类型 ID 为 `3` 的数据包是**最大值**数据包 -- 它的值是其所有子数据包的值的最大值。
+- 类型 ID 为 `5` 的数据包是**大于**数据包 -- 如果第一个子数据包的值大于第二个子数据包的值，则它的值为 **1**，否则为 **0**。这些数据包都只有两个子数据包。
+- 类型 ID 为 `6` 的数据包是**小于**数据包 -- 如果第一个子数据包的值小于第二个子数据包的值，则它的值为 **1**，否则为 **0**。这些数据包都只有两个子数据包。
+- 类型 ID 为 `7` 的数据包是**等于**数据包 -- 如果第一个子数据包的值等于第二个子数据包的值，则它的值为 **1**，否则为 **0**。这些数据包都只有两个子数据包。
+
+Using these rules, you can now work out the value of the outermost packet in your BITS transmission.
+
+> 使用这些规则，现在你可以计算出 BITS 传输中最外层数据包的值了。
+
+For example:
+
+> 举个例子：
+
+- `C200B40A82` finds the sum of `1` and `2`, resulting in the value **`3`**.
+- `04005AC33890` finds the product of `6` and `9`, resulting in the value **`54`**.
+- `880086C3E88112` finds the minimum of `7`, `8`, and `9`, resulting in the value **`7`**.
+- `CE00C43D881120` finds the maximum of `7`, `8`, and `9`, resulting in the value **`9`**.
+- `D8005AC2A8F0` produces `1`, because `5` is less than `15`.
+- `F600BC2D8F` produces `0`, because `5` is not greater than `15`.
+- `9C005AC2F8F0` produces `0`, because `5` is not equal to `15`.
+- `9C0141080250320F1802104A08` produces `1`, because `1` + `3` = `2` * `2`.
+
+> - `C200B40A82` 求 `1` 和 `2` 的和，得到的值为 **`3`**。
+> - `04005AC33890` 求 `6` 和 `9` 的积，得到的值为 **`54`**。
+> - `880086C3E88112` 求 `7`、`8` 和 `9` 的最小值，得到的值为 **`7`**。
+> - `CE00C43D881120` 求 `7`、`8` 和 `9` 的最大值，得到的值为 **`9`**。
+> - `D8005AC2A8F0` 得到 `1`，因为 `5` 小于 `15`。
+> - `F600BC2D8F` 得到 `0`，因为 `5` 不大于 `15`。
+> - `9C005AC2F8F0` 得到 `0`，因为 `5` 不等于 `15`。
+> - `9C0141080250320F1802104A08` 得到 `1`，因为 `1` + `3` = `2` * `2`。
+
+**What do you get if you evaluate the expression represented by your hexadecimal-encoded BITS transmission?**
+
+> **分析由十六进制编码的 BITS 传输表示的表达式，会得到什么？**
+
+Your puzzle answer was `3408662834145`.
