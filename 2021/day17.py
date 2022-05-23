@@ -80,7 +80,7 @@ def part2(input):
     while True:
         min_initial_velocity_x += 1
         px = get_max_target_position_x(min_initial_velocity_x)
-        if px > min_target_position_x:
+        if px >= min_target_position_x:
             break
 
     # find max number of step
