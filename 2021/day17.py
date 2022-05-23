@@ -4,12 +4,26 @@ import re
 input = open('day17.txt').read().strip()
 
 
+def get_position_x(v, n):
+    if n < v:
+        return int(v * n + n * (1 - n) / 2)
+    else:
+        return int(v * (1 + v) / 2)
+
+
 def get_position_y(v, n):
     return n * v - n * (n - 1) / 2
 
 
-def get_velocity_y(p, n):
-    return p / n + (n - 1) / 2
+def get_max_target_position_x(initial_velocity_x):
+    return initial_velocity_x * (1 + initial_velocity_x) / 2
+
+
+def get_max_initial_velocity_y(target_position_y):
+    if target_position_y > 0:
+        return target_position_y
+    elif target_position_y < 0:
+        return -target_position_y - 1
 
 
 def part1(input):
@@ -28,18 +42,12 @@ def part1(input):
     '''
 
     m = re.match('target area: x=(\d+)\.\.(\d+), y=(-?\d+)\.\.(-?\d+)', input)
-    least_position_y = int(m.group(3))
-    most_position_y = int(m.group(4))
-
-    def get_initial_velocity_y(target_position_y):
-        if target_position_y > 0:
-            return target_position_y
-        elif target_position_y < 0:
-            return -target_position_y - 1
+    min_target_position_y = int(m.group(3))
+    max_target_position_y = int(m.group(4))
 
     initial_velocity_y = max(
-        get_initial_velocity_y(least_position_y),
-        get_initial_velocity_y(most_position_y))
+        get_max_initial_velocity_y(min_target_position_y),
+        get_max_initial_velocity_y(max_target_position_y))
 
     if initial_velocity_y > 0:
         step = 0
@@ -54,7 +62,45 @@ def part1(input):
 
 
 def part2(input):
-    pass
+    m = re.match('target area: x=(\d+)\.\.(\d+), y=(-?\d+)\.\.(-?\d+)', input)
+    min_target_position_x = int(m.group(1))
+    max_target_position_x = int(m.group(2))
+    min_target_position_y = int(m.group(3))
+    max_target_position_y = int(m.group(4))
+
+    # find initial y velocity range
+    min_initial_velocity_y = min(min_target_position_y, max_target_position_y)
+    max_initial_velocity_y = max(
+        get_max_initial_velocity_y(min_target_position_y),
+        get_max_initial_velocity_y(max_target_position_y))
+
+    # find initial x velocity range
+    max_initial_velocity_x = max(min_target_position_x, max_target_position_x)
+    min_initial_velocity_x = 0
+    while True:
+        min_initial_velocity_x += 1
+        px = get_max_target_position_x(min_initial_velocity_x)
+        if px > min_target_position_x:
+            break
+
+    # find max number of step
+    max_step = 0
+    while True:
+        max_step += 1
+        py = get_position_y(max_initial_velocity_y, max_step)
+        if py == min_target_position_y:
+            break
+
+    initial_velocity = set()
+    for n in range(max_step + 1):
+        for vx in range(min_initial_velocity_x, max_initial_velocity_x + 1):
+            for vy in range(min_initial_velocity_y, max_initial_velocity_y + 1):
+                px = get_position_x(vx, n)
+                py = get_position_y(vy, n)
+                if (min_target_position_x <= px <= max_target_position_x
+                        and min_target_position_y <= py <= max_target_position_y):
+                    initial_velocity.add((vx, vy))
+    return len(initial_velocity)
 
 
 if __name__ == '__main__':
