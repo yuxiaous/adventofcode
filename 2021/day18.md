@@ -192,15 +192,15 @@ The final sum `[[[[8,7],[7,7]],[[8,6],[7,7]]],[[[0,7],[6,6]],[8,7]]]` is found a
 
 To check whether it's the right answer, the snailfish teacher only checks the **magnitude** of the final sum. The magnitude of a pair is 3 times the magnitude of its left element plus 2 times the magnitude of its right element. The magnitude of a regular number is just that number.
 
-> 为了检查它是否是正确的答案，蜗牛鱼老师只检查最终总和的**量级**。一个对子的量级是其左元素量级的 3 倍加上其右元素量级的 2 倍。常规数字的量级就是它自己。
+> 为了检查它是否是正确的答案，蜗牛鱼老师只检查最终总和的**量纲**。一个对子的量纲是其左元素量纲的 3 倍加上其右元素量纲的 2 倍。常规数字的量纲就是它自己。
 
 For example, the magnitude of `[9,1]` is `3*9 + 2*1 =` **`29`**; the magnitude of `[1,9]` is `3*1 + 2*9 =` **`21`**. Magnitude calculations are recursive: the magnitude of `[[9,1],[1,9]]` is `3*29 + 2*21 =` **`129`**.
 
-> 例如，`[9,1]` 的量级为 `3*9 + 2*1 =` **`29`**，`[1,9]` 的量级是 `3*1 + 2*9 =` **`21`**。量级的计算是递归的：`[[9,1],[1,9]]` 的量级是 `3*29 + 2*21 =` **`129`**。
+> 例如，`[9,1]` 的量纲为 `3*9 + 2*1 =` **`29`**，`[1,9]` 的量纲是 `3*1 + 2*9 =` **`21`**。量纲的计算是递归的：`[[9,1],[1,9]]` 的量纲是 `3*29 + 2*21 =` **`129`**。
 
 Here are a few more magnitude examples:
 
-> 这里有一些量级的例子：
+> 这里有一些量纲的例子：
 
 - `[[1,2],[[3,4],5]]` becomes **`143`**.
 - `[[[[0,7],4],[[7,8],[6,0]]],[8,1]]` becomes **`1384`**.
@@ -243,10 +243,51 @@ The final sum is:
 
 The magnitude of this final sum is **`4140`**.
 
-> 这个最终总和的量级是 **`4140`**。
+> 这个最终总和的量纲是 **`4140`**。
 
 Add up all of the snailfish numbers from the homework assignment in the order they appear. **What is the magnitude of the final sum?**
 
-> 按照列出的顺序，将家庭作业中所有的蜗牛鱼数字求和。**最终总和的量级是多少？**
+> 按照列出的顺序，将家庭作业中所有的蜗牛鱼数字求和。**最终总和的量纲是多少？**
 
 Your puzzle answer was `3647`.
+
+## --- Part Two ---
+
+You notice a second question on the back of the homework assignment:
+
+> 你注意到家庭作业反面还有第二个问题：
+
+What is the largest magnitude you can get from adding only two of the snailfish numbers?
+
+> 将两个蜗牛鱼数字相加，你能获得的最大量纲是多少？
+
+Note that snailfish addition is not [commutative](https://en.wikipedia.org/wiki/Commutative_property) - that is, `x + y` and `y + x` can produce different results.
+
+> 请注意，蜗牛鱼加法不是[可交换的](https://en.wikipedia.org/wiki/Commutative_property) - 也就是说，`x + y` 和 `y + x` 可以产生不同的结果。
+
+Again considering the last example homework assignment above:
+
+> 再次考虑上面的最后一题家庭作业：
+
+```'
+[[[0,[5,8]],[[1,7],[9,6]]],[[4,[1,2]],[[1,4],2]]]
+[[[5,[2,8]],4],[5,[[9,9],0]]]
+[6,[[[6,2],[5,6]],[[7,6],[4,7]]]]
+[[[6,[0,7]],[0,9]],[4,[9,[9,0]]]]
+[[[7,[6,4]],[3,[1,3]]],[[[5,5],1],9]]
+[[6,[[7,3],[3,2]]],[[[3,8],[5,7]],4]]
+[[[[5,4],[7,7]],8],[[8,3],8]]
+[[9,3],[[9,9],[6,[4,9]]]]
+[[2,[[7,7],7]],[[5,8],[[9,3],[0,2]]]]
+[[[[5,2],5],[8,[3,7]]],[[5,[7,5]],[4,4]]]
+```
+
+The largest magnitude of the sum of any two snailfish numbers in this list is **`3993`**. This is the magnitude of `[[2,[[7,7],7]],[[5,8],[[9,3],[0,2]]]]` + `[[[0,[5,8]],[[1,7],[9,6]]],[[4,[1,2]],[[1,4],2]]]`, which reduces to `[[[[7,8],[6,6]],[[6,0],[7,7]]],[[[7,8],[8,8]],[[7,9],[0,6]]]]`.
+
+> 此列表中，任意两个蜗牛鱼数字之和的最大量纲是 **`3993`**。是 `[[2,[[7,7],7]],[[5,8],[[9,3],[0,2]]]]` + `[[[0 ,[5,8]],[[1,7],[9,6]]],[[4,[1,2]],[[1,4],2]]]` 的量纲，精简得到 `[[[[7,8],[6,6]],[[6,0],[7,7]]],[[[7,8],[8,8]],[[7 ,9],[0,6]]]]`。
+
+**What is the largest magnitude of any sum of two different snailfish numbers from the homework assignment?**
+
+> **家庭作业中，任意两个不同的蜗牛鱼数字之和的最大量纲是多少？**
+
+Your puzzle answer was `4600`.

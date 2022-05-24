@@ -149,7 +149,17 @@ def part1(input):
 
 
 def part2(input):
-    pass
+    largest = 0
+    for i in range(len(input)):
+        for j in range(len(input)):
+            if i != j:
+                sn1 = SnailfishNumber(input[i])
+                sn2 = SnailfishNumber(input[j])
+                sum = sn1 + sn2
+                magnitude = sum.magnitude()
+                if magnitude > largest:
+                    largest = magnitude
+    return largest
 
 
 if __name__ == '__main__':
