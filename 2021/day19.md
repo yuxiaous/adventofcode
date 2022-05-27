@@ -429,3 +429,21 @@ In total, there are **`79`** beacons.
 Assemble the full map of beacons. **How many beacons are there?**
 
 > 组合出完整的信标地图。**有多少个信标？**
+
+Your puzzle answer was `491`.
+
+## --- Part Two ---
+
+Sometimes, it's a good idea to appreciate just how big the ocean is. Using the [Manhattan distance](https://en.wikipedia.org/wiki/Taxicab_geometry), how far apart do the scanners get?
+
+> 有时候，感受海洋的广大也是个好主意。使用[曼哈顿](https://en.wikipedia.org/wiki/Taxicab_geometry)距离，扫描器的距离有多远？
+
+In the above example, scanners `2` (`1105,-1205,1229`) and `3` (`-92,-2380,-20`) are the largest Manhattan distance apart. In total, they are `1197 + 1175 + 1249 =` **`3621`** units apart.
+
+> 在上面的例子中，`2` 号扫描器（`1105,-1205,1229`）和 `3` 号扫描器（`-92,-2380,-20`）之间的曼哈顿距离是最大的。总的来说，它们的距离是 `1197 + 1175 + 1249 =` **`3621`** 个单位。
+
+**What is the largest Manhattan distance between any two scanners?**
+
+> **任意两个扫描器之间的最大曼哈顿距离是多少？**
+
+Your puzzle answer was `13374`.
