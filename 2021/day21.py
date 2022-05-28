@@ -8,22 +8,19 @@ input = open('day21.txt').read().strip()
 class Dice:
     def __init__(self, side):
         self.side = side
-        self.times = 0
-
-    def roll(self):
-        self.times += 1
 
 
 class DeterministicDice(Dice):
     def __init__(self, side):
         super().__init__(side)
+        self.times = 0
         self.current = 0
 
     def roll(self):
-        super().roll()
+        self.times += 1
         self.current += 1
-        while self.current > 100:
-            self.current -= 100
+        while self.current > self.side:
+            self.current -= self.side
         return self.current
 
 
@@ -51,50 +48,45 @@ class GameBoard:
         return position
 
 
+def parse_player(entry):
+    match = re.match(r'(Player \d+) starting position: (\d+)', entry)
+    name = match.group(1)
+    position = int(match.group(2))
+    return name, position
+
+
 def part1(input: str):
     # init
     board = GameBoard(10)
     die = DeterministicDice(100)
     players: list[Player] = []
     for entry in input.split('\n'):
-        match = re.match(r'(Player \d+) starting position: (\d+)', entry)
-        name = match.group(1)
-        position = int(match.group(2))
-
+        name, position = parse_player(entry)
         player = Player(name)
         players.append(player)
-
         board.set_player(player, position)
 
-    # start game
-    current = 0
-
-    def turn():
-        nonlocal current
-        # get current player
-        player = players[current]
+    def turn(player: Player):
         # roll three times
-        point = 0
-        point += die.roll()
-        point += die.roll()
-        point += die.roll()
+        point = die.roll() + die.roll() + die.roll()
         # move spaces
         space = board.move(player, point)
         # add score
         player.score += space
-        # set next
-        current += 1
-        while current >= len(players):
-            current -= len(players)
         # check if the player wins the game
         return player.score < 1000
 
-    while turn():
-        pass
-    return players[current].score * die.times
+    # start game
+    current = 0
+    while turn(players[current]):
+        current += 1
+        while current >= len(players):
+            current -= len(players)
+
+    return players[current-1].score * die.times
 
 
-def part2(input):
+def part2(input: str):
     pass
 
 
