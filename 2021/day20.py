@@ -68,7 +68,18 @@ def part1(input: str):
 
 
 def part2(input):
-    pass
+    sections = input.split('\n\n')
+    algorithm = [x for x in sections[0].replace('\n', '')]
+
+    image = Image(sections[1])
+    for i in range(50):
+        image.enhance(algorithm)
+
+    count = 0
+    for pixel in image.pixels.values():
+        if pixel == '#':
+            count += 1
+    return count
 
 
 if __name__ == '__main__':

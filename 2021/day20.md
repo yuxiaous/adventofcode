@@ -151,3 +151,19 @@ Start with the original input image and apply the image enhancement algorithm tw
 > 从原始输入图像开始，应用两次图像增强算法，注意图像是无限大小的。**生成的图像中有多少像素被点亮？**
 
 Your puzzle answer was `5486`.
+
+## --- Part Two ---
+
+You still can't quite make out the details in the image. Maybe you just didn't [enhance](https://en.wikipedia.org/wiki/Kernel_(image_processing)) it enough.
+
+> 你仍然无法完全识别图像中的细节。也许你只是没有[增强](https://en.wikipedia.org/wiki/Kernel_(image_processing))到位。
+
+If you enhance the starting input image in the above example a total of **50** times, **`3351`** pixels are lit in the final output image.
+
+> 如果你将上面例子中的初始图像总共增强 **50** 次，在最终输出图像中将会有 **`3351`** 个像素被点亮。
+
+Start again with the original input image and apply the image enhancement algorithm 50 times. **How many pixels are lit in the resulting image?**
+
+> 从原始输入图像重新开始，应用 50 次图像增强算法。**生成的图像中有多少像素被点亮？**
+
+Your puzzle answer was `20210`.
