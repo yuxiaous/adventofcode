@@ -76,3 +76,31 @@ Play a practice game using the deterministic 100-sided die. The moment either pl
 > 使用 100 面的确定性骰子玩一场练习游戏。当任一玩家获胜时，**如果将失败玩家的分数乘以游戏中掷骰子的次数，你会得到什么？**
 
 Your puzzle answer was `918081`.
+
+## --- Part Two ---
+
+Now that you're warmed up, it's time to play the real game.
+
+> 现在你已经热身了，是时候玩真正的游戏了。
+
+A second compartment opens, this time labeled **Dirac dice**. Out of it falls a single three-sided die.
+
+> 第二个房间打开了，这次标有**狄拉克骰子**。从中落下一个三面骰子。
+
+As you experiment with the die, you feel a little strange. An informational brochure in the compartment explains that this is a **quantum die**: when you roll it, the universe **splits into multiple copies**, one copy for each possible outcome of the die. In this case, rolling the die always splits the universe into **three copies**: one where the outcome of the roll was `1`, one where it was `2`, and one where it was `3`.
+
+> 当你试玩骰子时，你觉得有点奇怪。房间中的信息手册说这是一个**量子骰子**：当你掷骰子时，宇宙会**分裂成多个副本**，每个副本里的骰子都可能有自己的结果。现在的情况下，掷骰子会将宇宙分成**三个副本**：一个掷骰子的结果为 `1`，一个为 `2`，以及一个为 `3`。
+
+The game is played the same as before, although to prevent things from getting too far out of hand, the game now ends when either player's score reaches at least **`21`**.
+
+> 游戏的玩法与之前相同，但为了防止事情变得过于失控，现在游戏会在任一玩家的得分达到 **`21`** 时结束。
+
+Using the same starting positions as in the example above, player 1 wins in **`444356092776315`** universes, while player 2 merely wins in `341960390180808` universes.
+
+> 使用与上面例子相同的起始位置，玩家 1 在 **`444356092776315`** 个宇宙中获胜，而玩家 2 仅在 `341960390180808` 个宇宙中获胜。
+
+Using your given starting positions, determine every possible outcome. **Find the player that wins in more universes; in how many universes does that player win?**
+
+> 使用给定的起始位置，确定每一个可能的结果。**找出哪个玩家在更多宇宙中获胜，该玩家在多少个宇宙中获胜？**
+
+Your puzzle answer was `158631174219251`.

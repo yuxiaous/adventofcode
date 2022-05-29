@@ -59,7 +59,7 @@ class GameBoard:
 
 
 def parse_player(entry):
-    match = re.match(r'(Player \d+) starting position: (\d+)', entry)
+    match = re.match(r'Player (\d+) starting position: (\d+)', entry)
     name = match.group(1)
     position = int(match.group(2))
     return name, position
@@ -98,7 +98,64 @@ def part1(input: str):
 
 
 def part2(input: str):
-    pass
+    # init
+    die = DiracDice(3)
+    board = GameBoard(10)
+    players: list[Player] = []
+    for entry in input.split('\n'):
+        name, position = parse_player(entry)
+        player = Player(name)
+        player.position = position
+        players.append(player)
+
+    # start game
+    universes = {
+        tuple((p.name, p.position, p.score) for p in players): 1
+    }
+
+    current = 0
+    player_num = len(players)
+    wins = {p.name: 0 for p in players}
+    while len(universes) > 0:
+        new_universes = {}
+        for universe, quantity in universes.items():
+            # roll the die three times
+            for p1 in die.roll():
+                for p2 in die.roll():
+                    for p3 in die.roll():
+                        # fork the universe
+                        players: list[Player] = []
+                        for name, position, score in universe:
+                            player = Player(name)
+                            player.position = position
+                            player.score = score
+                            players.append(player)
+                        # select current player
+                        player = players[current]
+                        # move spaces
+                        point = p1 + p2 + p3
+                        space = board.move(player, point)
+                        # add score
+                        player.score += space
+                        # check if the player wins the game
+                        if player.score >= 21:
+                            wins[player.name] += quantity
+                            continue
+                        # store new universe
+                        meta = tuple((p.name, p.position, p.score)
+                                     for p in players)
+                        if meta in new_universes:
+                            new_universes[meta] += quantity
+                        else:
+                            new_universes[meta] = quantity
+        # replace all universes
+        universes = new_universes
+        # switch player
+        current += 1
+        while current >= player_num:
+            current -= player_num
+
+    return max(wins.values())
 
 
 if __name__ == '__main__':
