@@ -25,9 +25,7 @@ def limit(val, lim):
         return
     if val_h < lim_l:
         return
-    val_l = val_l if val_l >= lim_l else lim_l
-    val_h = val_h if val_h <= lim_h else lim_h
-    return (val_l, val_h)
+    return (max(val_l, lim_l), min(val_h, lim_h))
 
 
 def part1(input: str):
