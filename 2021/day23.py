@@ -5,13 +5,12 @@ input = open('day23.txt').read().strip()
 
 
 def parse_input(input: str):
-    input = input.split('\n')
-    positions = {}
-
     def add_position(pos, sth):
         if sth != '.':
-            positions[pos] = sth
+            positions_map[pos] = sth
 
+    input = input.split('\n')
+    positions_map = {}
     add_position('H0', input[1][1])
     add_position('H1', input[1][2])
     add_position('H2', input[1][4])
@@ -27,7 +26,7 @@ def parse_input(input: str):
     add_position('C1', input[2][7])
     add_position('D0', input[3][9])
     add_position('D1', input[2][9])
-    return positions
+    return positions_map
 
 
 class Amphipod:
@@ -36,147 +35,167 @@ class Amphipod:
         self.position = None
 
 
-def get_destinations(amphipod: Amphipod, positions, diagram):
-    if amphipod.position[0] == 'H':
-        for i in range(2):
-            pos = f'{amphipod.type}{i}'
-            if pos in positions and positions[pos].type != amphipod.type:
-                return {}, {}
-    elif amphipod.position[0] == amphipod.type:
-        if amphipod.position[1] == '0':
-            return {}, {}
-        if amphipod.position[1] == '1':
-            pos = f'{amphipod.position[0]}0'
-            if pos in positions and positions[pos].type == amphipod.type:
-                return {}, {}
-    else:
-        if amphipod.position[1] == '0':
-            pos = f'{amphipod.position[0]}1'
-            if pos in positions:
-                return {}, {}
-
-    paths: dict = nx.shortest_path(diagram, amphipod.position)
-    lengths = nx.shortest_path_length(
-        diagram, amphipod.position, weight='weight')
-    for dest, path in paths.copy().items():
-        if dest == amphipod.position:
-            del paths[dest]
-            del lengths[dest]
-        elif dest[0] != 'H' and dest[0] != amphipod.type:
-            del paths[dest]
-            del lengths[dest]
-        elif dest[0] == 'H' and amphipod.position[0] == 'H':
-            del paths[dest]
-            del lengths[dest]
-        elif dest == f'{amphipod.type}1':
-            if f'{amphipod.type}0' not in positions:
-                del paths[dest]
-                del lengths[dest]
-            elif positions[f'{amphipod.type}0'].type != amphipod.type:
-                del paths[dest]
-                del lengths[dest]
-        for pos in positions:
-            if pos in path[1:] and dest in paths:
-                del paths[dest]
-                del lengths[dest]
-    return paths, lengths
+class Burrow:
+    def __init__(self, hallway_size, sideroom_size):
+        self.hallway = [f'H{i}' for i in range(hallway_size)]
+        self.siderooms = {
+            'A': [f'A{i}' for i in range(sideroom_size)],
+            'B': [f'B{i}' for i in range(sideroom_size)],
+            'C': [f'C{i}' for i in range(sideroom_size)],
+            'D': [f'D{i}' for i in range(sideroom_size)],
+        }
 
 
-def get_positions_hash(positions):
+def get_positions_hash(positions_map):
+    hallway_size = 7
+    room_size = 2
     hash = []
-    for i in range(7):
+    for i in range(hallway_size):
         pos = f'H{i}'
-        hash.append(positions[pos] if pos in positions else None)
+        hash.append(positions_map[pos] if pos in positions_map else None)
     for i in 'ABCD':
-        for j in range(2):
+        for j in range(room_size):
             pos = f'{i}{j}'
-            hash.append(positions[pos] if pos in positions else None)
+            hash.append(positions_map[pos] if pos in positions_map else None)
     return tuple(hash)
 
 
-def get_positions(hash):
+def get_positions_map(positions_hash):
+    hallway_size = 7
+    room_size = 2
+    room_num = 4
     positions = {}
-    for i in range(7):
-        positions[f'H{i}'] = hash[i]
-    for i in range(4):
-        for j in range(2):
-            positions[f'{"ABCD"[i]}{j}'] = hash[7 + i * 2 + j]
+    for s in range(hallway_size):
+        if positions_hash[s]:
+            positions[f'H{s}'] = positions_hash[s]
+    for n in range(room_num):
+        for s in range(room_size):
+            if positions_hash[7 + n * 2 + s]:
+                positions[f'{"ABCD"[n]}{s}'] = positions_hash[7 + n * 2 + s]
     return positions
 
 
-def part1(input):
-    diagram = nx.Graph()
-    diagram.add_edge('H0', 'H1', weight=1)
-    diagram.add_edge('H1', 'H2', weight=2)
-    diagram.add_edge('H2', 'H3', weight=2)
-    diagram.add_edge('H3', 'H4', weight=2)
-    diagram.add_edge('H4', 'H5', weight=2)
-    diagram.add_edge('H5', 'H6', weight=1)
-    diagram.add_edge('A0', 'A1', weight=1)
-    diagram.add_edge('A1', 'H1', weight=2)
-    diagram.add_edge('A1', 'H2', weight=2)
-    diagram.add_edge('B0', 'B1', weight=1)
-    diagram.add_edge('B1', 'H2', weight=2)
-    diagram.add_edge('B1', 'H3', weight=2)
-    diagram.add_edge('C0', 'C1', weight=1)
-    diagram.add_edge('C1', 'H3', weight=2)
-    diagram.add_edge('C1', 'H4', weight=2)
-    diagram.add_edge('D0', 'D1', weight=1)
-    diagram.add_edge('D1', 'H4', weight=2)
-    diagram.add_edge('D1', 'H5', weight=2)
+def get_destinations(amphipod: Amphipod, locations, network, burrow: Burrow):
+    if amphipod.position in burrow.hallway:
+        for pos in burrow.siderooms[amphipod.type]:
+            if pos in locations and locations[pos].type != amphipod.type:
+                return {}
+    elif amphipod.position in burrow.siderooms[amphipod.type]:
+        for pos in burrow.siderooms[amphipod.type]:
+            if pos == amphipod.position:
+                return {}
+            if pos not in locations:
+                break
+            if locations[pos].type != amphipod.type:
+                break
 
-    positions = parse_input(input)
+    def check(path):
+        for pos in path[1:]:
+            if pos in locations:
+                return False
+        return True
 
+    destinations = {}
+    paths = nx.shortest_path(
+        network, amphipod.position, weight='weight')
+    lengths = nx.shortest_path_length(
+        network, amphipod.position, weight='weight')
+    for dest, path in paths.items():
+        if amphipod.position in burrow.hallway:
+            if dest in burrow.siderooms[amphipod.type]:
+                for pos in burrow.siderooms[amphipod.type]:
+                    if pos == dest and check(path):
+                        destinations[dest] = lengths[dest]
+                        break
+                    if pos not in locations:
+                        break
+        elif dest in burrow.hallway and check(path):
+            destinations[dest] = lengths[dest]
+    return destinations
+
+
+def find_least_energy_organization(configuration, burrow, network: nx.Graph, goal_hash):
     organizations = {
-        get_positions_hash(positions): 0
+        get_positions_hash(configuration): 0
     }
-    # print(organizations)
+    # histories = {}
 
-    histories = {}
-
-    final = (None, None, None, None, None, None, None,
-             'A', 'A', 'B', 'B', 'C', 'C', 'D', 'D')
-
-    while len(organizations) > 1 or (final not in organizations):
+    while not (len(organizations) == 1 and (goal_hash in organizations)):
         new_organizations = {}
         for organization, energy in organizations.items():
             locations = {}
             amphipods = []
-            for p, t in get_positions(organization).items():
-                if t:
-                    amphipod = Amphipod(t)
-                    amphipod.position = p
-                    amphipods.append(amphipod)
-                    locations[p] = amphipod
+            for pos, type in get_positions_map(organization).items():
+                amphipod = Amphipod(type)
+                amphipod.position = pos
+                amphipods.append(amphipod)
+                locations[pos] = amphipod
 
             for amp in amphipods:
-                paths, lengths = get_destinations(amp, locations, diagram)
-                for dest, path in paths.items():
-                    positions = {p: a.type for p, a in locations.items()}
-                    positions[dest] = amp.type
-                    del positions[amp.position]
+                # copy = network.copy()
+                # for pos in locations.keys():
+                #     if pos != amp.position:
+                #         copy.remove_node(pos)
 
-                    hash = get_positions_hash(positions)
-                    cost = energy + lengths[dest] * {'A': 1, 'B': 10,
-                                                     'C': 100, 'D': 1000}[amp.type]
+                dests = get_destinations(amp, locations, network, burrow)
+                for dest, length in dests.items():
+                    positions_map = {p: a.type for p, a in locations.items()}
+                    positions_map[dest] = amp.type
+                    del positions_map[amp.position]
+
+                    hash = get_positions_hash(positions_map)
+                    cost = energy + length * {
+                        'A': 1, 'B': 10, 'C': 100, 'D': 1000
+                    }[amp.type]
                     if hash in new_organizations:
                         if cost < new_organizations[hash]:
                             new_organizations[hash] = cost
-                            histories[hash] = organization
+                            # histories[hash] = organization
                     else:
                         new_organizations[hash] = cost
-                        histories[hash] = organization
+                        # histories[hash] = organization
 
         organizations = new_organizations
         print(len(organizations))
 
-    hash = final
-    while hash in histories:
-        print(hash)
-        pre = histories[hash]
-        hash = pre
+    # hash = goal_hash
+    # while hash in histories:
+    #     print(hash)
+    #     pre = histories[hash]
+    #     hash = pre
 
-    return organizations[final]
+    return organizations[goal_hash]
+
+
+def part1(input):
+    configuration = parse_input(input)
+
+    burrow = Burrow(7, 2)
+
+    network = nx.Graph()
+    network.add_edge('H0', 'H1', weight=1)
+    network.add_edge('H1', 'H2', weight=2)
+    network.add_edge('H2', 'H3', weight=2)
+    network.add_edge('H3', 'H4', weight=2)
+    network.add_edge('H4', 'H5', weight=2)
+    network.add_edge('H5', 'H6', weight=1)
+    network.add_edge('A0', 'A1', weight=1)
+    network.add_edge('A1', 'H1', weight=2)
+    network.add_edge('A1', 'H2', weight=2)
+    network.add_edge('B0', 'B1', weight=1)
+    network.add_edge('B1', 'H2', weight=2)
+    network.add_edge('B1', 'H3', weight=2)
+    network.add_edge('C0', 'C1', weight=1)
+    network.add_edge('C1', 'H3', weight=2)
+    network.add_edge('C1', 'H4', weight=2)
+    network.add_edge('D0', 'D1', weight=1)
+    network.add_edge('D1', 'H4', weight=2)
+    network.add_edge('D1', 'H5', weight=2)
+
+    goal = (None, None, None, None, None, None, None,
+            'A', 'A', 'B', 'B', 'C', 'C', 'D', 'D')
+
+    return find_least_energy_organization(configuration, burrow, network, goal)
 
 
 def part2(input):
