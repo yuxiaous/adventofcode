@@ -107,3 +107,15 @@ To enable as many submarine features as possible, find the largest valid fourtee
 > 要尽可能多地恢复潜水艇功能，请找到不包含数字 `0` 的、最大的且有效的十四位数字型号。**MONAD 接受的最大型号是多少？**
 
 Your puzzle answer was `12996997829399`.
+
+## --- Part Two ---
+
+As the submarine starts booting up things like the [Retro Encabulator](https://www.youtube.com/watch?v=RXJKdh1KZ0w), you realize that maybe you don't need all these submarine features after all.
+
+> 当潜水艇上的诸如 [Retro Encabulator](https://www.youtube.com/watch?v=RXJKdh1KZ0w) 之类的东西也开始启动时，你意识到也许你根本不需要所有的这些功能。
+
+**What is the smallest model number accepted by MONAD?**
+
+> **MONAD 接受的最小型号是多少？**
+
+Your puzzle answer was `11841231117189`.

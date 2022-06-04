@@ -95,11 +95,12 @@ def part1(input: str):
     alu = ArithmeticLogicUnit()
 
     model = [1, 2, 9, 9, 6, 9, 9, 7, 8, 2, 9, 3, 9, 9]
-    print(''.join([str(x) for x in model]))
 
     for w in model:
         alu.inputs.append(w)
 
+    xlist = []
+    ylist = []
     zlist = []
     for i in range(14):
         length = 18
@@ -107,8 +108,13 @@ def part1(input: str):
         end = start + length
         program = Program(input[start:end])
         program.run(alu)
+        xlist.append(alu.variables['x'])
+        ylist.append(alu.variables['y'])
         zlist.append(alu.variables['z'])
-    print(zlist)
+    # print(xlist)
+    # print(ylist)
+    # print(zlist)
+    return ''.join([str(x) for x in model])
 
 
 # inp w
@@ -132,7 +138,30 @@ def part1(input: str):
 
 
 def part2(input):
-    pass
+    alu = ArithmeticLogicUnit()
+
+    model = [1, 1, 8, 4, 1, 2, 3, 1, 1, 1, 7, 1, 8, 9]
+
+    for w in model:
+        alu.inputs.append(w)
+
+    xlist = []
+    ylist = []
+    zlist = []
+    for i in range(14):
+        length = 18
+        start = length * i
+        end = start + length
+        program = Program(input[start:end])
+        program.run(alu)
+        xlist.append(alu.variables['x'])
+        ylist.append(alu.variables['y'])
+        zlist.append(alu.variables['z'])
+    # print(xlist)
+    # print(ylist)
+    # print(zlist)
+
+    return ''.join([str(x) for x in model])
 
 
 if __name__ == '__main__':
