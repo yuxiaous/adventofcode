@@ -335,3 +335,63 @@ Find somewhere safe to land your submarine. **What is the first step on which no
 > 找一个安全的地方降落你的潜水艇。**第一个没有海参移动的步是哪一步？**
 
 Your puzzle answer was `384`.
+
+## --- Part Two ---
+
+Suddenly, the experimental antenna control console lights up:
+
+> 突然，实验型天线控制台亮了起来：
+
+```'
+Sleigh keys detected!
+```
+
+> 侦测到雪橇钥匙！
+
+According to the console, the keys are **directly under the submarine**. You landed right on them! Using a robotic arm on the submarine, you move the sleigh keys into the airlock.
+
+> 根据控制台，钥匙在**潜艇的正下方**。你正好落在了它们的上面！使用潜水艇上的机械臂，你将雪橇钥匙移动到了气闸室中。
+
+Now, you just need to get them to Santa in time to save Christmas! You check your clock - it **is** Christmas. There's no way you can get them back to the surface in time.
+
+> 现在，你只需要将它们及时送到圣诞老人那里就可以拯救圣诞节了！你确认了一下时间 -- 已经**到**圣诞节了，你来不急将它们送回地面了。
+
+Just as you start to lose hope, you notice a button on the sleigh keys: **remote start**. You can start the sleigh from the bottom of the ocean! You just need some way to **boost the signal** from the keys so it actually reaches the sleigh. Good thing the submarine has that experimental antenna! You'll definitely need **50 stars** to boost it that far, though.
+
+> 就在你开始绝望时，你注意到雪橇钥匙上的一个按钮：**远程启动**。你可以从海底启动雪橇！你只需要使用某种方式来**增强钥匙的信号**，使它可以抵达雪橇。幸好潜水艇有一根实验型天线！不过，你必须要有 **50 颗星** 才能将它增强到足够远。
+
+The experimental antenna control console lights up again:
+
+> 实验型天线控制台再次亮起：
+
+```'
+Energy source detected.
+Integrating energy source from device "sleigh keys"...done.
+Installing device drivers...done.
+Recalibrating experimental antenna...done.
+Boost strength due to matching signal phase: 1 star
+```
+
+```'
+侦测到能源。
+整合来自设备“雪橇钥匙”的能源……完成。
+安装设备驱动程序……完成。
+重新校准实验型天线……完成。
+匹配信号相位，增强强度：1星
+```
+
+Only 49 stars to go.
+
+> 只剩下 49 颗星了。
+
+You have enough stars to Remotely Start The Sleigh.
+
+> 你有足够的星星来远程启动雪橇。
+
+You use all fifty stars to boost the signal and remotely start the sleigh! Now, you just have to find your way back to the surface...
+
+> 你使用全部的五十颗星来增强了信号，并远程启动了雪橇！现在，你只需要找到返回海面的方法。。。
+
+...did you know crab submarines come with colored lights?
+
+> 。。。你还记得螃蟹潜水艇有彩灯吗？
