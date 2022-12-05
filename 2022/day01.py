@@ -10,10 +10,12 @@ def part1():
 
 
 def part2():
-    pass
+    elfs = [sum(x) for x in calories]
+    elfs.sort(reverse=True)
+    return sum(elfs[:3])
 
 
 if __name__ == "__main__":
-    print("--- Day 1: Sonar Sweep ---")
+    print("--- Day 1: Calorie Counting ---")
     print(f"Part 1: {part1()}")
     print(f"Part 2: {part2()}")

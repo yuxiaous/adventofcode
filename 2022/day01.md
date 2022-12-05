@@ -73,8 +73,18 @@ Your puzzle answer was `72017`.
 
 By the time you calculate the answer to the Elves' question, they've already realized that the Elf carrying the most Calories of food might eventually **run out of snacks**.
 
+> 当你计算出精灵问题的答案时，他们已经意识到携带最多卡路里食物的精灵最终可能会**被吃空零食**。
+
 To avoid this unacceptable situation, the Elves would instead like to know the total Calories carried by the **top three** Elves carrying the most Calories. That way, even if one of those Elves runs out of snacks, they still have two backups.
+
+> 为了避免这种不可接受的情况，精灵们转而想知道携带卡路里最多的**前三名**精灵所携带的总卡路里。这样一来，即使其中一个精灵的零食吃完了，他们还有两个备用。
 
 In the example above, the top three Elves are the fourth Elf (with `24000` Calories), then the third Elf (with `11000` Calories), then the fifth Elf (with `10000` Calories). The sum of the Calories carried by these three elves is **`45000`**.
 
+> 在上面的例子中，排名前三的精灵分别是第四个精灵（`24000` 卡路里），第三个精灵（`11000` 卡路里），和第五个精灵（`10000`卡路里）。这三个精灵携带的卡路里总和是 **`45000`**。
+
 Find the top three Elves carrying the most Calories. **How many Calories are those Elves carrying in total?**
+
+> 找到携带卡路里最多的前三名精灵。**这些精灵总共携带了多少卡路里？**
+
+Your puzzle answer was `212520`.
