@@ -62,3 +62,57 @@ In the above example, the priority of the item type that appears in both compart
 Find the item type that appears in both compartments of each rucksack. **What is the sum of the priorities of those item types?**
 
 > 找到同时出现在每个登山包两个隔间中的物品类型。**这些物品类型的优先级总和是多少？**
+
+Your puzzle answer was `7428`.
+
+## Part Two
+
+As you finish identifying the misplaced items, the Elves come to you with another issue.
+
+> 当你标识完错放的物品的后，精灵带着另一个问题来找你。
+
+For safety, the Elves are divided into groups of three. Every Elf carries a badge that identifies their group. For efficiency, within each group of three Elves, the badge is the **only item type carried by all three Elves**. That is, if a group's badge is item type `B`, then all three Elves will have item type `B` somewhere in their rucksack, and at most two of the Elves will be carrying any other item type.
+
+> 为了安全起见，精灵们被分为三人一组。每个精灵都携带一个徽章来识别他们的组。为了提高效率，在每组的徽章是**三个精灵所携带的物品中唯一相同的类型**。也就是说，如果一个组的徽章是物品类型 `B`，那么三个精灵的登山包中都会有物品类型 `B`，并且最多两个精灵会携带任何其他物品类型。
+
+The problem is that someone forgot to put this year's updated authenticity sticker on the badges. All of the badges need to be pulled out of the rucksacks so the new authenticity stickers can be attached.
+
+> 问题是有人忘记在徽章上贴上今年新的防伪标签。需要从登山包中将所有徽章找出来，以便贴上新的防伪标签。
+
+Additionally, nobody wrote down which item type corresponds to each group's badges. The only way to tell which item type is the right one is by finding the one item type that is **common between all three Elves** in each group.
+
+> 此外，没有人写下哪种物品类型对应哪个组的徽章。判断哪种物品类型是正确的唯一方法是：找到每组中**所有三个精灵共有**的物品类型。
+
+Every set of three lines in your list corresponds to a single group, but each group can have a different badge item type. So, in the above example, the first group's rucksacks are the first three lines:
+
+> 列表中的每三行对应一个组，但每个组可以有不同的徽章类型。所以，在上面的例子中，第一组的登山包是前三行：
+
+```
+vJrwpWtwJgWrhcsFMMfFFhFp
+jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL
+PmmdzqPrVvPwwTWBwg
+```
+
+And the second group's rucksacks are the next three lines:
+
+> 第二组的登山包是接下来的三行：
+
+```
+wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn
+ttgJtRGJQctTZtZT
+CrZsJsPPZsGzwwsLwLmpwMDw
+```
+
+In the first group, the only item type that appears in all three rucksacks is lowercase `r`; this must be their badges. In the second group, their badge item type must be `Z`.
+
+> 在第一组中，三个背包中出现的相同物品类型是小写的 `r`，这就是他们的徽章。在第二组中，他们徽章的物品类型是 `Z`。
+
+Priorities for these items must still be found to organize the sticker attachment efforts: here, they are 18 (`r`) for the first group and 52 (`Z`) for the second group. The sum of these is **`70`**.
+
+> 仍然必须找到这些物品的优先级以组织贴纸粘贴工作：在这里，第一组为 18 (`r`)，第二组为 52 (`Z`)。 这些的总和是 **`70`**。
+
+Find the item type that corresponds to the badges of each three-Elf group. **What is the sum of the priorities of those item types?**
+
+> 找到每三个精灵一组的徽章所对应的物品类型。**这些物品类型的优先级总和是多少？**
+
+Your puzzle answer was `2650`.
