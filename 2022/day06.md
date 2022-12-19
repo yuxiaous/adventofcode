@@ -66,3 +66,35 @@ Here are a few more examples:
 **在检测到第一个数据包开始标记前，需要处理多少个字符？**
 
 Your puzzle answer was `1175`.
+
+## Part Two
+
+Your device's communication system is correctly detecting packets, but still isn't working. It looks like it also needs to look for **messages**.
+
+> 你设备的通信系统可以正确地检测到数据包了，但它仍然无法正常工作。看起来它还需要查找**消息内容**。
+
+A **start-of-message marker** is just like a start-of-packet marker, except it consists of **14 distinct characters** rather than 4.
+
+> **消息开始标记**就像数据包开始标记一样，只是它包含 **14 个不同的字符**，而不是 4 个。
+
+Here are the first positions of start-of-message markers for all of the above examples:
+
+- `mjqjpqmgbljsphdztnvjfqwrcgsmlb`: first marker after character **`19`**
+- `bvwbjplbgvbhsrlpgdmjqwftvncz`: first marker after character **`23`**
+- `nppdvjthqldpwncqszvftbrmjlhg`: first marker after character **`23`**
+- `nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg`: first marker after character **`29`**
+- `zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw`: first marker after character **`26`**
+
+> 这里是上面所有例子的消息开始标记第一次出现的位置：
+>
+> - `mjqjpqmgbljsphdztnvjfqwrcgsmlb`：第一个标记出现在 **`19`** 个字符后
+> - `bvwbjplbgvbhsrlpgdmjqwftvncz`：第一个标记出现在 **`23`** 个字符后
+> - `nppdvjthqldpwncqszvftbrmjlhg`：第一个标记出现在 **`23`** 个字符后
+> - `nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg`：第一个标记出现在 **`29`** 个字符后
+> - `zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw`：第一个标记出现在 **`26`** 个字符后
+
+**How many characters need to be processed before the first start-of-message marker is detected?**
+
+**在检测到第一个消息开始标记前，需要处理多少个字符？**
+
+Your puzzle answer was `3217`.
