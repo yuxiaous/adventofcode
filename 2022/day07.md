@@ -125,3 +125,41 @@ Find all of the directories with a total size of at most 100000. **What is the s
 > 找到总大小不超过 100000 的所有目录。**这些目录的总大小的和是多少？**
 
 Your puzzle answer was `1723892`.
+
+## Part Two
+
+Now, you're ready to choose a directory to delete.
+
+> 现在，你已经准备好选择一个要删除的目录了。
+
+The total disk space available to the filesystem is **`70000000`**. To run the update, you need unused space of at least **`30000000`**. You need to find a directory you can delete that will **free up enough space** to run the update.
+
+> 文件系统可用的总磁盘空间为 **`70000000`**。要运行更新，至少需要 **`30000000`** 的未使用空间。你需要找到一个可以删除的目录，并且**释放足够的空间**来运行更新。
+
+In the example above, the total size of the outermost directory (and thus the total amount of used space) is `48381165`; this means that the size of the **unused** space must currently be `21618835`, which isn't quite the `30000000` required by the update. Therefore, the update still requires a directory with total size of at least `8381165` to be deleted before it can run.
+
+> 在上面的例子中，最外层目录的总大小（即已使用空间的总量）是 `48381165`。这意味着**未使用**空间的大小当前是 `21618835`，这不满足更新所需的 `30000000`。因此，需要删除总大小至少为 `8381165` 的目录才能运行更新。
+
+To achieve this, you have the following options:
+
+- Delete directory `e`, which would increase unused space by `584`.
+- Delete directory `a`, which would increase unused space by `94853`.
+- Delete directory `d`, which would increase unused space by `24933642`.
+- Delete directory `/`, which would increase unused space by `48381165`.
+
+> 为此，你有以下选择：
+>
+> - 删除目录 `e`，未使用空间将会增加 `584`。
+> - 删除目录 `a`，未使用空间将会增加 `94853`。
+> - 删除目录 `d`，未使用空间将会增加 `24933642`。
+> - 删除目录 `/`，未使用空间将会增加 `48381165`。
+
+Directories `e` and `a` are both too small; deleting them would not free up enough space. However, directories `d` and `/` are both big enough! Between these, choose the **smallest**: `d`, increasing unused space by **`24933642`**.
+
+> 目录 `e` 和 `a` 都太小，删除它们不会释放出足够的空间。事实上，目录 `d` 和 `/` 都足够大！在它们之间，选择**最小的** `d`，未使用空间将会增加 **`24933642`**。
+
+Find the smallest directory that, if deleted, would free up enough space on the filesystem to run the update. **What is the total size of that directory?**
+
+> 找到删除后能够在文件系统中释放出足够空间来运行更新的最小目录。**该目录的总大小是多少？**
+
+Your puzzle answer was `8474158`.

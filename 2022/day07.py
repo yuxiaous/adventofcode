@@ -19,10 +19,10 @@ class FilesystemMeta:
 
 
 class Filesystem:
-    def __init__(self, input: list[str] = input) -> None:
+    def __init__(self) -> None:
         self.filesystem = {"/": FilesystemMeta("dir", None)}
-        self.current = None
 
+    def parse(self, input: list[str]):
         for line in input:
             if line.startswith("$"):
                 match = re.match(r"\$ cd (.+)", line)
@@ -80,21 +80,30 @@ class Filesystem:
         return [n for n, m in self.filesystem.items() if m.is_file()]
 
 
-def part1():
-    filesystem = Filesystem()
+filesystem = Filesystem()
+filesystem.parse(input)
 
+
+def part1():
     total = 0
     for name in filesystem.dirs():
         size = filesystem.sizeof(name)
-
         if size <= 100000:
             total += size
-
     return total
 
 
 def part2():
-    pass
+    used = filesystem.sizeof("/")
+    unused = 70000000 - used
+    required = 30000000 - unused
+
+    sizes = []
+    for name in filesystem.dirs():
+        size = filesystem.sizeof(name)
+        if size > required:
+            sizes.append(size)
+    return min(sizes)
 
 
 if __name__ == "__main__":
