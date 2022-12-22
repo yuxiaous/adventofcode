@@ -10,24 +10,48 @@ def part1():
 
     for r in range(1, len(map) - 1):
         for c in range(1, len(map[r]) - 1):
-            tree = map[r][c]
-            left = [map[r][x] for x in range(0, c)]
-            right = [map[r][x] for x in range(c + 1, len(map[r]))]
-            up = [map[x][c] for x in range(0, r)]
-            down = [map[x][c] for x in range(r + 1, len(map))]
+            given = map[r][c]
+            directions = [
+                [map[x][c] for x in range(0, r)],  # up
+                [map[x][c] for x in range(r + 1, len(map))],  # down
+                [map[r][x] for x in range(0, c)],  # left
+                [map[r][x] for x in range(c + 1, len(map[r]))],  # right
+            ]
 
-            if (
-                tree > max(left)
-                or tree > max(right)
-                or tree > max(up)
-                or tree > max(down)
-            ):
-                visible += 1
+            for direction in directions:
+                if given > max(direction):
+                    visible += 1
+                    break
+
     return visible
 
 
 def part2():
-    pass
+    highest = 0
+
+    for r in range(1, len(map) - 1):
+        for c in range(1, len(map[r]) - 1):
+            given = map[r][c]
+            directions = [
+                [map[x][c] for x in reversed(range(0, r))],  # up
+                [map[x][c] for x in range(r + 1, len(map))],  # down
+                [map[r][x] for x in reversed(range(0, c))],  # left
+                [map[r][x] for x in range(c + 1, len(map[r]))],  # right
+            ]
+
+            score = 1
+            for direction in directions:
+                view = 0
+                for tree in direction:
+                    view += 1
+                    if tree >= given:
+                        break
+                score *= view
+
+            if score > highest:
+                highest = score
+
+    return highest
 
 
 if __name__ == "__main__":

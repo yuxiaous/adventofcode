@@ -59,3 +59,75 @@ Consider your map; **how many trees are visible from outside the grid?**
 > 考虑你的地图，**从网格外可以看到多少棵树？**
 
 Your puzzle answer was `1845`.
+
+## Part Two
+
+Content with the amount of tree cover available, the Elves just need to know the best spot to build their tree house: they would like to be able to see a lot of **trees**.
+
+> 得知了可用的树木覆盖量后，精灵们只想知道建造树屋的最佳地点：他们希望能够看到很多**树**。
+
+To measure the viewing distance from a given tree, look up, down, left, and right from that tree; stop if you reach an edge or at the first tree that is the same height or taller than the tree under consideration. (If a tree is right on the edge, at least one of its viewing distances will be zero.)
+
+> 要测量某棵树的观察范围，需要从该树的位置向上、向下、向左和向右看去，如果你的视线到达了边缘或一棵高度相同或更高的树，则停下来。（如果一棵树就在边缘，那么它至少有一个方向的观察距离为零。）
+
+The Elves don't care about distant trees taller than those found by the rules above; the proposed tree house has large [eaves](https://en.wikipedia.org/wiki/Eaves) to keep it dry, so they wouldn't be able to see higher than the tree house anyway.
+
+> 精灵们不关心更远的地方是否有更高的树，因为规划中的树屋有很大的[屋檐](https://en.wikipedia.org/wiki/Eaves)用来保持树屋的干燥，因此他们无法看到比树屋更高的地方。
+
+In the example above, consider the middle `5` in the second row:
+
+> 在上面的例子中，考虑第二行中间的 “5”：
+
+```
+30373
+25512
+65332
+33549
+35390
+```
+
+- Looking up, its view is not blocked; it can see **`1`** tree (of height `3`).
+- Looking left, its view is blocked immediately; it can see only **`1`** tree (of height `5`, right next to it).
+- Looking right, its view is not blocked; it can see **`2`** trees.
+- Looking down, its view is blocked eventually; it can see **`2`** trees (one of height `3`, then the tree of height `5` that blocks its view).
+
+> - 向上看，它的视线没有被阻挡，它可以看到 **`1`** 棵树（高度为 `3`）。
+> - 向左看，它的视线立即被阻挡，它只能看到 **`1`** 棵树（高度为 `5`，就在它旁边）。
+> - 向右看，它的视线没有被阻挡，它可以看到 **`2`** 棵树。
+> - 向下看，它的视线将会被阻挡，它可以看到 **`2`** 棵树（一棵高度为 `3` 的树，然后是高度为 `5` 的树挡住了它的视线）。
+
+A tree's **scenic score** is found by **multiplying together** its viewing distance in each of the four directions. For this tree, this is **`4`** (found by multiplying `1 * 1 * 2 * 2`).
+
+> 一棵树的**风景得分**是通过它四个方向的观察距离**相乘**得出的。对于这棵树，分数是 **`4`**（通过乘以 `1 * 1 * 2 * 2` 得到）。
+
+However, you can do even better: consider the tree of height `5` in the middle of the fourth row:
+
+> 实际上，你可以找到更好的：考虑第四行中间高度为 “5” 的树：
+
+```
+30373
+25512
+65332
+33549
+35390
+```
+
+- Looking up, its view is blocked at **`2`** trees (by another tree with a height of `5`).
+- Looking left, its view is not blocked; it can see **`2`** trees.
+- Looking down, its view is also not blocked; it can see **`1`** tree.
+- Looking right, its view is blocked at **`2`** trees (by a massive tree of height `9`).
+
+> - 向上看，它的视线在 **`2`** 棵树之后被阻挡了（被另一棵高度为 `5` 的树挡住了）。
+> - 向左看，它的视野没有被阻挡，它可以看到 **`2`** 棵树。
+> - 向下看，它的视野也没有被阻挡，它可以看到 **`1`** 棵树。
+> - 向右看，它的视线在 **`2`** 棵树之后被阻挡了（被一棵高度为 `9` 的大树挡住了）。
+
+This tree's scenic score is **`8`** (`2 * 2 * 1 * 2`); this is the ideal spot for the tree house.
+
+> 这棵树的风景得分是 **`8`**（`2 * 2 * 1 * 2`），这是搭建树屋的理想地点。
+
+Consider each tree on your map. **What is the highest scenic score possible for any tree?**
+
+> 考虑地图上的每棵树，**最高的风景得分是多少？**
+
+Your puzzle answer was `230112`.
