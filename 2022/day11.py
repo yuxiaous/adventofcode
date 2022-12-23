@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import re
+from functools import reduce
 
 input = open("day11.txt").read().strip()
 
@@ -21,8 +22,10 @@ class Monkey:
 
             self.operation = operation
 
-            def test(level):
-                result = level % int(match.group(4)) == 0
+            self.divisor = int(match.group(4))
+
+            def test(worry):
+                result = worry % self.divisor == 0
                 if result:
                     return int(match.group(5))
                 else:
@@ -33,12 +36,12 @@ class Monkey:
         self.currnet = None
         self.times = 0
 
-    def inspect(self):
+    def inspect(self, relieve):
         if len(self.items) > 0:
             self.times += 1
             self.currnet = self.items.pop(0)
             self.currnet = self.operation(self.currnet)
-            self.currnet = int(self.currnet / 3)
+            self.currnet = relieve(self.currnet)
             return True
         return False
 
@@ -53,10 +56,13 @@ class Monkey:
 def part1():
     monkeys = [Monkey(n) for n in input.split("\n\n")]
 
+    def relieve(worry: int):
+        return int(worry / 3)
+
     round = 20
     for _ in range(round):
         for monkey in monkeys:
-            while monkey.inspect():
+            while monkey.inspect(relieve):
                 index = monkey.throw()
                 monkeys[index].catch(monkey.currnet)
 
@@ -66,7 +72,25 @@ def part1():
 
 
 def part2():
-    pass
+    monkeys = [Monkey(n) for n in input.split("\n\n")]
+
+    divisor = reduce((lambda x, y: x * y), [m.divisor for m in monkeys])
+
+    def relieve(worry: int):
+        return worry % divisor
+
+    round = 10000
+    for r in range(round):
+        for monkey in monkeys:
+            while monkey.inspect(relieve):
+                index = monkey.throw()
+                monkeys[index].catch(monkey.currnet)
+
+        print(f"{r+1}/{round}", end="\r")
+
+    times = [m.times for m in monkeys]
+    times.sort(reverse=True)
+    return times[0] * times[1]
 
 
 if __name__ == "__main__":

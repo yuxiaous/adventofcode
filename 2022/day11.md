@@ -4,15 +4,15 @@
 
 As you finally start making your way upriver, you realize your pack is much lighter than you remember. Just then, one of the items from your pack goes flying overhead. Monkeys are playing [Keep Away](https://en.wikipedia.org/wiki/Keep_away) with your missing things!
 
-> 你终于可以开始向上游出发了，你注意到你的背包比你记忆中的要轻得多。就在这时，背包里的一件物品从你头顶飞过。猴子正在用你丢失的东西玩[Keep Away](https://en.wikipedia.org/wiki/Keep_away)游戏！
+> 你终于可以开始向上游出发了，你注意到你的背包比你记忆中的要轻得多。就在这时，背包里的一件物品从你头顶飞过。猴子正在用你丢失的东西玩[“你来抢啊”](https://en.wikipedia.org/wiki/Keep_away)游戏！
 
 To get your stuff back, you need to be able to predict where the monkeys will throw your items. After some careful observation, you realize the monkeys operate based on **how worried you are about each item**.
 
-> 为了取回你的东西，你需要能够预测猴子会把你的东西扔到哪里。经过仔细观察，你发现猴子会根据**你对每件物品的担心程度**来运作。
+> 为了取回你的东西，你需要能够预测猴子会把你的东西扔到哪里。经过仔细观察，你发现猴子会根据**你对每件物品的担忧程度**来运作。
 
 You take some notes ([your puzzle input](day11.txt)) on the items each monkey currently has, how worried you are about those items, and how the monkey makes decisions based on your worry level. For example:
 
-> 你做了一些笔记（[你的谜题输入](day11.txt)），内容包括每只猴子当前拥有的物品、你对这些物品的担心程度以及猴子根据你的担心程度做出决定。例如：
+> 你做了一些笔记（[你的谜题输入](day11.txt)），内容包括每只猴子当前拥有的物品、你对这些物品的担忧程度以及猴子根据你的担忧程度做出决定。例如：
 
 ```
 Monkey 0:
@@ -54,15 +54,15 @@ Each monkey has several attributes:
 
 > 每只猴子都有一些属性：
 >
-> - `Starting items` 列出了你对这只猴子当前持有的每件物品的**担心程度**，顺序是它们被检查的顺序。
-> - `Operation` 显示当猴子检查物品时你的担心程度如何变化。（例如 `new = old * 5` 这样的操作表示 你在猴子检查物品后的担心程度是检查前的五倍。）
-> - `Test` 显示猴子如何利用你的担心程度来判断将物品扔到哪里。
+> - `Starting items` 列出了你对这只猴子当前持有的每件物品的**担忧程度**，顺序是它们被检查的顺序。
+> - `Operation` 显示当猴子检查物品时你的担忧程度如何变化。（例如 `new = old * 5` 这样的操作表示 你在猴子检查物品后的担忧程度是检查前的五倍。）
+> - `Test` 显示猴子如何利用你的担忧程度来判断将物品扔到哪里。
 >    - `If true` 显示如果 `Test` 为真，物品会发生什么。
 >    - `If false` 显示如果 `Test` 为假，物品会发生什么。
 
 After each monkey inspects an item but before it tests your worry level, your relief that the monkey's inspection didn't damage the item causes your worry level to be **divided by three** and rounded down to the nearest integer.
 
-> 在每只猴子检查一件物品之后，并在测试你的担忧程度之前，如果这只猴子的检查没有损坏该物品的，你的担心程度将**除以三**并向下取整。
+> 在每只猴子检查一件物品之后，测试你的担忧程度之前，你松了口气，因为这只猴子的检查没有损坏物品，所以使你的担忧程度**除以三**并向下取整。
 
 The monkeys take turns inspecting and throwing items. On a single monkey's **turn**, it inspects and throws all of the items it is holding one at a time and in the order listed. Monkey `0` goes first, then monkey `1`, and so on until each monkey has had one turn. The process of each monkey taking a single turn is called a **round**.
 
@@ -155,7 +155,7 @@ Monkey 3:
 
 After round 1, the monkeys are holding items with these worry levels:
 
-> 第一轮过后，猴子们持有的物品和担心程度如下：
+> 第一轮过后，猴子们持有的物品和担忧程度如下：
 
 ```
 Monkey 0: 20, 23, 27, 26
@@ -264,3 +264,105 @@ Figure out which monkeys to chase by counting how many items they inspect over 2
 > 通过计算猴子们在 20 轮中检查了多少物品来确定要追逐哪些猴子。**经过 20 轮投掷物品的猿猴闹剧，猴子生意的水平是多少？**
 
 Your puzzle answer was `54054`.
+
+## Part Two
+
+You're worried you might not ever get your items back. So worried, in fact, that your relief that a monkey's inspection didn't damage an item **no longer causes your worry level to be divided by three**.
+
+> 你担心你可能永远也无法取回物品了。你是如此担心，事实上，猴子的检查没有损坏物品这件事已经无法使你感到宽慰，**这使你的担忧程度不再除以三**。
+
+Unfortunately, that relief was all that was keeping your worry levels from reaching **ridiculous levels**. You'll need to **find another way to keep your worry levels manageable**.
+
+> 不幸的是，正是因为这种宽慰才使你的担忧程度没有达到**荒谬的程度**。你需要**寻找另一种方法来控制你的担忧程度**。
+
+At this rate, you might be putting up with these monkeys for a **very long time** - possibly **`10000` rounds**!
+
+> 按照这个速度，你可能会忍受这些猴子**很长时间**，也许是 **`10000` 轮**！
+
+With these new rules, you can still figure out the monkey business after 10000 rounds. Using the same example above:
+
+> 有了这些新规则，你仍然能够在 10000 轮之后算出猴子生意。使用上面的相同例子：
+
+```
+== After round 1 ==
+Monkey 0 inspected items 2 times.
+Monkey 1 inspected items 4 times.
+Monkey 2 inspected items 3 times.
+Monkey 3 inspected items 6 times.
+
+== After round 20 ==
+Monkey 0 inspected items 99 times.
+Monkey 1 inspected items 97 times.
+Monkey 2 inspected items 8 times.
+Monkey 3 inspected items 103 times.
+
+== After round 1000 ==
+Monkey 0 inspected items 5204 times.
+Monkey 1 inspected items 4792 times.
+Monkey 2 inspected items 199 times.
+Monkey 3 inspected items 5192 times.
+
+== After round 2000 ==
+Monkey 0 inspected items 10419 times.
+Monkey 1 inspected items 9577 times.
+Monkey 2 inspected items 392 times.
+Monkey 3 inspected items 10391 times.
+
+== After round 3000 ==
+Monkey 0 inspected items 15638 times.
+Monkey 1 inspected items 14358 times.
+Monkey 2 inspected items 587 times.
+Monkey 3 inspected items 15593 times.
+
+== After round 4000 ==
+Monkey 0 inspected items 20858 times.
+Monkey 1 inspected items 19138 times.
+Monkey 2 inspected items 780 times.
+Monkey 3 inspected items 20797 times.
+
+== After round 5000 ==
+Monkey 0 inspected items 26075 times.
+Monkey 1 inspected items 23921 times.
+Monkey 2 inspected items 974 times.
+Monkey 3 inspected items 26000 times.
+
+== After round 6000 ==
+Monkey 0 inspected items 31294 times.
+Monkey 1 inspected items 28702 times.
+Monkey 2 inspected items 1165 times.
+Monkey 3 inspected items 31204 times.
+
+== After round 7000 ==
+Monkey 0 inspected items 36508 times.
+Monkey 1 inspected items 33488 times.
+Monkey 2 inspected items 1360 times.
+Monkey 3 inspected items 36400 times.
+
+== After round 8000 ==
+Monkey 0 inspected items 41728 times.
+Monkey 1 inspected items 38268 times.
+Monkey 2 inspected items 1553 times.
+Monkey 3 inspected items 41606 times.
+
+== After round 9000 ==
+Monkey 0 inspected items 46945 times.
+Monkey 1 inspected items 43051 times.
+Monkey 2 inspected items 1746 times.
+Monkey 3 inspected items 46807 times.
+
+== After round 10000 ==
+Monkey 0 inspected items 52166 times.
+Monkey 1 inspected items 47830 times.
+Monkey 2 inspected items 1938 times.
+Monkey 3 inspected items 52013 times.
+```
+
+After 10000 rounds, the two most active monkeys inspected items 52166 and 52013 times. Multiplying these together, the level of **monkey business** in this situation is now **`2713310158`**.
+
+> 10000 轮之后，最活跃的两只猴子分别检查了 52166 次和 52013 次物品。将它们相乘，这种情况下的**猴子生意**的水平是 **`2713310158`**。
+
+Worry levels are no longer divided by three after each item is inspected; you'll need to find another way to keep your worry levels manageable. Starting again from the initial state in your puzzle input, **what is the level of monkey business after 10000 rounds?**
+
+> 现在，每个物品检查后担忧程度不再除以三了。你需要寻找另一种方法来控制你的担忧程度。再次从谜题输入的初始状态开始，**10000 轮后猴子生意的水平是多少？**
+
+Your puzzle answer was `14314925001`.
