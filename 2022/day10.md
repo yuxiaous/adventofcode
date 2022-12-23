@@ -242,3 +242,152 @@ Find the signal strength during the 20th, 60th, 100th, 140th, 180th, and 220th c
 > 找出第 20、60、100、140、180 以及 220 个周期的信号强度。**这六个信号强度的总和是多少？**
 
 Your puzzle answer was `13720`.
+
+## Part Two
+
+It seems like the `X` register controls the horizontal position of a [sprite](https://en.wikipedia.org/wiki/Sprite_(computer_graphics)). Specifically, the sprite is 3 pixels wide, and the `X` register sets the horizontal position of the **middle** of that sprite. (In this system, there is no such thing as "vertical position": if the sprite's horizontal position puts its pixels where the CRT is currently drawing, then those pixels will be drawn.)
+
+> 似乎“X”寄存器控制着[精灵组件](https://en.wikipedia.org/wiki/Sprite_(computer_graphics))的水平位置。具体来说，精灵组件的宽度为 3 个像素，“X”寄存器设置精灵组件**中心**的水平位置。（在这个系统中，没有“垂直位置”这个概念：如果精灵组件的水平位置正好是 CRT 当前正在绘制的位置，那么将会被绘制。）
+
+You count the pixels on the CRT: 40 wide and 6 high. This CRT screen draws the top row of pixels left-to-right, then the row below that, and so on. The left-most pixel in each row is in position `0`, and the right-most pixel in each row is in position `39`.
+
+> 你数了一下 CRT 的像素：宽 40 高 6 。这个 CRT 屏幕从左到右绘制第一行像素，然后是下面一行，依此类推。每行最左边的像素位置为 `0`，每行最右边的像素位置 `39`。
+
+Like the CPU, the CRT is tied closely to the clock circuit: the CRT draws **a single pixel during each cycle**. Representing each pixel of the screen as a `#`, here are the cycles during which the first and last pixel in each row are drawn:
+
+> 与 CPU 一样，CRT 与时钟电路紧密相连：CRT 在**每个周期内绘制一个像素**。将屏幕的每个像素表示为“#”，以下是绘制每行中的第一个至最后一个像素的周期：
+
+```
+Cycle   1 -> ######################################## <- Cycle  40
+Cycle  41 -> ######################################## <- Cycle  80
+Cycle  81 -> ######################################## <- Cycle 120
+Cycle 121 -> ######################################## <- Cycle 160
+Cycle 161 -> ######################################## <- Cycle 200
+Cycle 201 -> ######################################## <- Cycle 240
+```
+
+So, by [carefully](https://en.wikipedia.org/wiki/Racing_the_Beam) [timing](https://www.youtube.com/watch?v=sJFnWZH5FXc) the CPU instructions and the CRT drawing operations, you should be able to determine whether the sprite is visible the instant each pixel is drawn. If the sprite is positioned such that one of its three pixels is the pixel currently being drawn, the screen produces a **lit** pixel (`#`); otherwise, the screen leaves the pixel **dark** (`.`).
+
+> 因此，通过[精确](https://en.wikipedia.org/wiki/Racing_the_Beam)[同步](https://www.youtube.com/watch?v=sJFnWZH5FXc) CPU 指令和 CRT 绘图操作，你应该能够立即确定绘制每个像素时精灵组件是否可见。如果精灵组件三个像素的位置正好是当前正在绘制的像素，则屏幕显示一个**亮**像素（`#`）；否则，屏幕显示**暗**像素（`.`）。
+
+The first few pixels from the larger example above are drawn as follows:
+
+> 上面较大的例子的前几个像素绘制如下：
+
+```
+Sprite position: ###.....................................
+
+Start cycle   1: begin executing addx 15
+During cycle  1: CRT draws pixel in position 0
+Current CRT row: #
+
+During cycle  2: CRT draws pixel in position 1
+Current CRT row: ##
+End of cycle  2: finish executing addx 15 (Register X is now 16)
+Sprite position: ...............###......................
+
+Start cycle   3: begin executing addx -11
+During cycle  3: CRT draws pixel in position 2
+Current CRT row: ##.
+
+During cycle  4: CRT draws pixel in position 3
+Current CRT row: ##..
+End of cycle  4: finish executing addx -11 (Register X is now 5)
+Sprite position: ....###.................................
+
+Start cycle   5: begin executing addx 6
+During cycle  5: CRT draws pixel in position 4
+Current CRT row: ##..#
+
+During cycle  6: CRT draws pixel in position 5
+Current CRT row: ##..##
+End of cycle  6: finish executing addx 6 (Register X is now 11)
+Sprite position: ..........###...........................
+
+Start cycle   7: begin executing addx -3
+During cycle  7: CRT draws pixel in position 6
+Current CRT row: ##..##.
+
+During cycle  8: CRT draws pixel in position 7
+Current CRT row: ##..##..
+End of cycle  8: finish executing addx -3 (Register X is now 8)
+Sprite position: .......###..............................
+
+Start cycle   9: begin executing addx 5
+During cycle  9: CRT draws pixel in position 8
+Current CRT row: ##..##..#
+
+During cycle 10: CRT draws pixel in position 9
+Current CRT row: ##..##..##
+End of cycle 10: finish executing addx 5 (Register X is now 13)
+Sprite position: ............###.........................
+
+Start cycle  11: begin executing addx -1
+During cycle 11: CRT draws pixel in position 10
+Current CRT row: ##..##..##.
+
+During cycle 12: CRT draws pixel in position 11
+Current CRT row: ##..##..##..
+End of cycle 12: finish executing addx -1 (Register X is now 12)
+Sprite position: ...........###..........................
+
+Start cycle  13: begin executing addx -8
+During cycle 13: CRT draws pixel in position 12
+Current CRT row: ##..##..##..#
+
+During cycle 14: CRT draws pixel in position 13
+Current CRT row: ##..##..##..##
+End of cycle 14: finish executing addx -8 (Register X is now 4)
+Sprite position: ...###..................................
+
+Start cycle  15: begin executing addx 13
+During cycle 15: CRT draws pixel in position 14
+Current CRT row: ##..##..##..##.
+
+During cycle 16: CRT draws pixel in position 15
+Current CRT row: ##..##..##..##..
+End of cycle 16: finish executing addx 13 (Register X is now 17)
+Sprite position: ................###.....................
+
+Start cycle  17: begin executing addx 4
+During cycle 17: CRT draws pixel in position 16
+Current CRT row: ##..##..##..##..#
+
+During cycle 18: CRT draws pixel in position 17
+Current CRT row: ##..##..##..##..##
+End of cycle 18: finish executing addx 4 (Register X is now 21)
+Sprite position: ....................###.................
+
+Start cycle  19: begin executing noop
+During cycle 19: CRT draws pixel in position 18
+Current CRT row: ##..##..##..##..##.
+End of cycle 19: finish executing noop
+
+Start cycle  20: begin executing addx -1
+During cycle 20: CRT draws pixel in position 19
+Current CRT row: ##..##..##..##..##..
+
+During cycle 21: CRT draws pixel in position 20
+Current CRT row: ##..##..##..##..##..#
+End of cycle 21: finish executing addx -1 (Register X is now 20)
+Sprite position: ...................###..................
+```
+
+Allowing the program to run to completion causes the CRT to produce the following image:
+
+> 让程序运行完成会使 CRT 产生以下图像：
+
+```
+##..##..##..##..##..##..##..##..##..##..
+###...###...###...###...###...###...###.
+####....####....####....####....####....
+#####.....#####.....#####.....#####.....
+######......######......######......####
+#######.......#######.......#######.....
+```
+
+Render the image given by your program. **What eight capital letters appear on your CRT?**
+
+> 渲染程序给出的图像。**你的 CRT 上出现了哪八个大写字母？**
+
+Your puzzle answer was `FBURHZCH`.
