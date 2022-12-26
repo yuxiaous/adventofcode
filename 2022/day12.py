@@ -33,9 +33,9 @@ class HeightMap:
 
 
 class Path:
-    def __init__(self, heightmap: HeightMap, positions: list) -> None:
+    def __init__(self, heightmap: HeightMap, init: list) -> None:
         self.heightmap = heightmap
-        self.positions = positions
+        self.positions = init
 
     def move(self, direction):
         current = self.positions[-1]
