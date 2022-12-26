@@ -4,7 +4,7 @@
 
 Santa's reindeer typically eat regular reindeer food, but they need a lot of [magical energy](https://adventofcode.com/2018/day/25) to deliver presents on Christmas. For that, their favorite snack is a special type of **star** fruit that only grows deep in the jungle. The Elves have brought you on their annual expedition to the grove where the fruit grows.
 
-> 圣诞老人的驯鹿通常吃普通的驯鹿食物，但它们需要大量的[魔法能量](https://adventofcode.com/2018/day/25)才能在圣诞节送礼物。为此，他们最喜欢的点心是一种只生长在丛林深处的特殊星状水果。精灵们带着你去着这种水果生长的小丛林进行他们的年度探险。
+> 圣诞老人的驯鹿通常吃普通的驯鹿食物，但它们需要大量的[魔法能量](https://adventofcode.com/2018/day/25)才能在圣诞节送礼物。为此，他们最喜欢的点心是一种只生长在丛林深处的特殊星状水果。精灵们带着你去长着这种水果生长的小丛林进行他们的年度探险。
 
 To supply enough magical energy, the expedition needs to retrieve a minimum of **fifty stars** by December 25th. Although the Elves assure you that the grove has plenty of fruit, you decide to grab any fruit you see along the way, just in case.
 
@@ -61,7 +61,7 @@ This list represents the Calories of the food carried by five Elves:
 
 In case the Elves get hungry and need extra snacks, they need to know which Elf to ask: they'd like to know how many Calories are being carried by the Elf carrying the **most** Calories. In the example above, this is **`24000`** (carried by the fourth Elf).
 
-> 万一精灵们饿了并且需要额外的零食，他们需要知道向哪个精灵请求：他们想知道携带**最多**卡路里的精灵携带了多少卡路里。在上面的例子中，是 **`24000`**（由第四个精灵携带）。
+> 万一精灵们饿了，需要额外的零食，他们需要知道向哪个精灵请求：他们想知道携带**最多**卡路里的精灵携带了多少卡路里。在上面的例子中，是 **`24000`**（由第四个精灵携带）。
 
 Find the Elf carrying the most Calories. **How many total Calories is that Elf carrying?**
 
