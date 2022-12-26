@@ -7,6 +7,7 @@ class HeightMap:
     def __init__(self, input: str) -> None:
         self.locations = {}
 
+        input = input.split("\n")
         for r in range(len(input)):
             for c in range(len(input[r])):
                 self.locations[(r, c)] = input[r][c]
@@ -19,9 +20,14 @@ class HeightMap:
                 self.E = p
                 self.locations[p] = "z"
 
+        self.unmarks = self.locations.copy()
+
     def height(self, position):
         h = self.locations[position]
         return ord(h)
+
+    def mark(self, position):
+        self.unmarks.pop(position)
 
 
 class Path:
@@ -30,25 +36,24 @@ class Path:
         self.positions = [self.heightmap.S]
 
     def check(self, direction):
-        curr_position = self.positions[-1]
+        current = self.positions[-1]
 
         if direction == "up":
-            dest_position = (curr_position[0] - 1, curr_position[1])
+            destination = (current[0] - 1, current[1])
         elif direction == "down":
-            dest_position = (curr_position[0] + 1, curr_position[1])
+            destination = (current[0] + 1, current[1])
         elif direction == "left":
-            dest_position = (curr_position[0], curr_position[1] - 1)
+            destination = (current[0], current[1] - 1)
         elif direction == "right":
-            dest_position = (curr_position[0], curr_position[1] + 1)
+            destination = (current[0], current[1] + 1)
 
-        if dest_position in self.heightmap.locations and dest_position not in self.positions:
-            curr_height = self.heightmap.height(curr_position)
-            dest_height = self.heightmap.height(dest_position)
-            if dest_height - curr_height <= 1:
-                return dest_position
+        if destination in self.heightmap.unmarks:
+            if self.heightmap.height(destination) - self.heightmap.height(current) <= 1:
+                return destination
 
     def move(self, positon):
         self.positions.append(positon)
+        self.heightmap.mark(positon)
 
     def fork(self):
         newpath = Path(self.heightmap)
@@ -57,13 +62,12 @@ class Path:
 
 
 def part1():
-    heightmap = HeightMap(input.split("\n"))
+    heightmap = HeightMap(input)
     paths = {Path(heightmap)}
 
     step = 0
     while True:
         step += 1
-        print(step, end="\r")
 
         copy = paths
         paths: set[Path] = set()
