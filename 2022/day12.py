@@ -69,7 +69,7 @@ def part1():
 
     while True:
         copy = paths
-        paths: set[Path] = set()
+        paths = set()
 
         for path in copy:
             for direction in ("up", "down", "left", "right"):
@@ -82,8 +82,7 @@ def part1():
                 if position == heightmap.E:
                     return fork.steps()
 
-                if all(position not in p.positions for p in paths):
-                    paths.add(fork)
+                paths.add(fork)
 
 
 def part2():
