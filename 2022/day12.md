@@ -48,8 +48,54 @@ In the above diagram, the symbols indicate whether the path exits each square mo
 
 This path reaches the goal in **`31`** steps, the fewest possible.
 
-> 这条路径用 **`31`** 步到达了目的地，是最短的路径。
+> 这条路径用 **`31`** 步到达了目的地，是最短的路径之一。
 
 **What is the fewest steps required to move from your current position to the location that should get the best signal?**
 
 > **从你当前位置移动到获得最佳信号的位置所需的最少步数是多少？**
+
+Your puzzle answer was `425`.
+
+## Part Two
+
+As you walk up the hill, you suspect that the Elves will want to turn this into a hiking trail. The beginning isn't very scenic, though; perhaps you can find a better starting point.
+
+> 当你走上山顶，你猜测精灵们会把条路径变成远足步道。虽然一开始的风景并不是很优美，也许你可以找到一个更好的起点。
+
+To maximize exercise while hiking, the trail should start as low as possible: elevation `a`. The goal is still the square marked `E`. However, the trail should still be direct, taking the fewest steps to reach its goal. So, you'll need to find the shortest path from **any square at elevation `a`** to the square marked `E`.
+
+> 为了在远足时最大限度地锻炼身体，步道的起点应该尽可能低：海拔为 `a`。目标仍然是标有 `E` 的方块。但是，路径仍然应该以最少的步数达到目的地。因此，你需要找到一条从**任意海拔为 `a`**的方格到标记为 `E` 的方格的最短路径。
+
+Again consider the example from above:
+
+> 再次考虑上面的例子：
+
+```
+Sabqponm
+abcryxxl
+accszExk
+acctuvwj
+abdefghi
+```
+
+Now, there are six choices for starting position (five marked `a`, plus the square marked `S` that counts as being at elevation `a`). If you start at the bottom-left square, you can reach the goal most quickly:
+
+> 现在，有六个初始位置的选择（五个标记为 `a` 的方块，再加上一个标记为 `S` 的方块海拔也是 `a`）。如果你从左下角的方块开始出发，你可以最快到达目的地：
+
+```
+...v<<<<
+...vv<<^
+...v>E^^
+.>v>>>^^
+>^>>>>>^
+```
+
+This path reaches the goal in only **`29`** steps, the fewest possible.
+
+> 这条路线到达目的地只用了 **`29`** 步，是最短的路径之一。
+
+**What is the fewest steps required to move starting from any square with elevation `a` to the location that should get the best signal?**
+
+> **从任意海拔为 `a` 的方块移动到获得最佳信号的位置所需的最少步数是多少？**
+
+Your puzzle answer was `418`.

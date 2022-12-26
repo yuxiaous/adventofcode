@@ -31,6 +31,9 @@ class HeightMap:
     def is_marked(self, position):
         return position in self.marked or position not in self.locations
 
+    def get_locations_at(self, elevation):
+        return [l for l, a in self.locations.items() if a == elevation]
+
 
 class Path:
     def __init__(self, heightmap: HeightMap, init: list) -> None:
@@ -63,11 +66,14 @@ class Path:
         return len(self.positions) - 1
 
 
-def part1():
+def find_fewest_steps(start):
     heightmap = HeightMap(input)
-    paths = {Path(heightmap, [heightmap.S])}
+    paths = {Path(heightmap, [start])}
 
     while True:
+        if len(paths) == 0:
+            return -1
+
         copy = paths
         paths = set()
 
@@ -85,8 +91,25 @@ def part1():
                 paths.add(fork)
 
 
+def part1():
+    heightmap = HeightMap(input)
+    return find_fewest_steps(heightmap.S)
+
+
 def part2():
-    pass
+    heightmap = HeightMap(input)
+    starts = heightmap.get_locations_at("a")
+    fewests = set()
+
+    for i in range(len(starts)):
+        print(f"{i}/{len(starts)}", end="\r")
+
+        start = starts[i]
+        steps = find_fewest_steps(start)
+        if steps > 0:
+            fewests.add(steps)
+
+    return min(fewests)
 
 
 if __name__ == "__main__":
