@@ -6,6 +6,7 @@ input = open("day12.txt").read().strip()
 class HeightMap:
     def __init__(self, input: str) -> None:
         self.locations = {}
+        self.marked = set()
 
         input = input.split("\n")
         for r in range(len(input)):
@@ -20,22 +21,23 @@ class HeightMap:
                 self.E = p
                 self.locations[p] = "z"
 
-        self.unmarks = self.locations.copy()
-
     def height(self, position):
         h = self.locations[position]
         return ord(h)
 
     def mark(self, position):
-        self.unmarks.pop(position)
+        self.marked.add(position)
+
+    def is_marked(self, position):
+        return position in self.marked or position not in self.locations
 
 
 class Path:
-    def __init__(self, heightmap: HeightMap) -> None:
+    def __init__(self, heightmap: HeightMap, positions: list) -> None:
         self.heightmap = heightmap
-        self.positions = [self.heightmap.S]
+        self.positions = positions
 
-    def check(self, direction):
+    def move(self, direction):
         current = self.positions[-1]
 
         if direction == "up":
@@ -47,42 +49,38 @@ class Path:
         elif direction == "right":
             destination = (current[0], current[1] + 1)
 
-        if destination in self.heightmap.unmarks:
+        if not self.heightmap.is_marked(destination):
             if self.heightmap.height(destination) - self.heightmap.height(current) <= 1:
+                self.positions.append(destination)
+                self.heightmap.mark(destination)
                 return destination
 
-    def move(self, positon):
-        self.positions.append(positon)
-        self.heightmap.mark(positon)
-
     def fork(self):
-        newpath = Path(self.heightmap)
-        newpath.positions = self.positions.copy()
+        newpath = Path(self.heightmap, self.positions.copy())
         return newpath
+
+    def steps(self):
+        return len(self.positions) - 1
 
 
 def part1():
     heightmap = HeightMap(input)
-    paths = {Path(heightmap)}
+    paths = {Path(heightmap, [heightmap.S])}
 
-    step = 0
     while True:
-        step += 1
-
         copy = paths
         paths: set[Path] = set()
 
         for path in copy:
             for direction in ("up", "down", "left", "right"):
-                position = path.check(direction)
+                fork = path.fork()
+                position = fork.move(direction)
+
                 if not position:
                     continue
 
                 if position == heightmap.E:
-                    return step
-
-                fork = path.fork()
-                fork.move(position)
+                    return fork.steps()
 
                 if all(position not in p.positions for p in paths):
                     paths.add(fork)
