@@ -1,6 +1,4 @@
-from itertools import count
 import os
-import re
 
 os.chdir(os.path.dirname(__file__))
 
