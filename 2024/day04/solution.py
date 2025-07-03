@@ -31,14 +31,32 @@ def part1():
                         break
                 else:
                     count += 1
-
     print(count)
 
 
 def part2():
-    
+    xmax = [
+        {(0, 0): "A", (-1, -1): "M", (-1, 1): "M", (1, 1): "S", (1, -1): "S"},
+        {(0, 0): "A", (-1, 1): "M", (1, 1): "M", (1, -1): "S", (-1, -1): "S"},
+        {(0, 0): "A", (1, 1): "M", (1, -1): "M", (-1, -1): "S", (-1, 1): "S"},
+        {(0, 0): "A", (1, -1): "M", (-1, -1): "M", (-1, 1): "S", (1, 1): "S"},
+    ]
 
     count = 0
+    letters = input()
+    for y in range(len(letters)):
+        for x in range(len(letters[0])):
+            if x <= 0 or x >= len(letters[0]) - 1:
+                continue
+            if y <= 0 or y >= len(letters) - 1:
+                continue
+
+            for mas in xmax:
+                for (dx, dy), c in mas.items():
+                    if letters[y + dy][x + dx] != c:
+                        break
+                else:
+                    count += 1
     print(count)
 
 

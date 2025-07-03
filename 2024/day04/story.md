@@ -93,3 +93,5 @@ In this example, an `X-MAS` appears `9` times.
 
 Flip the word search from the instructions back over to the word search side and try again. **How many times does an X-MAS appear?**
 > 把单词搜索翻回正面再试一次。**X-MAS 出现了多少次？**
+
+Your puzzle answer was `1925`.
