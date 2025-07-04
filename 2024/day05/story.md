@@ -107,3 +107,26 @@ Determine which updates are already in the correct order. **What do you get if y
 > 判断哪些更新已经是正确顺序。**将这些顺序正确的更新的中间页码相加，你会得到多少？**
 
 Your puzzle answer was `6034`.
+
+## Part Two
+
+While the Elves get to work printing the correctly-ordered updates, you have a little time to fix the rest of them.
+> 当精灵们开始打印顺序正确的更新时，你有点时间来修正剩下的那些。
+
+For each of the **incorrectly-ordered updates**, use the page ordering rules to put the page numbers in the right order. For the above example, here are the three incorrectly-ordered updates and their correct orderings:
+> 对于每个**顺序不正确的更新**，请使用页面排序规则将页码排列到正确顺序。以上例为例，下面是三条顺序不正确的更新及其正确顺序：
+
+- `75,97,47,61,53` becomes `97,75,47,61,53`.
+- `61,13,29` becomes `61,29,13`.
+- `97,13,75,29,47` becomes `97,75,47,29,13`.
+> - `75,97,47,61,53` 变为 `97,75,47,61,53`。
+> - `61,13,29` 变为 `61,29,13`。
+> - `97,13,75,29,47` 变为 `97,75,47,29,13`。
+
+After taking **only the incorrectly-ordered updates** and ordering them correctly, their middle page numbers are `47`, `29`, and `47`. Adding these together produces **`123`**.
+> 只对**顺序不正确的更新**进行正确排序后，它们的中间页码分别是 `47`、`29` 和 `47`。将这些数相加得到 **`123`**。
+
+Find the updates which are not in the correct order. **What do you get if you add up the middle page numbers after correctly ordering just those updates?**
+> 找出那些顺序不正确的更新。**仅将这些更新正确排序后，它们的中间页码相加，你会得到多少？**
+
+Your puzzle answer was `6305`.

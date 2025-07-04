@@ -22,13 +22,35 @@ def part1():
             except:
                 continue
         else:
-            numbers.append(update[int(len(update) / 2)])
+            numbers.append(update[len(update) // 2])
 
     print(sum(numbers))
 
 
 def part2():
-    pass
+    rules, updates = input()
+
+    numbers = []
+    for update in updates:
+        incorrect = False
+        ordered = False
+        while not ordered:
+            for rule in rules:
+                try:
+                    i = update.index(rule[0])
+                    j = update.index(rule[1])
+                    if i >= j:
+                        incorrect = True
+                        update[i], update[j] = update[j], update[i]
+                        break
+                except:
+                    continue
+            else:
+                ordered = True
+        if incorrect:
+            numbers.append(update[len(update) // 2])
+
+    print(sum(numbers))
 
 
 part1()
