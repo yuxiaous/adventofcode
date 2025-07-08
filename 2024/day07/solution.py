@@ -28,4 +28,22 @@ def part1():
     print(total)
 
 
+def part2():
+    total = 0
+    for value, numbers in input().items():
+        results = set({numbers[0]})
+        for i in range(1, len(numbers)):
+            pre = results
+            results = set()
+            for num in pre:
+                results.add(num + numbers[i])
+                results.add(num * numbers[i])
+                results.add(int(str(num) + str(numbers[i])))
+        if value in results:
+            total += value
+
+    print(total)
+
+
 part1()
+part2()

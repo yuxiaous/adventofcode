@@ -48,3 +48,30 @@ Determine which equations could possibly be true. **What is their total calibrat
 > 判断哪些方程有可能成立。**它们的总校准结果是多少？**
 
 Your puzzle answer was `3119088655389`.
+
+## Part Two
+> ## 第二部分
+
+The engineers seem concerned; the total calibration result you gave them is nowhere close to being within safety tolerances. Just then, you spot your mistake: some well-hidden elephants are holding a third type of operator.
+> 工程师们看起来很担心；你给出的总校准结果远远不在安全容差范围内。就在这时，你发现了自己的错误：有些藏得很好的小象手里拿着第三种运算符。
+
+The [concatenation](https://en.wikipedia.org/wiki/Concatenation) operator (`||`) combines the digits from its left and right inputs into a single number. For example, `12 || 345` would become `12345`. All operators are still evaluated left-to-right.
+> 连接运算符（`||`）会把左侧和右侧输入的数字拼接成一个新数字。例如，`12 || 345` 会变成 `12345`。所有运算符依然从左到右计算。
+
+Now, apart from the three equations that could be made true using only addition and multiplication, the above example has three more equations that can be made true by inserting operators:
+> 现在，除了之前只能用加法和乘法成立的三个方程，上述例子还有三个方程可以通过插入运算符成立：
+
+- `156: 15 6` can be made true through a single concatenation: `15 || 6 = 156`.
+- `7290: 6 8 6 15` can be made true using `6 * 8 || 6 * 15`.
+- `192: 17 8 14` can be made true using `17 || 8 + 14`.
+> - `156: 15 6` 可以通过一次拼接成立：`15 || 6 = 156`。
+> - `7290: 6 8 6 15` 可以用 `6 * 8 || 6 * 15` 得到。
+> - `192: 17 8 14` 可以用 `17 || 8 + 14` 得到。
+
+Adding up all six test values (the three that could be made before using only `+` and `*` plus the new three that can now be made by also using `||`) produces the new **total calibration result** of **`11387`**.
+> 把所有六个测试值（之前只能用 `+` 和 `*` 得到的三个，加上现在也能用 `||` 得到的三个）相加，得到新的**总校准结果**为 **`11387`**。
+
+Using your new knowledge of elephant hiding spots, determine which equations could possibly be true. **What is their total calibration result?**
+> 利用你对小象藏身之处的新发现，判断哪些方程有可能成立。**它们的总校准结果是多少？**
+
+Your puzzle answer was `264184041398847`.
