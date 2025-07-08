@@ -5,58 +5,52 @@ os.chdir(os.path.dirname(__file__))
 
 
 class Direction(Enum):
-    Up = 0
-    Right = 1
-    Down = 2
-    Left = 3
-
-
-class Map:
-    pass
+    Up = (0, -1)
+    Right = (1, 0)
+    Down = (0, 1)
+    Left = (-1, 0)
 
 
 class Guard:
-    def __init__(self, position, direction):
+    def __init__(self, position, direction: Direction):
         self.position = position
         self.direction = direction
 
+    def front(self):
+        return (
+            self.position[0] + self.direction.value[0],
+            self.position[1] + self.direction.value[1],
+        )
+
     def forward(self):
-        if self.direction == Direction.Up:
-            self.position = (self.position[0], self.position[1] - 1)
-        elif self.direction == Direction.Right:
-            self.position = (self.position[0] + 1, self.position[1])
-        elif self.direction == Direction.Down:
-            self.position = (self.position[0], self.position[1] + 1)
-        elif self.direction == Direction.Left:
-            self.position = (self.position[0] - 1, self.position[1])
+        self.position = self.front()
 
     def turn(self):
-        if self.direction == Direction.Up:
-            self.direction = Direction.Right
-        elif self.direction == Direction.Right:
-            self.direction = Direction.Down
-        elif self.direction == Direction.Down:
-            self.direction = Direction.Left
-        elif self.direction == Direction.Left:
-            self.direction = Direction.Up
+        self.direction = Direction(-self.direction.value[1], self.direction.value[0])
 
     def check(self, map):
-        h = len(map)
-        w = len(map[0])
+        w, h = len(map[0]), len(map)
+        x, y = self.front()
 
-        if self.direction == Direction.Up:
-            if self.position[1] - 1 >= 0:
-                return map[self.position[1] - 1][self.position[0]]
-        elif self.direction == Direction.Right:
-            if self.position[0] + 1 < w:
-                return map[self.position[1]][self.position[0] + 1]
-        elif self.direction == Direction.Down:
-            if self.position[1] + 1 < h:
-                return map[self.position[1] + 1][self.position[0]]
-        elif self.direction == Direction.Left:
-            if self.position[0] - 1 >= 0:
-                return map[self.position[1]][self.position[0] - 1]
+        if x >= 0 and x < w and y >= 0 and y < h:
+            return map[y][x]
         return None
+
+    def patrol(self, map):
+        steps = set()
+
+        while True:
+            steps.add((self.position, self.direction))
+
+            front = self.check(map)
+            if front == None:
+                return False, steps
+            elif front == "#":
+                self.turn()
+            else:
+                self.forward()
+            if (self.position, self.direction) in steps:
+                return True, steps
 
 
 def input():
@@ -74,10 +68,26 @@ def search(map, guard):
 def part1():
     map = input()
 
-    visited = set()
     guard = Guard(search(map, "^"), Direction.Up)
+    _, steps = guard.patrol(map)
+    visited = set(s[0] for s in steps)
+    print(len(visited))
+
+
+def part2():
+    obstructions = set()
+
+    map = input()
+    origin = search(map, "^")
+    guard = Guard(origin, Direction.Up)
+    _, steps = guard.patrol(map)
+    total = len(steps)
+
+    count = 0
+    guard = Guard(origin, Direction.Up)
     while True:
-        visited.add(guard.position)
+        count += 1
+        print(f"{count}/{total}", end="\r")
 
         front = guard.check(map)
         if front == None:
@@ -85,9 +95,22 @@ def part1():
         elif front == "#":
             guard.turn()
         else:
+            x, y = guard.front()
+            save = map[y][x]
+            map[y][x] = "#"
+
+            shadow = Guard(origin, Direction.Up)
+            loop, _ = shadow.patrol(map)
+            if loop:
+                obstructions.add((x, y))
+
+            map[y][x] = save
+
             guard.forward()
 
-    print(len(visited))
+    print("                            ", end="\r")
+    print(len(obstructions))
 
 
 part1()
+part2()
