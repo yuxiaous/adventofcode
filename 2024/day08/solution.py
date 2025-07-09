@@ -41,4 +41,33 @@ def part1():
     print(len(antinodes))
 
 
+def part2():
+    antinodes = set()
+
+    antennas, w, h = input()
+    for positions in antennas.values():
+        for i in range(len(positions)):
+            for j in range(i + 1, len(positions)):
+                x = positions[i][0]
+                y = positions[i][1]
+                dx = positions[i][0] - positions[j][0]
+                dy = positions[i][1] - positions[j][1]
+                while x >= 0 and x < w and y >= 0 and y < h:
+                    antinodes.add((x, y))
+                    x += dx
+                    y += dy
+
+                x = positions[j][0]
+                y = positions[j][1]
+                dx = positions[j][0] - positions[i][0]
+                dy = positions[j][1] - positions[i][1]
+                while x >= 0 and x < w and y >= 0 and y < h:
+                    antinodes.add((x, y))
+                    x += dx
+                    y += dy
+
+    print(len(antinodes))
+
+
 part1()
+part2()

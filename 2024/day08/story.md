@@ -101,3 +101,57 @@ Calculate the impact of the signal. **How many unique locations within the bound
 > 计算信号的影响。**地图范围内有多少个唯一位置包含波腹点？**
 
 Your puzzle answer was `220`.
+
+## Part Two
+> ## 第二部分
+
+Watching over your shoulder as you work, one of The Historians asks if you took the effects of resonant harmonics into your calculations.
+> 当你工作时，一位历史学家在你身后问你是否把共振谐波的影响考虑进去了。
+
+Whoops!
+> 糟糕！
+
+After updating your model, it turns out that an antinode occurs at **any grid position** exactly in line with at least two antennas of the same frequency, regardless of distance. This means that some of the new antinodes will occur at the position of each antenna (unless that antenna is the only one of its frequency).
+> 更新模型后，你发现只要有至少两个相同频率的天线**共线**，无论距离如何，任何网格位置都会出现波腹点。这意味着有些新的波腹点会出现在每根天线的位置（除非该天线是该频率唯一的天线）。
+
+So, these three `T`-frequency antennas now create many antinodes:
+> 因此，这三个 `T` 频率的天线现在会产生许多波腹点：
+
+```
+T....#....
+...T......
+.T....#...
+.........#
+..#.......
+..........
+...#......
+..........
+....#.....
+..........
+```
+
+In fact, the three `T`-frequency antennas are all exactly in line with two antennas, so they are all also antinodes! This brings the total number of antinodes in the above example to **`9`**.
+> 实际上，这三个 `T` 频率的天线都与另外两根天线共线，因此它们本身也是波腹点！这样，上述例子中的波腹点总数变为 **`9`**。
+
+The original example now has **`34`** antinodes, including the antinodes that appear on every antenna:
+> 原始例子现在有 **`34`** 个波腹点，包括出现在每根天线上的波腹点：
+
+```
+##....#....#
+.#.#....0...
+..#.#0....#.
+..##...0....
+....0....#..
+.#...#A....#
+...#..#.....
+#....#.#....
+..#.....A...
+....#....A..
+.#........#.
+...#......##
+```
+
+Calculate the impact of the signal using this updated model. **How many unique locations within the bounds of the map contain an antinode?**
+> 用这个更新后的模型计算信号的影响。**地图范围内有多少个唯一位置包含波腹点？**
+
+Your puzzle answer was `813`.
