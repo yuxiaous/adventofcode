@@ -1,5 +1,4 @@
 import os
-from turtle import pos
 from typing import Dict
 
 os.chdir(os.path.dirname(__file__))
