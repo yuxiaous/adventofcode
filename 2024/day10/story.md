@@ -92,3 +92,82 @@ The reindeer gleefully carries over a protractor and adds it to the pile. **What
 > 驯鹿高兴地又拿来一个量角器放到工具堆里。**你的地形图上所有起点的得分之和是多少？**
 
 Your puzzle answer was `629`.
+
+## Part Two
+> ## 第二部分
+
+The reindeer spends a few minutes reviewing your hiking trail map before realizing something, disappearing for a few minutes, and finally returning with yet another slightly-charred piece of paper.
+> 驯鹿花了几分钟检查你的徒步路线图，突然意识到什么，然后消失了几分钟，最后又带着一张微微烧焦的纸回来。
+
+The paper describes a second way to measure a trailhead called its rating. A trailhead's rating is the **number of distinct hiking trails** which begin at that trailhead. For example:
+> 这张纸描述了评估起点的第二种方式，称为“评级”。一个起点的评级是**从该起点出发的不同徒步路线的数量**。例如：
+
+```
+.....0.
+..4321.
+..5..2.
+..6543.
+..7..4.
+..8765.
+..9....
+```
+
+The above map has a single trailhead; its rating is `3` because there are exactly three distinct hiking trails which begin at that position:
+> 上面的地图只有一个起点；它的评级是 `3`，因为从该位置出发恰好有三条不同的徒步路线：
+
+```
+.....0.   .....0.   .....0.
+..4321.   .....1.   .....1.
+..5....   .....2.   .....2.
+..6....   ..6543.   .....3.
+..7....   ..7....   .....4.
+..8....   ..8....   ..8765.
+..9....   ..9....   ..9....
+```
+
+Here is a map containing a single trailhead with rating `13`:
+> 下面这张地图有一个起点，评级为 `13`：
+
+```
+..90..9
+...1.98
+...2..7
+6543456
+765.987
+876....
+987....
+```
+
+This map contains a single trailhead with rating `227` (because there are `121` distinct hiking trails that lead to the `9` on the right edge and `106` that lead to the `9` on the bottom edge):
+> 这张地图有一个起点，评级为 `227`（因为有 `121` 条不同的徒步路线通向右侧边缘的 `9`，有 `106` 条通向底部边缘的 `9`）:
+
+```
+012345
+123456
+234567
+345678
+4.6789
+56789.
+```
+
+Here's the larger example from before:
+> 下面是之前那个更大的例子：
+
+```
+89010123
+78121874
+87430965
+96549874
+45678903
+32019012
+01329801
+10456732
+```
+
+Considering its trailheads in reading order, they have ratings of `20`, `24`, `10`, `4`, `1`, `4`, `5`, `8`, and `5`. The sum of all trailhead ratings in this larger example topographic map is **`81`**.
+> 按阅读顺序，这些起点的评级分别为 `20`、`24`、`10`、`4`、`1`、`4`、`5`、`8` 和 `5`。这个更大地形图中所有起点的评级之和为 **`81`**。
+
+You're not sure how, but the reindeer seems to have crafted some tiny flags out of toothpicks and bits of paper and is using them to mark trailheads on your topographic map. **What is the sum of the ratings of all trailheads?**
+> 你不确定驯鹿是怎么做到的，但它似乎用牙签和纸片做了些小旗子，正在用它们标记你的地形图上的起点。**所有起点的评级之和是多少？**
+
+Your puzzle answer was `1242`.

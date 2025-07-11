@@ -34,4 +34,32 @@ def part1():
     print(sum(scores))
 
 
+def part2():
+    map = input()
+    h, w = len(map), len(map[0])
+    directions = [(1, 0), (-1, 0), (0, 1), (0, -1)]
+
+    trailheads = []
+    for y in range(h):
+        for x in range(w):
+            if map[y][x] == 0:
+                trailheads.append((x, y))
+
+    ratings = []
+    for trailhead in trailheads:
+        trails = [[trailhead]]
+        for height in range(9):
+            last = trails
+            trails = []
+            for trail in last:
+                for d in directions:
+                    x = trail[-1][0] + d[0]
+                    y = trail[-1][1] + d[1]
+                    if x in range(w) and y in range(h) and map[y][x] == height + 1:
+                        trails.append(trail + [(x, y)])
+        ratings.append(len(trails))
+    print(sum(ratings))
+
+
 part1()
+part2()
