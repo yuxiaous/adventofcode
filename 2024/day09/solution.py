@@ -1,5 +1,4 @@
 import os
-from tracemalloc import start
 
 os.chdir(os.path.dirname(__file__))
 
