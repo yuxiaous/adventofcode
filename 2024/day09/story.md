@@ -76,3 +76,33 @@ Compact the amphipod's hard drive using the process he requested. **What is the 
 
 Your puzzle answer was `6283404590840`.
 
+## Part Two
+> ## 第二部分
+
+Upon completion, two things immediately become clear. First, the disk definitely has a lot more contiguous free space, just like the amphipod hoped. Second, the computer is running much more slowly! Maybe introducing all of that [file system fragmentation](https://en.wikipedia.org/wiki/File_system_fragmentation) was a bad idea?
+> 完成后，马上有两件事变得很明显。首先，磁盘确实拥有了更多连续的空闲空间，正如甲壳虫所希望的那样。其次，电脑运行得更慢了！也许引入这么多文件系统碎片并不是个好主意？
+
+The eager amphipod already has a new plan: rather than move individual blocks, he'd like to try compacting the files on his disk by moving **whole files** instead.
+> 积极的甲壳虫已经有了新计划：这次他不想再移动单个块，而是想尝试通过移动**整个文件**来整理磁盘。
+
+This time, attempt to move whole files to the leftmost span of free space blocks that could fit the file. Attempt to move each file exactly once in order of **decreasing file ID number** starting with the file with the highest file ID number. If there is no span of free space to the left of a file that is large enough to fit the file, the file does not move.
+> 这一次，尝试将整个文件移动到最左侧、能够容纳该文件的空闲块区间。按照**文件ID号递减**的顺序，每个文件只尝试移动一次，从ID号最大的文件开始。如果文件左侧没有足够大的空闲区间，则该文件不移动。
+
+The first example from above now proceeds differently:
+> 上面第一个例子的过程现在变成这样：
+
+```
+00...111...2...333.44.5555.6666.777.888899
+0099.111...2...333.44.5555.6666.777.8888..
+0099.1117772...333.44.5555.6666.....8888..
+0099.111777244.333....5555.6666.....8888..
+00992111777.44.333....5555.6666.....8888..
+```
+
+The process of updating the filesystem checksum is the same; now, this example's checksum would be **`2858`**.
+> 文件系统校验和的计算方法不变；现在，这个例子的校验和是 **`2858`**。
+
+Start over, now compacting the amphipod's hard drive using this new method instead. **What is the resulting filesystem checksum?**
+> 重新开始，这次用这种新方法整理甲壳虫的硬盘。**最终的文件系统校验和是多少？**
+
+Your puzzle answer was `6304576012713`.
