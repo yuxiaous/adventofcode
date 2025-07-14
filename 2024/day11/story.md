@@ -79,3 +79,14 @@ Consider the arrangement of stones in front of you. **How many stones will you h
 > 看看你面前的石头排列。**眨眼25次后你会有多少块石头？**
 
 Your puzzle answer was `218079`.
+
+## Part Two
+> ## 第二部分
+
+The Historians sure are taking a long time. To be fair, the infinite corridors **are** very large.
+> 历史学家们确实花了很长时间。说实话，那些无尽的走廊**确实**非常大。
+
+**How many stones would you have after blinking a total of 75 times?**
+> **如果你总共眨眼75次，你会有多少块石头？**
+
+Your puzzle answer was `259755538429618`.

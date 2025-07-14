@@ -30,4 +30,37 @@ def part1():
     print(len(numbers))
 
 
+def part2():
+    numbers = input()
+    counts = {}
+
+    def record(n, c):
+        if n in counts:
+            counts[n] += c
+        else:
+            counts[n] = c
+
+    for n in numbers:
+        record(n, 1)
+
+    for _ in range(75):
+        old = counts
+        counts = {}
+        for n, c in old.items():
+            if n == 0:
+                record(1, c)
+                continue
+
+            nstr = str(n)
+            if len(nstr) % 2 == 0:
+                record(int(nstr[: len(nstr) // 2]), c)
+                record(int(nstr[len(nstr) // 2 :]), c)
+                continue
+
+            record(n * 2024, c)
+
+    print(sum(counts.values()))
+
+
 part1()
+part2()
