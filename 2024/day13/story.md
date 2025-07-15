@@ -69,3 +69,38 @@ Figure out how to win as many prizes as possible. **What is the fewest tokens yo
 > 算算怎么才能赢得最多的奖品。**赢得所有可能奖品所需的最少代币是多少？**
 
 Your puzzle answer was `36758`.
+
+## Part Two
+> ## 第二部分
+
+As you go to win the first prize, you discover that the claw is nowhere near where you expected it would be. Due to a unit conversion error in your measurements, the position of every prize is actually `10000000000000` higher on both the `X` and `Y` axis!
+> 当你准备去赢第一个奖品时，你发现爪子的位置和你预期的完全不一样。由于测量时的单位换算错误，每个奖品的实际位置在 `X` 和 `Y` 轴上都比原来高了 `10000000000000`！
+
+Add `10000000000000` to the `X` and `Y` position of every prize. After making this change, the example above would now look like this:
+> 给每个奖品的 `X` 和 `Y` 坐标都加上 `10000000000000`。修改后，上面的例子变成这样：
+
+```
+Button A: X+94, Y+34
+Button B: X+22, Y+67
+Prize: X=10000000008400, Y=10000000005400
+
+Button A: X+26, Y+66
+Button B: X+67, Y+21
+Prize: X=10000000012748, Y=10000000012176
+
+Button A: X+17, Y+86
+Button B: X+84, Y+37
+Prize: X=10000000007870, Y=10000000006450
+
+Button A: X+69, Y+23
+Button B: X+27, Y+71
+Prize: X=10000000018641, Y=10000000010279
+```
+
+Now, it is only possible to win a prize on the second and fourth claw machines. Unfortunately, it will take **many more than `100` presses** to do so.
+> 现在，只有第二台和第四台抓娃娃机有可能赢得奖品。不幸的是，这需要**远远超过 `100` 次**的按键操作。
+
+Using the corrected prize coordinates, figure out how to win as many prizes as possible. **What is the fewest tokens you would have to spend to win all possible prizes?**
+> 用修正后的奖品坐标，计算怎样才能赢得最多的奖品。**赢得所有可能奖品所需的最少代币是多少？**
+
+Your puzzle answer was `76358113886726`.

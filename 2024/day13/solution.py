@@ -5,7 +5,7 @@ from typing import Dict
 os.chdir(os.path.dirname(__file__))
 
 
-def input():
+def input(offset=0):
     machines = []
     input = open("input.txt").read().strip()
     for machine in input.split("\n\n"):
@@ -16,7 +16,7 @@ def input():
             {
                 "A": tuple(int(x) for x in A.groups()),
                 "B": tuple(int(x) for x in B.groups()),
-                "P": tuple(int(x) for x in P.groups()),
+                "P": tuple(int(x) + offset for x in P.groups()),
             }
         )
     return machines
@@ -36,3 +36,19 @@ def part1():
 
 
 part1()
+
+
+def part2():
+    token = 0
+    for machine in input(10000000000000):
+        ax, ay = machine["A"]
+        bx, by = machine["B"]
+        px, py = machine["P"]
+        times_a = (by * px - bx * py) / (ax * by - ay * bx)
+        times_b = (ax * py - ay * px) / (ax * by - ay * bx)
+        if times_a % 1 == 0 and times_b % 1 == 0:
+            token += int(times_a) * 3 + int(times_b) * 1
+    print(token)
+
+
+part2()
