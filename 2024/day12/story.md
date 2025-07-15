@@ -123,3 +123,94 @@ So, it has a total price of **`1930`**.
 > **你地图上所有区域的篱笆总价是多少？**
 
 Your puzzle answer was `1473408`.
+
+## Part Two
+> ## 第二部分
+
+Fortunately, the Elves are trying to order so much fence that they qualify for a **bulk discount**!
+> 幸运的是，精灵们要订购的篱笆数量太多，已经可以享受**批量折扣**了！
+
+Under the bulk discount, instead of using the perimeter to calculate the price, you need to use the **number of sides** each region has. Each straight section of fence counts as a side, regardless of how long it is.
+> 在批量折扣下，计算价格时不再用周长，而是用每个区域的**边数**。每一段直的篱笆都算作一条边，无论它有多长。
+
+Consider this example again:
+> 再来看这个例子：
+
+```
+AAAA
+BBCD
+BBCC
+EEEC
+```
+
+The region containing type `A` plants has `4` sides, as does each of the regions containing plants of type `B`, `D`, and `E`. However, the more complex region containing the plants of type `C` has `8` sides!
+> 包含`A`型植物的区域有`4`条边，`B`、`D`、`E`型区域也各有`4`条边。但包含`C`型植物的复杂区域有`8`条边！
+
+Using the new method of calculating the per-region price by multiplying the region's area by its number of sides, regions `A` through `E` have prices `16`, `16`, `32`, `4`, and `12`, respectively, for a total price of **`80`**.
+> 用新方法计算，每个区域的价格等于面积乘以边数，A~E区的价格分别为`16`、`16`、`32`、`4`、`12`，总价为 **`80`**。
+
+The second example above (full of type `X` and `O` plants) would have a total price of **`436`**.
+> 上面第二个例子（全是`X`和`O`）总价为 **`436`**。
+
+Here's a map that includes an E-shaped region full of type `E` plants:
+> 下面是一张包含E形区域的地图：
+
+```
+EEEEE
+EXXXX
+EEEEE
+EXXXX
+EEEEE
+```
+
+The E-shaped region has an area of `17` and `12` sides for a price of `204`. Including the two regions full of type `X` plants, this map has a total price of **`236`**.
+> `E`形区域面积为`17`，有`12`条边，价格为`204`。加上两个`X`区，这张地图总价为 **`236`**。
+
+This map has a total price of **`368`**:
+> 这张地图总价为 **`368`**：
+
+```
+AAAAAA
+AAABBA
+AAABBA
+ABBAAA
+ABBAAA
+AAAAAA
+```
+
+It includes two regions full of type `B` plants (each with `4` sides) and a single region full of type `A` plants (with `4` sides on the outside and `8` more sides on the inside, a total of `12` sides). Be especially careful when counting the fence around regions like the one full of type `A` plants; in particular, each section of fence has an in-side and an out-side, so the fence does not connect across the middle of the region (where the two `B` regions touch diagonally). (The Elves would have used the Möbius Fencing Company instead, but their contract terms were too one-sided.)
+> 其中包含两个`B`区（每个有`4`条边）和一个`A`区（外圈有`4`条边，内圈还有`8`条边，总共`12`条边）。计算像`A`区这样的区域的篱笆时要特别小心，尤其是每段篱笆都有内外两面，所以篱笆不会穿过区域中间（即两个`B`区斜对角接触的地方）。（精灵们本来想用莫比乌斯篱笆公司，但他们的合同条款太“单面”了。）
+
+The larger example from before now has the following updated prices:
+> 之前那个更大的例子现在有如下更新后的价格：
+
+- A region of `R` plants with price `12 * 10 = 120`.
+- A region of `I` plants with price `4 * 4 = 16`.
+- A region of `C` plants with price `14 * 22 = 308`.
+- A region of `F` plants with price `10 * 12 = 120`.
+- A region of `V` plants with price `13 * 10 = 130`.
+- A region of `J` plants with price `11 * 12 = 132`.
+- A region of `C` plants with price `1 * 4 = 4`.
+- A region of `E` plants with price `13 * 8 = 104`.
+- A region of `I` plants with price `14 * 16 = 224`.
+- A region of `M` plants with price `5 * 6 = 30`.
+- A region of `S` plants with price `3 * 6 = 18`.
+> - 一个`R`区，价格 `12 * 10 = 120`。
+> - 一个`I`区，价格 `4 * 4 = 16`。
+> - 一个`C`区，价格 `14 * 22 = 308`。
+> - 一个`F`区，价格 `10 * 12 = 120`。
+> - 一个`V`区，价格 `13 * 10 = 130`。
+> - 一个`J`区，价格 `11 * 12 = 132`。
+> - 一个`C`区，价格 `1 * 4 = 4`。
+> - 一个`E`区，价格 `13 * 8 = 104`。
+> - 一个`I`区，价格 `14 * 16 = 224`。
+> - 一个`M`区，价格 `5 * 6 = 30`。
+> - 一个`S`区，价格 `3 * 6 = 18`。
+
+Adding these together produces its new total price of **`1206`**.
+> 这些加起来得到新的总价为 **`1206`**。
+
+**What is the new total price of fencing all regions on your map?**
+> **你地图上所有区域的新篱笆总价是多少？**
+
+Your puzzle answer was `886364`.
