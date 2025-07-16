@@ -145,3 +145,13 @@ Predict the motion of the robots in your list within a space which is `101` tile
 > 在宽`101`格、高`103`格的空间内，预测你列表中机器人的运动。**恰好100秒后安全系数是多少？**
 
 Your puzzle answer was `208437768`.
+
+## Part Two
+
+During the bathroom break, someone notices that these robots seem awfully similar to ones built and used at the North Pole. If they're the same type of robots, they should have a hard-coded Easter egg: very rarely, most of the robots should arrange themselves into **a picture of a Christmas tree**.
+> 在上卫生间的间隙，有人注意到这些机器人和北极制造使用的机器人异常相似。如果它们是同类型机器人，应该内置了彩蛋功能：在极少数情况下，大部分机器人会排列成**一棵圣诞树的图案**。
+
+**What is the fewest number of seconds that must elapse for the robots to display the Easter egg?**
+> **机器人需要经过至少多少秒才能显示出这个彩蛋？**
+
+Your puzzle answer was `7492`.

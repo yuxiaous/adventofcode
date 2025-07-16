@@ -1,6 +1,7 @@
 import os
 import re
 from functools import reduce
+from PIL import Image
 
 os.chdir(os.path.dirname(__file__))
 
@@ -58,3 +59,22 @@ def part1():
 
 
 part1()
+
+
+def part2():
+    robots = input()
+    w = max(r[0] + 1 for r in robots)
+    h = max(r[1] + 1 for r in robots)
+
+    for time in range(9999):
+        img = Image.new("RGB", (w, h), "white")
+        for robot in robots:
+            px, py = robot[0], robot[1]
+            img.putpixel((px, py), 0)
+            img.save(os.path.join(os.path.dirname(__file__), f"{time}.png"))
+
+        for i in range(len(robots)):
+            robots[i] = move(robots[i], w, h)
+
+
+part2()
