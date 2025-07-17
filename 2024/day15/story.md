@@ -268,3 +268,204 @@ Predict the motion of the robot and boxes in the warehouse. After the robot is f
 > 预测仓库中机器人和箱子的运动。机器人完成移动后，**所有箱子的GPS坐标之和是多少？**
 
 Your puzzle answer was `1465152`.
+
+## Part Two
+> ## 第二部分
+
+The lanternfish use your information to find a safe moment to swim in and turn off the malfunctioning robot! Just as they start preparing a festival in your honor, reports start coming in that a **second** warehouse's robot is also malfunctioning.
+> 灯笼鱼们利用你的信息找到了一个安全时机游过去关闭了失控的机器人！正当它们准备为你举办庆典时，又有消息传来，**第二个**仓库的机器人也失控了。
+
+This warehouse's layout is surprisingly similar to the one you just helped. There is one key difference: everything except the robot is **twice as wide**! The robot's list of movements doesn't change.
+> 这个仓库的布局和你刚帮忙的那个非常相似。唯一的关键区别是：除了机器人以外，其他所有东西都**宽度加倍**！机器人的动作列表没有变化。
+
+To get the wider warehouse's map, start with your original map and, for each tile, make the following changes:
+> 要得到更宽的仓库地图，从原始地图开始，对每个格子做如下修改：
+
+- If the tile is `#`, the new map contains `##` instead.
+- If the tile is `O`, the new map contains `[]` instead.
+- If the tile is `.`, the new map contains `..` instead.
+- If the tile is `@`, the new map contains `@.` instead.
+> - 如果是 `#`，新地图用 `##` 替换。
+> - 如果是 `O`，新地图用 `[]` 替换。
+> - 如果是 `.`，新地图用 `..` 替换。
+> - 如果是 `@`，新地图用 `@.` 替换。
+
+This will produce a new warehouse map which is twice as wide and with wide boxes that are represented by `[]`. (The robot does not change size.)
+> 这样会生成一张宽度加倍的新仓库地图，宽箱子用 `[]` 表示。（机器人大小不变。）
+
+The larger example from before would now look like this:
+> 之前的大例子现在变成这样：
+
+```
+####################
+##....[]....[]..[]##
+##............[]..##
+##..[][]....[]..[]##
+##....[]@.....[]..##
+##[]##....[]......##
+##[]....[]....[]..##
+##..[][]..[]..[][]##
+##........[]......##
+####################
+```
+
+Because boxes are now twice as wide but the robot is still the same size and speed, boxes can be aligned such that they directly push two other boxes at once. For example, consider this situation:
+> 由于箱子现在宽度加倍，但机器人大小和速度不变，箱子可以排列成一次直接推动两个其他箱子的情况。例如：
+
+```
+#######
+#...#.#
+#.....#
+#..OO@#
+#..O..#
+#.....#
+#######
+
+<vv<<^^<<^^
+```
+
+After appropriately resizing this map, the robot would push around these boxes as follows:
+> 按上述方式放大地图后，机器人推动箱子的过程如下：
+
+```
+Initial state:
+##############
+##......##..##
+##..........##
+##....[][]@.##
+##....[]....##
+##..........##
+##############
+
+Move <:
+##############
+##......##..##
+##..........##
+##...[][]@..##
+##....[]....##
+##..........##
+##############
+
+Move v:
+##############
+##......##..##
+##..........##
+##...[][]...##
+##....[].@..##
+##..........##
+##############
+
+Move v:
+##############
+##......##..##
+##..........##
+##...[][]...##
+##....[]....##
+##.......@..##
+##############
+
+Move <:
+##############
+##......##..##
+##..........##
+##...[][]...##
+##....[]....##
+##......@...##
+##############
+
+Move <:
+##############
+##......##..##
+##..........##
+##...[][]...##
+##....[]....##
+##.....@....##
+##############
+
+Move ^:
+##############
+##......##..##
+##...[][]...##
+##....[]....##
+##.....@....##
+##..........##
+##############
+
+Move ^:
+##############
+##......##..##
+##...[][]...##
+##....[]....##
+##.....@....##
+##..........##
+##############
+
+Move <:
+##############
+##......##..##
+##...[][]...##
+##....[]....##
+##....@.....##
+##..........##
+##############
+
+Move <:
+##############
+##......##..##
+##...[][]...##
+##....[]....##
+##...@......##
+##..........##
+##############
+
+Move ^:
+##############
+##......##..##
+##...[][]...##
+##...@[]....##
+##..........##
+##..........##
+##############
+
+Move ^:
+##############
+##...[].##..##
+##...@.[]...##
+##....[]....##
+##..........##
+##..........##
+##############
+```
+
+This warehouse also uses GPS to locate the boxes. For these larger boxes, distances are measured from the edge of the map to the closest edge of the box in question. So, the box shown below has a distance of `1` from the top edge of the map and `5` from the left edge of the map, resulting in a GPS coordinate of `100 * 1 + 5 = 105`.
+> 这个仓库也用GPS定位箱子。对于这些更大的箱子，距离是从地图边缘到箱子最近的边缘。例如，下图中的箱子距离地图上边缘`1`格，距离左边缘`5`格，GPS坐标为 `100 * 1 + 5 = 105`。
+
+```
+##########
+##...[]...
+##........
+```
+
+In the scaled-up version of the larger example from above, after the robot has finished all of its moves, the warehouse would look like this:
+> 在上述大例子的放大版中，机器人完成所有动作后，仓库如下：
+
+```
+####################
+##[].......[].[][]##
+##[]...........[].##
+##[]........[][][]##
+##[]......[]....[]##
+##..##......[]....##
+##..[]............##
+##..@......[].[][]##
+##......[][]..[]..##
+####################
+```
+
+The sum of these boxes' GPS coordinates is **`9021`**.
+> 这些箱子的GPS坐标之和为 **`9021`**。
+
+Predict the motion of the robot and boxes in this new, scaled-up warehouse. **What is the sum of all boxes' final GPS coordinates?**
+> 预测这个新放大仓库中机器人和箱子的运动。**所有箱子最终的GPS坐标之和是多少？**
+
+Your puzzle answer was `1511259`.
