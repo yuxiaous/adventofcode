@@ -47,7 +47,54 @@ def part1():
         if map[y - dx][x + dy] != "#":
             tracks.add((score + 1000, (x, y), (dy, -dx)))
 
-    print(min(scores))
+    return min(scores)
 
 
-part1()
+print(part1())
+
+
+def part2():
+    map = input()
+    start = find_tile(map, "S")
+    end = find_tile(map, "E")
+    lowest = part1()
+
+    scores = []
+    records = {}
+    tracks = {(0, start, (1, 0)): set()}
+
+    while len(tracks) > 0:
+        (score, (x, y), (dx, dy)), path = tracks.popitem()
+
+        if score > lowest:
+            continue
+
+        record = records.get((x, y, dx, dy), -1)
+        if record >= 0 and score > record:
+            continue
+
+        records[(x, y, dx, dy)] = score
+        path.add((x, y))
+
+        if (x, y) == end:
+            scores.append((score, path))
+            continue
+
+        # move forward
+        if map[y + dy][x + dx] != "#":
+            tracks[(score + 1, (x + dx, y + dy), (dx, dy))] = path.copy()
+        # turn left
+        if map[y + dx][x - dy] != "#":
+            tracks[(score + 1000, (x, y), (-dy, dx))] = path.copy()
+        # turn right
+        if map[y - dx][x + dy] != "#":
+            tracks[(score + 1000, (x, y), (dy, -dx))] = path.copy()
+
+    tiles = set()
+    for score, path in scores:
+        for tile in path:
+            tiles.add(tile)
+    print(len(tiles))
+
+
+part2()

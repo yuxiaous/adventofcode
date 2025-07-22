@@ -105,3 +105,64 @@ Analyze your map carefully. **What is the lowest score a Reindeer could possibly
 > 仔细分析你的地图。**驯鹿可能获得的最低分是多少？**
 
 Your puzzle answer was `102488`.
+
+## Part Two
+> ## 第二部分
+
+Now that you know what the best paths look like, you can figure out the best spot to sit.
+> 既然你已经知道最佳路径是什么样子了，你就能找出最佳观赛位置。
+
+Every non-wall tile (`S`, `.`, or `E`) is equipped with places to sit along the edges of the tile. While determining which of these tiles would be the best spot to sit depends on a whole bunch of factors (how comfortable the seats are, how far away the bathrooms are, whether there's a pillar blocking your view, etc.), the most important factor is **whether the tile is on one of the best paths through the maze**. If you sit somewhere else, you'd miss all the action!
+> 每个非墙格子（`S`、`.` 或 `E`）的边上都可以坐。虽然决定哪个格子是最佳观赛点要考虑很多因素（座位舒适度、离洗手间远近、是否有柱子挡视线等），但最重要的因素是**这个格子是否在迷宫的某条最佳路径上**。如果你坐在其他地方，就会错过所有精彩瞬间！
+
+So, you'll need to determine which tiles are part of **any** best path through the maze, including the S and E tiles.
+> 所以，你需要确定哪些格子属于迷宫的**任意一条最佳路径**，包括 S 和 E 格子。
+
+In the first example, there are **`45`** tiles (marked `O`) that are part of at least one of the various best paths through the maze:
+> 在第一个例子中，有 **`45`** 个格子（用 `O` 标记）属于至少一条最佳路径：
+
+```
+###############
+#.......#....O#
+#.#.###.#.###O#
+#.....#.#...#O#
+#.###.#####.#O#
+#.#.#.......#O#
+#.#.#####.###O#
+#..OOOOOOOOO#O#
+###O#O#####O#O#
+#OOO#O....#O#O#
+#O#O#O###.#O#O#
+#OOOOO#...#O#O#
+#O###.#.#.#O#O#
+#O..#.....#OOO#
+###############
+```
+
+In the second example, there are **`64`** tiles that are part of at least one of the best paths:
+> 在第二个例子中，有 **`64`** 个格子属于至少一条最佳路径：
+
+```
+#################
+#...#...#...#..O#
+#.#.#.#.#.#.#.#O#
+#.#.#.#...#...#O#
+#.#.#.#.###.#.#O#
+#OOO#.#.#.....#O#
+#O#O#.#.#.#####O#
+#O#O..#.#.#OOOOO#
+#O#O#####.#O###O#
+#O#O#..OOOOO#OOO#
+#O#O###O#####O###
+#O#O#OOO#..OOO#.#
+#O#O#O#####O###.#
+#O#O#OOOOOOO..#.#
+#O#O#O#########.#
+#O#OOO..........#
+#################
+```
+
+Analyze your map further. **How many tiles are part of at least one of the best paths through the maze?**
+> 进一步分析你的地图。**有多少格子属于至少一条迷宫的最佳路径？**
+
+Your puzzle answer was `559`.
