@@ -15,11 +15,10 @@ def input():
 
 
 class Computer:
-    def __init__(self, init=(0, 0, 0, [])):
-        self.registerA = init[0]
-        self.registerB = init[1]
-        self.registerC = init[2]
-        self.program = init[3]
+    def __init__(self, A=0, B=0, C=0):
+        self.registerA = A
+        self.registerB = B
+        self.registerC = C
         self.pointer = 0
         self.output = []
 
@@ -48,7 +47,7 @@ class Computer:
             self.registerB = self.combo(operand) % 8
         # jnz
         elif opcode == 3:
-            if self.registerA:
+            if self.registerA != 0:
                 self.pointer = self.literal(operand)
                 return 0
         # bxc
@@ -65,10 +64,7 @@ class Computer:
             self.registerC = int(self.registerA / 2 ** self.combo(operand))
         return 2
 
-    def execute(self, program=None):
-        if not program:
-            program = self.program
-
+    def execute(self, program):
         while self.pointer < len(program):
             opcode = program[self.pointer]
             operand = program[self.pointer + 1]
@@ -81,9 +77,35 @@ class Computer:
 
 
 def part1():
-    computer = Computer(input())
-    computer.execute()
+    a, b, c, program = input()
+    computer = Computer(a, b, c)
+    computer.execute(program)
     computer.print()
 
 
 part1()
+
+
+def part2():
+    a, b, c, program = input()
+    a = 0
+
+    length = len(program) - 1
+    while True:
+        increment = int("1" + "0" * length, 8)
+        a += increment
+
+        computer = Computer(a, b, c)
+        computer.execute(program)
+
+        for i in range(len(program)):
+            if computer.output[-i - 1] != program[-i - 1]:
+                length = len(program) - i - 1
+                break
+        else:
+            break
+
+    print(a)
+
+
+part2()

@@ -95,3 +95,28 @@ Using the information provided by the debugger, initialize the registers to the 
 > 用调试器提供的信息初始化寄存器，然后运行程序。程序停止后，**用逗号连接所有输出值，结果是多少？**
 
 Your puzzle answer was `6,2,7,2,3,1,6,0,5`.
+
+## Part Two
+> ## 第二部分
+
+Digging deeper in the device's manual, you discover the problem: this program is supposed to **output another copy of the program**! Unfortunately, the value in register `A` seems to have been corrupted. You'll need to find a new value to which you can initialize register `A` so that the program's output instructions produce an exact copy of the program itself.
+> 你深入研究设备的说明书，发现问题所在：这个程序本应**输出自身的另一份副本**！不幸的是，寄存器 `A` 的值似乎被损坏了。你需要找到一个新的初始值赋给寄存器 `A`，使程序的输出指令能精确输出程序本身。
+
+For example:
+> 例如：
+
+```
+Register A: 2024
+Register B: 0
+Register C: 0
+
+Program: 0,3,5,4,3,0
+```
+
+This program outputs a copy of itself if register `A` is instead initialized to **`117440`**. (The original initial value of register `A`, `2024`, is ignored.)
+> 如果将寄存器 `A` 初始化为 **`117440`**，这个程序就会输出自身的副本。（原始的寄存器 `A` 初始值 `2024` 被忽略。）
+
+**What is the lowest positive initial value for register A that causes the program to output a copy of itself?**
+> **使程序输出自身副本的寄存器 A 的最小正初始值是多少？**
+
+Your puzzle answer was `236548287712877`.
