@@ -80,3 +80,46 @@ Simulate the first kilobyte (`1024` bytes) falling onto your memory space. After
 > 模拟前1KB（`1024`字节）落入你的内存空间。之后，**到达出口所需的最少步数是多少？**
 
 Your puzzle answer was `308`.
+
+## Part Two
+> ## 第二部分
+
+The Historians aren't as used to moving around in this pixelated universe as you are. You're afraid they're not going to be fast enough to make it to the exit before the path is completely blocked.
+> 历史学家们不像你那样习惯在这个像素化世界中移动。你担心他们可能来不及在路径被完全封死前到达出口。
+
+To determine how fast everyone needs to go, you need to determine **the first byte that will cut off the path to the exit**.
+> 为了确定大家需要多快，你需要找出**第一个会切断通往出口路径的字节**。
+
+In the above example, after the byte at `1,1` falls, there is still a path to the exit:
+> 在上面的例子中，`1,1` 位置的字节落下后，仍然有一条通往出口的路径：
+
+```
+O..#OOO
+O##OO#O
+O#OO#OO
+OOO#OO#
+###OO##
+.##O###
+#.#OOOO
+```
+
+However, after adding the very next byte (at `6,1`), there is no longer a path to the exit:
+> 但是，再加上下一个字节（`6,1`）后，就再也没有通往出口的路径了：
+
+```
+...#...
+.##..##
+.#..#..
+...#..#
+###..##
+.##.###
+#.#....
+```
+
+So, in this example, the coordinates of the first byte that prevents the exit from being reachable are **`6,1`**.
+> 所以，在这个例子中，第一个阻止到达出口的字节坐标是 **`6,1`**。
+
+Simulate more of the bytes that are about to corrupt your memory space. **What are the coordinates of the first byte that will prevent the exit from being reachable from your starting position?** (Provide the answer as two integers separated by a comma with no other characters.)
+> 模拟更多即将损坏你内存空间的字节。**第一个会阻止你从起点到达出口的字节坐标是多少？**（答案用两个整数表示，中间用逗号分隔，不要有其他字符。）
+
+Your puzzle answer was `46,28`.
