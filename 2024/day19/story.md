@@ -65,3 +65,53 @@ To get into the onsen as soon as possible, consult your list of towel patterns a
 > 为了尽快进温泉，请仔细核对你的浴巾图案和目标设计列表。**有多少个设计是可行的？**
 
 Your puzzle answer was `336`.
+
+## Part Two
+> ## 第二部分
+
+The staff don't really like some of the towel arrangements you came up with. To avoid an endless cycle of towel rearrangement, maybe you should just give them every possible option.
+> 工作人员其实并不喜欢你拼出来的某些浴巾组合。为了避免无休止地调整浴巾，也许你应该把所有可能的方案都列出来。
+
+Here are all of the different ways the above example's designs can be made:
+> 下面是上面例子中每个设计的所有拼接方式：
+
+`brwrr` can be made in two different ways: `b`, `r`, `wr`, `r` **or** `br`, `wr`, `r`.
+> `brwrr` 有两种拼法：`b`、`r`、`wr`、`r` **或** `br`、`wr`、`r`。
+
+`bggr` can only be made with `b`, `g`, `g`, and `r`.
+> `bggr` 只能用 `b`、`g`、`g`、`r` 拼出。
+
+`gbbr` can be made 4 different ways:
+> `gbbr` 有4种拼法：
+
+- `g`, `b`, `b`, `r`
+- `g`, `b`, `br`
+- `gb`, `b`, `r`
+- `gb`, `br`
+
+`rrbgbr` can be made 6 different ways:
+> `rrbgbr` 有6种拼法：
+
+- `r`, `r`, `b`, `g`, `b`, `r`
+- `r`, `r`, `b`, `g`, `br`
+- `r`, `r`, `b`, `gb`, `r`
+- `r`, `rb`, `g`, `b`, `r`
+- `r`, `rb`, `g`, `br`
+- `r`, `rb`, `gb`, `r`
+
+`bwurrg` can only be made with `bwu`, `r`, `r`, and `g`.
+> `bwurrg` 只能用 `bwu`、`r`、`r`、`g` 拼出。
+
+`brgr` can be made in two different ways: `b`, `r`, `g`, `r` **or** `br`, `g`, `r`.
+> `brgr` 有两种拼法：`b`、`r`、`g`、`r` **或** `br`、`g`、`r`。
+
+`ubwu` and `bbrgwb` are still impossible.
+> `ubwu` 和 `bbrgwb` 依然无法拼出。
+
+Adding up all of the ways the towels in this example could be arranged into the desired designs yields **`16`** (`2 + 1 + 4 + 6 + 1 + 2`).
+> 把本例中所有设计的拼接方式加起来，总共有 **16** 种（`2 + 1 + 4 + 6 + 1 + 2`）。
+
+They'll let you into the onsen as soon as you have the list. **What do you get if you add up the number of different ways you could make each design?**
+> 只要你把所有方案列出来，他们就让你进温泉。**把每个设计的所有拼接方式数量加起来，结果是多少？**
+
+Your puzzle answer was `758890600222015`.

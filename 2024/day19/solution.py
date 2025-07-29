@@ -38,3 +38,32 @@ def part1():
 
 
 part1()
+
+
+def part2():
+    patterns, designs = input()
+    ways = {}
+
+    def arrangeable(design, patterns):
+        if design in ways:
+            return ways[design]
+
+        count = 0
+        for pattern in patterns:
+            if design[: len(pattern)] == pattern:
+                next = design[len(pattern) :]
+                if not next:
+                    count += 1
+                else:
+                    count += arrangeable(next, patterns)
+
+        ways[design] = count
+        return count
+
+    count = 0
+    for design in designs:
+        count += arrangeable(design, patterns)
+    print(count)
+
+
+part2()
