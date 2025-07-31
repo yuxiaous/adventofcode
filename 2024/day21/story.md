@@ -140,3 +140,31 @@ Find the fewest number of button presses you'll need to perform in order to caus
 > 找出你需要输入的最少按键次数，使门前的机器人能输入每组密码。**你列表中五组密码的复杂度之和是多少？**
 
 Your puzzle answer was `270084`.
+
+## Part Two
+> ## 第二部分
+
+Just as the missing Historian is released, The Historians realize that a **second** member of their search party has also been missing this entire time!
+> 就在失踪的历史学家被救出来时，大家才发现其实还有**第二位**队员一直也失踪着！
+
+A quick life-form scan reveals the Historian is also trapped in a locked area of the ship. Due to a variety of hazards, robots are once again dispatched, forming another chain of remote control keypads managing robotic-arm-wielding robots.
+> 快速生命体扫描发现，这位历史学家也被困在飞船的另一个锁定区域。由于各种危险，再次派出机器人，形成了另一条遥控键盘和机械臂机器人的链条。
+
+This time, many more robots are involved. In summary, there are the following keypads:
+> 这次，涉及的机器人更多。总结如下，有这些键盘：
+
+- One directional keypad that **you** are using.
+- **25** directional keypads that **robots** are using.
+- One numeric keypad (on a door) that a **robot** is using.
+> - 你用的一个方向键盘。
+> - **25** 个机器人用的方向键盘。
+> - 一个机器人用的门上数字小键盘。
+
+The keypads form a chain, just like before: your directional keypad controls a robot which is typing on a directional keypad which controls a robot which is typing on a directional keypad... and so on, ending with the robot which is typing on the numeric keypad.
+> 这些键盘像之前一样形成一条链：你的方向键盘控制一个机器人，这个机器人在另一个方向键盘上输入，那个方向键盘又控制另一个机器人……如此反复，最后一个机器人在数字小键盘上输入。
+
+The door codes are the same this time around; only the number of robots and directional keypads has changed.
+> 这次门禁码还是那五组，只是机器人和方向键盘的数量变了。
+
+Find the fewest number of button presses you'll need to perform in order to cause the robot in front of the door to type each code. **What is the sum of the complexities of the five codes on your list?**
+> 找出你需要输入的最少按键次数，使门前的机器人能输入每组密码。**你列表中五组密码的复杂度之和是多少？**
