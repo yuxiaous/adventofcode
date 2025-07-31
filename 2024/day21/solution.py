@@ -22,79 +22,71 @@ keypad2 = [
 ]
 
 
-class Robot:
-    def __init__(self, keypad):
-        self.keypad = keypad
+class Keypad:
+    def __init__(self, layout):
+        self.keypad = layout
 
-    def find(self, btn):
-        h, w = len(self.keypad), len(self.keypad[0])
-        for y in range(h):
-            for x in range(w):
-                if self.keypad[y][x] == btn:
-                    return (x, y)
+        self.buttons = {}
+        for y in range(len(layout)):
+            for x in range(len(layout[0])):
+                if layout[y][x] != "#":
+                    self.buttons[layout[y][x]] = (x, y)
 
-    def move(self, fr, to):
-        x1, y1 = self.find(fr)
-        x2, y2 = self.find(to)
+        self.moves = {}
+        for btn1 in self.buttons:
+            for btn2 in self.buttons:
+                x1, y1 = self.buttons[btn1]
+                x2, y2 = self.buttons[btn2]
 
-        sequences = []
-        tracks = {(x1, y1): ""}
-        while tracks:
-            (x, y), path = tracks.popitem()
+                sequences = set()
 
-            if x == x2 and y == y2:
-                sequences.append(path)
-                continue
+                # 先横后竖
+                if x1 != x2 and self.keypad[y1][x2] != "#":
+                    sequences.add(
+                        (">" if x2 > x1 else "<") * abs(x2 - x1)
+                        + ("v" if y2 > y1 else "^") * abs(y2 - y1)
+                    )
 
-            if x2 > x and self.keypad[y][x + 1] != "#":
-                tracks[(x + 1, y)] = path + ">"
-            if x2 < x and self.keypad[y][x - 1] != "#":
-                tracks[(x - 1, y)] = path + "<"
-            if y2 > y and self.keypad[y + 1][x] != "#":
-                tracks[(x, y + 1)] = path + "v"
-            if y2 < y and self.keypad[y - 1][x] != "#":
-                tracks[(x, y - 1)] = path + "^"
-        return sequences
+                # 先竖后横
+                if y1 != y2 and self.keypad[y2][x1] != "#":
+                    sequences.add(
+                        ("v" if y2 > y1 else "^") * abs(y2 - y1)
+                        + (">" if x2 > x1 else "<") * abs(x2 - x1)
+                    )
+
+                self.moves[(btn1, btn2)] = sequences or set({""})
 
     def type(self, code):
-        sequences = []
-        for i in range(len(code)):
-            fr = code[i - 1] if i > 0 else "A"
-            to = code[i]
+        def _type(code, i):
+            if i >= len(code):
+                return set({""})
 
-            previous = sequences
-            sequences = []
-            for sequence in self.move(fr, to):
-                if previous:
-                    for pre in previous:
-                        sequences.append(pre + sequence + "A")
-                else:
-                    sequences.append(sequence + "A")
+            btn1 = code[i - 1] if i > 0 else "A"
+            btn2 = code[i]
+            seq1 = self.moves[(btn1, btn2)]
+            seq2 = _type(code, i + 1)
+            return set(s1 + "A" + s2 for s1 in seq1 for s2 in seq2)
 
-        return sequences
+        return _type(code, 0)
 
 
 def part1():
     codes = input()
 
-    def operate(robot: Robot, codes):
-        sequences = []
-
+    def operate(keypad: Keypad, codes):
+        sequences = set()
         for code in codes:
-            sequences += robot.type(code)
-
-        shortest = min(len(s) for s in sequences)
-        sequences = list(filter(lambda x: len(x) <= shortest, sequences))
+            sequences = set.union(sequences, keypad.type(code))
         return sequences
 
     complexity = []
     for code in codes:
         sequences0 = [code]
-        sequences1 = operate(Robot(keypad1), sequences0)
-        sequences2 = operate(Robot(keypad2), sequences1)
-        sequences3 = operate(Robot(keypad2), sequences2)
+        sequences1 = operate(Keypad(keypad1), sequences0)
+        sequences2 = operate(Keypad(keypad2), sequences1)
+        sequences3 = operate(Keypad(keypad2), sequences2)
 
-        length = len(sequences3[0])
+        length = min([len(s) for s in sequences3])
         ncode = int(code[:-1])
         complexity.append(length * ncode)
 
