@@ -44,20 +44,3 @@ def part1():
 
 
 part1()
-
-# kh {'qp', 'ub', 'ta', 'tc'}
-# tc {'wh', 'kh', 'td', 'co'}
-# qp {'wh', 'kh', 'td', 'ub'}
-# cg {'yn', 'de', 'aq', 'tb'}
-# de {'cg', 'ta', 'co', 'ka'}
-# ka {'de', 'ta', 'co', 'tb'}
-# co {'ka', 'de', 'ta', 'tc'}
-# yn {'wh', 'cg', 'td', 'aq'}
-# aq {'yn', 'cg', 'wq', 'vc'}
-# ub {'qp', 'kh', 'wq', 'vc'}
-# tb {'wq', 'cg', 'ka', 'vc'}
-# vc {'ub', 'wq', 'aq', 'tb'}
-# wh {'yn', 'qp', 'td', 'tc'}
-# ta {'ka', 'kh', 'de', 'co'}
-# td {'yn', 'wh', 'qp', 'tc'}
-# wq {'aq', 'vc', 'ub', 'tb'}
