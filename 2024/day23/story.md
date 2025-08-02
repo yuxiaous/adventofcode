@@ -83,3 +83,31 @@ Find all the sets of three inter-connected computers. **How many contain at leas
 > 找出所有三台互联计算机的集合。**其中至少包含一台以`t`开头的计算机的集合有多少组？**
 
 Your puzzle answer was `1200`.
+
+# Part Two
+
+There are still way too many results to go through them all. You'll have to find the LAN party another way and go there yourself.
+> 结果还是太多了，无法全部查看。你得用别的方法找到局域网派对，然后亲自去那里。
+
+Since it doesn't seem like any employees are around, you figure they must all be at the LAN party. If that's true, the LAN party will be the **largest set of computers that are all connected to each other**. That is, for each computer at the LAN party, that computer will have a connection to every other computer at the LAN party.
+> 既然附近似乎没有员工，你猜他们一定都在局域网派对上。如果真是这样，局域网派对就是**所有互相连接的计算机中最大的一组**。也就是说，派对上的每台计算机都与派对上其他所有计算机相连。
+
+In the above example, the largest set of computers that are all connected to each other is made up of `co`, `de`, `ka`, and `ta`. Each computer in this set has a connection to every other computer in the set:
+> 在上面的例子中，所有互相连接的计算机中最大的一组是`co`、`de`、`ka`和`ta`。这组中的每台计算机都与组内其他所有计算机相连：
+
+```
+ka-co
+ta-co
+de-co
+ta-ka
+de-ta
+ka-de
+```
+
+The LAN party posters say that the **password** to get into the LAN party is the name of every computer at the LAN party, sorted alphabetically, then joined together with commas. (The people running the LAN party are clearly a bunch of nerds.) In this example, the password would be **`co,de,ka,ta`**.
+> 局域网派对的海报上说，进入派对的**密码**是派对上所有计算机的名字，按字母顺序排序后用逗号连接。（举办派对的人显然都是极客。）在本例中，密码就是**`co,de,ka,ta`**。
+
+**What is the password to get into the LAN party?**
+> **进入局域网派对的密码是什么？**
+
+Your puzzle answer was `ag,gh,hh,iv,jx,nq,oc,qm,rb,sm,vm,wu,zr`.
