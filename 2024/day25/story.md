@@ -145,3 +145,23 @@ Analyze your lock and key schematics. **How many unique lock/key pairs fit toget
 > 分析你的锁和钥匙结构图。**有多少对锁和钥匙在所有列都不重叠，可以完全匹配？**
 
 Your puzzle answer was `3619`.
+
+## Part Two
+
+You and The Historians crowd into the office, startling the Chief Historian awake! The Historians all take turns looking confused until one asks where he's been for the last few months.
+> 你和历史学家们挤进办公室，把首席历史学家吓醒了！历史学家们轮流露出困惑的表情，直到有人问他这几个月都去哪儿了。
+
+"I've been right here, working on this high-priority request from Santa! I think the only time I even stepped away was about a month ago when I went to grab a cup of coffee..."
+> “我一直都在这里，忙着处理圣诞老人交给我的这个高优先级任务！我想我唯一离开过的时间，大概就是一个月前去拿杯咖啡的时候……”
+
+Just then, the Chief notices the time. "Oh no! I'm going to be late! I must have fallen asleep trying to put the finishing touches on this chronicle Santa requested, but now I don't have enough time to go visit the last 50 places on my list and complete the chronicle before Santa leaves! He said he needed it before tonight's sleigh launch."
+> 这时，首席注意到时间。“糟了！我要迟到了！我一定是给圣诞老人写编年史时收尾太累睡着了，现在已经没时间去拜访清单上最后50个地方、在圣诞老人离开前完成编年史了！他说他今晚雪橇起飞前就要拿到。”
+
+One of The Historians holds up the list they've been using this whole time to keep track of where they've been searching. Next to each place you all visited, they checked off that place with a **star**. Other Historians hold up their own notes they took on the journey; as The Historians, how could they resist writing everything down while visiting all those historically significant places?
+> 其中一位历史学家举起了他们一直用来记录搜索地点的清单。每到一个地方，他们就在旁边画上一个**星星**。其他历史学家也拿出了旅途中记下的笔记；作为历史学家，怎么可能在参观那些历史意义重大的地方时不把一切都记下来呢？
+
+The Chief's eyes get wide. "With all this, we might just have enough time to finish the chronicle! Santa said he wanted it wrapped up with a bow, so I'll call down to the wrapping department and... hey, could you bring it up to Santa? I'll need to be in my seat to watch the sleigh launch by then."
+> 首席睁大了眼睛。“有了这些，我们也许真的能及时完成编年史！圣诞老人说他想要一个系着蝴蝶结的成品，我这就给包装部门打电话……嘿，你能帮我把它送到圣诞老人那里吗？到时候我得坐在座位上看雪橇起飞。”
+
+You nod, and The Historians quickly work to collect their notes into the final set of pages for the chronicle.
+> 你点点头，历史学家们迅速把他们的笔记整理成编年史的最后几页。
