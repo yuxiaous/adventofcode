@@ -150,3 +150,92 @@ Simulate the system of gates and wires. **What decimal number does it output on 
 > 模拟这个门和电线系统。**以`z`开头的电线输出的十进制数字是多少？**
 
 Your puzzle answer was `63168299811048`.
+
+## Part Two
+
+After inspecting the monitoring device more closely, you determine that the system you're simulating is trying to **add two binary numbers**.
+> 仔细检查监控装置后，你发现你正在模拟的系统其实是在尝试**相加两个二进制数**。
+
+Specifically, it is treating the bits on wires starting with `x` as one binary number, treating the bits on wires starting with `y` as a second binary number, and then attempting to add those two numbers together. The output of this operation is produced as a binary number on the wires starting with `z`. (In all three cases, wire `00` is the least significant bit, then `01`, then `02`, and so on.)
+> 具体来说，它把所有以`x`开头的电线上的比特当作一个二进制数，把所有以`y`开头的电线上的比特当作另一个二进制数，然后尝试将这两个数相加。这个操作的结果会以二进制数的形式输出到所有以`z`开头的电线上。（在这三组电线中，`00`都是最低位，然后是`01`，再是`02`，以此类推。）
+
+The initial values for the wires in your puzzle input represent **just one instance** of a pair of numbers that sum to the wrong value. Ultimately, **any** two binary numbers provided as input should be handled correctly. That is, for any combination of bits on wires starting with `x` and wires starting with `y`, the sum of the two numbers those bits represent should be produced as a binary number on the wires starting with `z`.
+> 你谜题输入中的初始电线值只代表了一组加和出错的数字。最终，**任何**输入的两组二进制数都应该被正确处理。也就是说，无论以`x`和`y`开头的电线上的比特如何组合，它们代表的两个数字的和都应该以二进制形式出现在以`z`开头的电线上。
+
+For example, if you have an addition system with four `x` wires, four `y` wires, and five `z` wires, you should be able to supply any four-bit number on the `x` wires, any four-bit number on the `y` numbers, and eventually find the sum of those two numbers as a five-bit number on the `z` wires. One of the many ways you could provide numbers to such a system would be to pass `11` on the `x` wires (`1011` in binary) and `13` on the `y` wires (`1101` in binary):
+> 例如，如果你有一个加法系统，有四根`x`电线、四根`y`电线和五根`z`电线，你应该可以在`x`电线上输入任意四位数，在`y`电线上输入任意四位数，最终在`z`电线上得到这两个数的和（五位二进制数）。比如，你可以让`x`电线输入`11`（二进制`1011`），`y`电线输入`13`（二进制`1101`）：
+
+```
+x00: 1
+x01: 1
+x02: 0
+x03: 1
+y00: 1
+y01: 0
+y02: 1
+y03: 1
+```
+
+If the system were working correctly, then after all gates are finished processing, you should find `24` (`11+13`) on the z wires as the five-bit binary number `11000`:
+> 如果系统工作正常，所有门处理完后，你应该能在`z`电线上看到`24`（`11+13`），即五位二进制数`11000`：
+
+```
+z00: 0
+z01: 0
+z02: 0
+z03: 1
+z04: 1
+```
+
+Unfortunately, your actual system needs to add numbers with many more bits and therefore has many more wires.
+> 不幸的是，你的实际系统需要加的数位数更多，因此电线也更多。
+
+Based on forensic analysis of scuff marks and scratches on the device, you can tell that there are exactly **four** pairs of gates whose output wires have been **swapped**. (A gate can only be in at most one such pair; no gate's output was swapped multiple times.)
+> 通过对设备上的磨损和划痕进行法医分析，你发现有且只有**四对**门的输出电线被**交换**了。（每个门最多只参与一对交换，没有门的输出被多次交换。）
+
+For example, the system below is supposed to find the bitwise `AND` of the six-bit number on `x00` through `x05` and the six-bit number on `y00` through `y05` and then write the result as a six-bit number on `z00` through `z05`:
+> 例如，下面这个系统本应计算`x00`到`x05`和`y00`到`y05`上的六位数的按位`AND`，然后把结果写到`z00`到`z05`这六根电线上：
+
+```
+x00: 0
+x01: 1
+x02: 0
+x03: 1
+x04: 0
+x05: 1
+y00: 0
+y01: 0
+y02: 1
+y03: 1
+y04: 0
+y05: 1
+
+x00 AND y00 -> z05
+x01 AND y01 -> z02
+x02 AND y02 -> z01
+x03 AND y03 -> z03
+x04 AND y04 -> z04
+x05 AND y05 -> z00
+```
+
+However, in this example, two pairs of gates have had their output wires swapped, causing the system to produce wrong answers. The first pair of gates with swapped outputs is `x00 AND y00 -> z05` and `x05 AND y05 -> z00`; the second pair of gates is `x01 AND y01 -> z02` and `x02 AND y02 -> z01`. Correcting these two swaps results in this system that works as intended for any set of initial values on wires that start with `x` or `y`:
+> 但在这个例子中，有两对门的输出电线被交换了，导致系统输出错误。第一对交换的是`x00 AND y00 -> z05`和`x05 AND y05 -> z00`；第二对是`x01 AND y01 -> z02`和`x02 AND y02 -> z01`。修正这两对交换后，系统就能对任意`x`和`y`输入正常工作：
+
+```
+x00 AND y00 -> z00
+x01 AND y01 -> z01
+x02 AND y02 -> z02
+x03 AND y03 -> z03
+x04 AND y04 -> z04
+x05 AND y05 -> z05
+```
+
+In this example, two pairs of gates have outputs that are involved in a swap. By sorting their output wires' names and joining them with commas, the list of wires involved in swaps is **`z00,z01,z02,z05`**.
+> 在这个例子中，有两对门的输出电线参与了交换。把这些电线名排序后用逗号连接，得到参与交换的电线列表为**`z00,z01,z02,z05`**。
+
+Of course, your actual system is much more complex than this, and the gates that need their outputs swapped could be **anywhere**, not just attached to a wire starting with `z`. If you were to determine that you need to swap output wires `aaa` with `eee`, `ooo` with `z99`, `bbb` with `ccc`, and `aoc` with `z24`, your answer would be **`aaa,aoc,bbb,ccc,eee,ooo,z24,z99`**.
+> 当然，你的实际系统比这复杂得多，需要交换输出的门可能**分布在任何地方**，不仅仅是接在以`z`开头的电线上。如果你发现需要交换`aaa`和`eee`、`ooo`和`z99`、`bbb`和`ccc`、`aoc`和`z24`，那么你的答案就是**`aaa,aoc,bbb,ccc,eee,ooo,z24,z99`**。
+
+Your system of gates and wires has **four** pairs of gates which need their output wires swapped - **eight** wires in total. Determine which four pairs of gates need their outputs swapped so that your system correctly performs addition; **what do you get if you sort the names of the eight wires involved in a swap and then join those names with commas?**
+> 你的门和电线系统有**四对**门需要交换输出电线——总共**八根**电线。找出需要交换输出的四对门，使你的系统能正确执行加法；**把这八根电线的名字排序后用逗号连接，结果是什么？**
+
