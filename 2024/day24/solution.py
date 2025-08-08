@@ -19,13 +19,6 @@ def input():
         for input1, gate, input2 in [inputs.split(" ")]
     }
 
-    for output, (gate, input1, input2) in gates.items():
-        if input1 not in wires:
-            wires[input1] = None
-        if input2 not in wires:
-            wires[input2] = None
-        if output not in wires:
-            wires[output] = None
     return wires, gates
 
 
@@ -38,26 +31,16 @@ GATE = {
 
 def part1():
     wires, gates = input()
-    z_valid = {wire: False for wire in wires.keys() if wire.startswith("z")}
 
-    while not all(z_valid.values()):
-        for wire, value in wires.items():
-            if value != None:
-                continue
-
-            gate, input1, input2 = gates[wire]
-
-            if wires[input1] == None or wires[input2] == None:
-                continue
-
-            wires[wire] = GATE[gate](wires[input1], wires[input2])
-
-            if wire.startswith("z"):
-                z_valid[wire] = True
+    def output(wire):
+        if wire not in gates and wire in wires:
+            return wires[wire]
+        gate, input1, input2 = gates[wire]
+        return GATE[gate](output(input1), output(input2))
 
     binary = ""
-    for wire in sorted(filter(lambda w: w.startswith("z"), wires.keys()), reverse=True):
-        binary += "1" if wires[wire] else "0"
+    for wire in sorted(filter(lambda w: w.startswith("z"), gates.keys()), reverse=True):
+        binary += "1" if output(wire) else "0"
     print(int(binary, 2))
 
 
