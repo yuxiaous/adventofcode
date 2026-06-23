@@ -53,6 +53,21 @@ The tropical island has its own currency and is entirely cash-only.
 | puzzle input | 谜题输入 |
 | Christmas | 圣诞节 |
 
+## HTML 转 Markdown 规则
+
+题目原文如果以 HTML 格式提供，转换时遵循以下规则：
+
+- `<em>...</em>` → `**粗体**`（使用粗体而非斜体）
+- `<code>...</code>` → `` `...` `` 行内代码
+- `<pre><code>...</code></pre>` → ```` ```...``` ```` 代码块
+- `<code>` 内含 `<em>` 时
+  - 如果整体使用强调，则粗体在外、代码在内：`<code><em>11</em></code>` → ``**`11`**``
+  - 如果局部使用强调，则去掉强调：`<code><em>98</em>...</code>` → `` `98...` ``
+- `<a href="...">text</a>` → `[text](url)` 标准链接
+- `<ul>/<li>` → `- ` 无序列表
+- `<p>` 段落标签去掉，保留段落间空行
+- `<span title="...">text</span>` → 去掉标签，仅保留 `text` 文本内容
+
 ## 禁止
 
 - **禁止解题**：不编写、运行任何解题代码
