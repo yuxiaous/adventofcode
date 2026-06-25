@@ -73,3 +73,51 @@ Adding up all the invalid IDs in this example produces **`1227775554`**.
 > **把所有无效 ID 相加，你会得到什么？**
 
 Your puzzle answer was `19605500130`.
+
+## Part Two
+
+The clerk quickly discovers that there are still invalid IDs in the ranges in your list. Maybe the young Elf was doing other silly patterns as well?
+
+> 店员很快发现你的列表范围内仍然存在无效 ID。也许年轻精灵还玩了其他傻傻的图案游戏？
+
+Now, an ID is invalid if it is made only of some sequence of digits repeated **at least** twice. So, `12341234` (`1234` two times), `123123123` (`123` three times), `1212121212` (`12` five times), and `1111111` (`1` seven times) are all invalid IDs.
+
+> 现在，如果一个 ID 仅由某个数字序列重复**至少**两次组成，那么它就是无效 ID。因此，`12341234`（`1234` 两次）、`123123123`（`123` 三次）、`1212121212`（`12` 五次）和 `1111111`（`1` 七次）都是无效 ID。
+
+From the same example as before:
+
+> 还是用之前的例子：
+
+- `11-22` still has two invalid IDs, **`11`** and **`22`**.
+- `95-115` now has two invalid IDs, **`99`** and **`111`**.
+- `998-1012` now has two invalid IDs, **`999`** and **`1010`**.
+- `1188511880-1188511890` still has one invalid ID, **`1188511885`**.
+- `222220-222224` still has one invalid ID, **`222222`**.
+- `1698522-1698528` still contains no invalid IDs.
+- `446443-446449` still has one invalid ID, **`446446`**.
+- `38593856-38593862` still has one invalid ID, **`38593859`**.
+- `565653-565659` now has one invalid ID, **`565656`**.
+- `824824821-824824827` now has one invalid ID, **`824824824`**.
+- `2121212118-2121212124` now has one invalid ID, **`2121212121`**.
+
+> - `11-22` 仍然有两个无效 ID，**`11`** 和 **`22`**。
+> - `95-115` 现在有两个无效 ID，**`99`** 和 **`111`**。
+> - `998-1012` 现在有两个无效 ID，**`999`** 和 **`1010`**。
+> - `1188511880-1188511890` 仍然有一个无效 ID，**`1188511885`**。
+> - `222220-222224` 仍然有一个无效 ID，**`222222`**。
+> - `1698522-1698528` 仍然没有无效 ID。
+> - `446443-446449` 仍然有一个无效 ID，**`446446`**。
+> - `38593856-38593862` 仍然有一个无效 ID，**`38593859`**。
+> - `565653-565659` 现在有一个无效 ID，**`565656`**。
+> - `824824821-824824827` 现在有一个无效 ID，**`824824824`**。
+> - `2121212118-2121212124` 现在有一个无效 ID，**`2121212121`**。
+
+Adding up all the invalid IDs in this example produces **`4174379265`**.
+
+> 把例子中所有无效 ID 相加，得到 **`4174379265`**。
+
+**What do you get if you add up all of the invalid IDs using these new rules?**
+
+> **使用这些新规则，把所有无效 ID 相加，你会得到什么？**
+
+Your puzzle answer was `36862281418`.
