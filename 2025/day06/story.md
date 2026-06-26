@@ -60,3 +60,48 @@ Solve the problems on the math worksheet. **What is the grand total found by add
 > 解决数学练习卷上的题目。**将所有单独题目的答案相加得到的总和是多少？**
 
 Your puzzle answer was `5335495999141`.
+
+## Part Two
+
+The big cephalopods come back to check on how things are going. When they see that your grand total doesn't match the one expected by the worksheet, they realize they forgot to explain how to read cephalopod math.
+
+> 大个头足类动物回来了，想看看情况如何。当他们发现你的总和与练习卷预期的结果不符时，才意识到忘了解释如何阅读头足类动物的数学。
+
+Cephalopod math is written **right-to-left in columns**. Each number is given in its own column, with the most significant digit at the top and the least significant digit at the bottom. (Problems are still separated with a column consisting only of spaces, and the symbol at the bottom of the problem is still the operator to use.)
+
+> 头足类动物的数学是**按列从右到左**书写的。每个数字独占一列，最高位在上，最低位在下。（题目之间仍然由一整列空格分隔，题目底部的符号仍然是要使用的运算符。）
+
+Here's the example worksheet again:
+
+> 以下是同样的示例练习卷：
+
+```
+123 328  51 64 
+ 45 64  387 23 
+  6 98  215 314
+*   +   *   +  
+```
+
+Reading the problems right-to-left one column at a time, the problems are now quite different:
+
+> 按列从右到左阅读题目，题目现在完全不同了：
+
+- The rightmost problem is `4` + `431` + `623` = **`1058`**
+- The second problem from the right is `175` * `581` * `32` = **`3253600`**
+- The third problem from the right is `8` + `248` + `369` = **`625`**
+- Finally, the leftmost problem is `356` * `24` * `1` = **`8544`**
+
+> - 最右边的题目是 `4` + `431` + `623` = **`1058`**
+> - 从右数第二个题目是 `175` * `581` * `32` = **`3253600`**
+> - 从右数第三个题目是 `8` + `248` + `369` = **`625`**
+> - 最后，最左边的题目是 `356` * `24` * `1` = **`8544`**
+
+Now, the grand total is `1058` + `3253600` + `625` + `8544` = **`3263827`**.
+
+> 现在，总和为 `1058` + `3253600` + `625` + `8544` = **`3263827`**。
+
+Solve the problems on the math worksheet again. **What is the grand total found by adding together all of the answers to the individual problems?**
+
+> 再次解决数学练习卷上的题目。**将所有单独题目的答案相加得到的总和是多少？**
+
+Your puzzle answer was `10142723156431`.
