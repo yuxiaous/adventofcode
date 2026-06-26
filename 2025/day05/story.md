@@ -67,3 +67,34 @@ Process the database file from the new inventory management system. **How many o
 > 处理新库存管理系统中的数据库文件。**有多少个可用食材ID是新鲜的？**
 
 Your puzzle answer was `720`.
+
+## Part Two
+
+The Elves start bringing their spoiled inventory to the trash chute at the back of the kitchen.
+
+> 精灵们开始把变质的食材搬到厨房后面的垃圾滑道。
+
+So that they can stop bugging you when they get new inventory, the Elves would like to know **all** of the IDs that the **fresh ingredient ID ranges** consider to be **fresh**. An ingredient ID is still considered fresh if it is in any range.
+
+> 为了以后拿到新库存时不再来烦你，精灵们想知道**所有**被**新鲜食材ID范围**认定为**新鲜的**ID。一个食材ID只要在任意范围内，仍然被视为新鲜的。
+
+Now, the second section of the database (the available ingredient IDs) is irrelevant. Here are the fresh ingredient ID ranges from the above example:
+
+> 现在，数据库的第二部分（可用食材ID）无关紧要了。以下是上面例子中的新鲜食材ID范围：
+
+```
+3-5
+10-14
+16-20
+12-18
+```
+
+The ingredient IDs that these ranges consider to be fresh are `3`, `4`, `5`, `10`, `11`, `12`, `13`, `14`, `15`, `16`, `17`, `18`, `19`, and `20`. So, in this example, the fresh ingredient ID ranges consider a total of **`14`** ingredient IDs to be fresh.
+
+> 这些范围认定为新鲜的食材ID有 `3`、`4`、`5`、`10`、`11`、`12`、`13`、`14`、`15`、`16`、`17`、`18`、`19` 和 `20`。因此，在这个例子中，新鲜食材ID范围共认定 **`14`** 个食材ID是新鲜的。
+
+Process the database file again. **How many ingredient IDs are considered to be fresh according to the fresh ingredient ID ranges?**
+
+> 再次处理数据库文件。**根据新鲜食材ID范围，有多少个食材ID被认为是新鲜的？**
+
+Your puzzle answer was `357608232770687`.
