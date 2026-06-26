@@ -42,4 +42,41 @@ def part1():
     print("part1: ", len(rolls))
 
 
+def _access(diagram, width, height):
+    rolls = []
+    for x in range(width):
+        for y in range(height):
+            if diagram[(x, y)] != "@":
+                continue
+
+            count = 0
+            for dx, dy in DIRECTIONS:
+                px, py = x + dx, y + dy
+                if 0 <= px < width and 0 <= py < height:
+                    if diagram[(px, py)] == "@":
+                        count += 1
+
+            if count < 4:
+                rolls.append((x, y))
+    return rolls
+
+
+def part2():
+    diagram, width, height = input()
+
+    total = 0
+    while True:
+        rolls = _access(diagram, width, height)
+        if not rolls:
+            break
+
+        for pos in rolls:
+            diagram[pos] = "."
+
+        total += len(rolls)
+
+    print("part2: ", total)
+
+
 part1()
+part2()

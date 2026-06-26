@@ -65,3 +65,137 @@ Consider your complete diagram of the paper roll locations. **How many rolls of 
 > 考虑你的完整纸卷位置图。**有多少纸卷可以被叉车取到？**
 
 Your puzzle answer was `1533`.
+
+## Part Two
+
+Now, the Elves just need help accessing as much of the paper as they can.
+
+> 现在，精灵们需要帮助来尽可能多地取到纸卷。
+
+Once a roll of paper can be accessed by a forklift, it can be **removed**. Once a roll of paper is removed, the forklifts might be able to access **more** rolls of paper, which they might also be able to remove. How many total rolls of paper could the Elves remove if they keep repeating this process?
+
+> 一旦一个纸卷可以被叉车取到，它就可以被**移除**。一旦一个纸卷被移除，叉车可能就能取到**更多**的纸卷，而这些纸卷也同样可以被移除。如果不断重复这个过程，精灵们总共能移除多少个纸卷？
+
+Starting with the same example as above, here is one way you could remove as many rolls of paper as possible, using highlighted **`@`** to indicate that a roll of paper is about to be removed, and using `x` to indicate that a roll of paper was just removed:
+
+> 从上面相同的例子开始，以下是一种尽可能多地移除纸卷的方法，用高亮的 **`@`** 表示即将被移除的纸卷，用 `x` 表示刚刚被移除的纸卷：
+
+```
+Initial state:
+..@@.@@@@.
+@@@.@.@.@@
+@@@@@.@.@@
+@.@@@@..@.
+@@.@@@@.@@
+.@@@@@@@.@
+.@.@.@.@@@
+@.@@@.@@@@
+.@@@@@@@@.
+@.@.@@@.@.
+
+Remove 13 rolls of paper:
+..xx.xx@x.
+x@@.@.@.@@
+@@@@@.x.@@
+@.@@@@..@.
+x@.@@@@.@x
+.@@@@@@@.@
+.@.@.@.@@@
+x.@@@.@@@@
+.@@@@@@@@.
+x.x.@@@.x.
+
+Remove 12 rolls of paper:
+.......x..
+.@@.x.x.@x
+x@@@@...@@
+x.@@@@..x.
+.@.@@@@.x.
+.x@@@@@@.x
+.x.@.@.@@@
+..@@@.@@@@
+.x@@@@@@@.
+....@@@...
+
+Remove 7 rolls of paper:
+..........
+.x@.....x.
+.@@@...xx
+..@@@@....
+.x.@@@@...
+..@@@@@..
+...@.@.@@x
+..@@.@@@@
+..x@@@@@@.
+....@@@...
+
+Remove 5 rolls of paper:
+..........
+..x.......
+.x@@.....
+..@@@@....
+...@@@@...
+..x@@@@@..
+...@.@.@@.
+..x@@.@@@x
+...@@@@@..
+....@@@...
+
+Remove 1 roll of paper:
+..........
+..........
+..x@.....
+...@@@....
+...@@@@...
+...@@@@@..
+...@.@.@@.
+...@@.@@@.
+...@@@@@..
+....@@@...
+
+Remove 1 roll of paper:
+..........
+..........
+...@@.....
+..x@@@....
+...@@@@...
+...@@@@@..
+...@.@.@@.
+...@@.@@@.
+...@@@@@..
+....@@@...
+
+Remove 1 roll of paper:
+..........
+..........
+....x.....
+...@@@....
+...@@@@...
+...@@@@@..
+...@.@.@@.
+...@@.@@@.
+...@@@@@..
+....@@@...
+
+Remove 1 roll of paper:
+..........
+..........
+..........
+...x@@....
+...@@@@...
+...@@@@@..
+...@.@.@@.
+...@@.@@@.
+...@@@@@..
+....@@@...
+```
+
+Stop once no more rolls of paper are accessible by a forklift. In this example, a total of **`43`** rolls of paper can be removed.
+
+> 当没有更多纸卷可以被叉车取到时停止。在这个例子中，总共可以移除 **`43`** 个纸卷。
+
+Start with your original diagram. **How many rolls of paper in total can be removed by the Elves and their forklifts?**
+
+> 从你的原始布局图开始。**精灵们和他们的叉车总共可以移除多少个纸卷？**
+
+Your puzzle answer was `9206`.
