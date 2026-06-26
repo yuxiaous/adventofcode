@@ -56,3 +56,52 @@ There are many batteries in front of you. Find the maximum joltage possible from
 > 你面前有很多电池。找出每组可能的最大电压；**总输出电压是多少？**
 
 Your puzzle answer was `17403`.
+
+## Part Two
+
+The escalator doesn't move. The Elf explains that it probably needs more joltage to overcome the [static friction](https://en.wikipedia.org/wiki/Static_friction) of the system and hits the big red "joltage limit safety override" button. You lose count of the number of times she needs to confirm "yes, I'm sure" and decorate the lobby a bit while you wait.
+
+> 自动扶梯纹丝不动。精灵解释说，可能需要更高的电压来克服系统的[静摩擦力](https://en.wikipedia.org/wiki/Static_friction)，于是她按下了那个大大的红色"电压极限安全超载"按钮。她反复确认"是的，我确定"的次数多到你数不清，而你在等待时顺便把大厅装饰了一番。
+
+Now, you need to make the largest joltage by turning on **exactly twelve** batteries within each bank.
+
+> 现在，你需要通过在每组中打开**恰好十二个**电池来产生最大的电压。
+
+The joltage output for the bank is still the number formed by the digits of the batteries you've turned on; the only difference is that now there will be **`12`** digits in each bank's joltage output instead of two.
+
+> 电池组的输出电压仍然是所打开电池的数字组成的数值；唯一的区别是，现在每组电压输出将有 **`12`** 位数字，而不是两位。
+
+Consider again the example from before:
+
+> 再次考虑之前的例子：
+
+```
+987654321111111
+811111111111119
+234234234234278
+818181911112111
+```
+
+Now, the joltages are much larger:
+
+> 现在，电压要大得多：
+
+- In `987654321111111`, the largest joltage can be found by turning on everything except some `1`s at the end to produce **`987654321111`**.
+- In the digit sequence `811111111111119`, the largest joltage can be found by turning on everything except some `1`s, producing **`811111111119`**.
+- In `234234234234278`, the largest joltage can be found by turning on everything except a `2` battery, a `3` battery, and another `2` battery near the start to produce **`434234234278`**.
+- In `818181911112111`, the joltage **`888911112111`** is produced by turning on everything except some `1`s near the front.
+
+> - 在 `987654321111111` 中，可以通过打开除末尾部分 `1` 之外的所有电池来产生最大电压 **`987654321111`**。
+> - 在数字序列 `811111111111119` 中，可以通过打开除部分 `1` 之外的所有电池来产生最大电压 **`811111111119`**。
+> - 在 `234234234234278` 中，可以通过打开除一个 `2`、一个 `3` 和开头附近另一个 `2` 之外的所有电池来产生最大电压 **`434234234278`**。
+> - 在 `818181911112111` 中，通过打开除开头附近部分 `1` 之外的所有电池，产生电压 **`888911112111`**。
+
+The total output joltage is now much larger: `987654321111` + `811111111119` + `434234234278` + `888911112111` = **`3121910778619`**.
+
+> 现在的总输出电压要大得多：`987654321111` + `811111111119` + `434234234278` + `888911112111` = **`3121910778619`**。
+
+**What is the new total output joltage?**
+
+> **新的总输出电压是多少？**
+
+Your puzzle answer was `173416889848394`.

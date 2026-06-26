@@ -23,4 +23,23 @@ def part1():
     print("part1: ", sum(joltages))
 
 
+def part2():
+    joltages = []
+
+    limit = 12
+    for bank in input():
+        largest = 0
+
+        start = 0
+        for end in range(len(bank) + 1 - limit, len(bank) + 1):
+            digit = max(bank[start:end])
+            start = bank.index(digit, start, end) + 1
+            largest = largest * 10 + digit
+
+        joltages.append(largest)
+
+    print("part2: ", sum(joltages))
+
+
 part1()
+part2()
