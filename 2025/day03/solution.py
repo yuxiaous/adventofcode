@@ -3,7 +3,7 @@ import os
 os.chdir(os.path.dirname(__file__))
 
 
-def input() -> list[str]:
+def input():
     input = open("input.txt").read().strip()
     lines = [line.strip() for line in input.split("\n")]
     banks = [tuple(int(joltage) for joltage in list(batteries)) for batteries in lines]
