@@ -1,4 +1,5 @@
 import os
+from collections import defaultdict
 
 os.chdir(os.path.dirname(__file__))
 
@@ -47,4 +48,28 @@ def part1():
     print("part1:", count)
 
 
+def part2():
+    marks, width, height = input()
+    timelines = {pos: 1 for pos in marks["S"]}
+    total = 0
+
+    while timelines:
+        downward = defaultdict(int)
+
+        for (x, y), num in timelines.items():
+            if y + 1 >= height:
+                total += num
+                continue
+            if (x, y + 1) in marks["^"]:
+                downward[(x - 1, y + 1)] += num
+                downward[(x + 1, y + 1)] += num
+            else:
+                downward[(x, y + 1)] += num
+
+        timelines = downward
+
+    print("part2:", total)
+
+
 part1()
+part2()
