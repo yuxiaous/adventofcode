@@ -48,4 +48,27 @@ def part1():
     print("part1:", produce)
 
 
+def part2():
+    boxes, distances = input()
+    circuits = [{box} for box in boxes]
+    close = sorted(distances.keys())
+
+    for i in range(len(close)):
+        box1, box2 = distances[close[i]]
+        circuit = set()
+
+        for box in [box1, box2]:
+            for c in circuits:
+                if box in c:
+                    circuit |= c
+                    circuits.remove(c)
+
+        circuits.append(circuit)
+        if len(circuits) == 1:
+            break
+
+    print("part2:", box1[0] * box2[0])
+
+
 part1()
+part2()

@@ -86,3 +86,19 @@ Your list contains many junction boxes; connect together the **1000** pairs of j
 > 你的列表包含许多接线盒；将距离最近的**1000**对接线盒连接起来。之后，**如果将三个最大电路的大小相乘，你会得到什么？**
 
 Your puzzle answer was `46398`.
+
+## Part Two
+
+The Elves were right; they **definitely** don't have enough extension cables. You'll need to keep connecting junction boxes together until they're all in **one large circuit**.
+
+> 精灵们说得没错；他们**确实**没有足够的延长线。你需要继续将接线盒连接起来，直到它们全部组成**一个大电路**。
+
+Continuing the above example, the first connection which causes all of the junction boxes to form a single circuit is between the junction boxes at `216,146,977` and `117,168,530`. The Elves need to know how far those junction boxes are from the wall so they can pick the right extension cable; multiplying the X coordinates of those two junction boxes (`216` and `117`) produces **`25272`**.
+
+> 继续上面的例子，使所有接线盒形成一个单一电路的第一个连接是位于 `216,146,977` 和 `117,168,530` 的两个接线盒之间。精灵们需要知道这些接线盒离墙有多远，以便选择合适的延长线；将这两个接线盒的 X 坐标（`216` 和 `117`）相乘得到 **`25272`**。
+
+Continue connecting the closest unconnected pairs of junction boxes together until they're all in the same circuit. **What do you get if you multiply together the X coordinates of the last two junction boxes you need to connect?**
+
+> 继续将距离最近的未连接接线盒对连接起来，直到它们全部归于同一个电路。**将最后需要连接的两个接线盒的 X 坐标相乘，你会得到什么？**
+
+Your puzzle answer was `8141888143`.
